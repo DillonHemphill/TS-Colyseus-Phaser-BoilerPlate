@@ -2668,7 +2668,7 @@ module.exports = __webpack_require__(/*! ./_core */ 50).getIteratorMethod = func
 /***/ (function(module, exports, __webpack_require__) {
 
 // 9.4.2.3 ArraySpeciesCreate(originalArray, length)
-var speciesConstructor = __webpack_require__(/*! ./_array-species-constructor */ 646);
+var speciesConstructor = __webpack_require__(/*! ./_array-species-constructor */ 645);
 
 module.exports = function (original, length) {
   return new (speciesConstructor(original))(length);
@@ -4650,126 +4650,6 @@ module.exports = Math.scale || function scale(x, inLow, inHigh, outLow, outHigh)
 /* 550 */,
 /* 551 */,
 /* 552 */
-/*!******************************!*\
-  !*** ./src/sprites/Enemy.js ***!
-  \******************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-/*
-Generic enemy class that extends Phaser sprites.
-Classes for enemy types extend this class.
-*/
-
-var Enemy = function (_Phaser$GameObjects$S) {
-  _inherits(Enemy, _Phaser$GameObjects$S);
-
-  function Enemy(config) {
-    _classCallCheck(this, Enemy);
-
-    var _this = _possibleConstructorReturn(this, (Enemy.__proto__ || Object.getPrototypeOf(Enemy)).call(this, config.scene, config.x, config.y - 16, config.key));
-
-    config.scene.physics.world.enable(_this);
-    config.scene.add.existing(_this);
-    _this.alive = true;
-    // start still and wait until needed
-    _this.body.setVelocity(0, 0).setBounce(0, 0).setCollideWorldBounds(false);
-    _this.body.allowGravity = false;
-    _this.beenSeen = false;
-    // know about Mario
-    _this.mario = _this.scene.mario;
-    // Base horizontal velocity / direction.
-    _this.direction = -50;
-    // Standard sprite is 16x16 pixels with a smaller body
-    _this.body.setSize(12, 12);
-    _this.body.offset.set(2, 4);
-    return _this;
-  }
-
-  _createClass(Enemy, [{
-    key: 'activated',
-    value: function activated() {
-      // Method to check if an enemy is activated, the enemy will stay put
-      // until activated so that starting positions is correct
-      if (!this.alive) {
-        if (this.y > 240) {
-          this.kill();
-        }
-        return false;
-      }
-      if (!this.beenSeen) {
-        // check if it's being seen now and if so, activate it
-        if (this.x < this.scene.cameras.main.scrollX + this.scene.sys.game.canvas.width + 32) {
-          this.beenSeen = true;
-          this.body.velocity.x = this.direction;
-          this.body.allowGravity = true;
-          return true;
-        }
-        return false;
-      }
-      return true;
-    }
-  }, {
-    key: 'verticalHit',
-    value: function verticalHit(enemy, mario) {
-      // quick check if a collision between the enemy and Mario is from above.
-      if (!mario.alive) {
-        return false;
-      }
-      return mario.body.velocity.y >= 0 && mario.body.y + mario.body.height - enemy.body.y < 10;
-    }
-  }, {
-    key: 'hurtMario',
-    value: function hurtMario(enemy, mario) {
-      // send the enemy to mario hurt method (if mario got a star this will not end well for the enemy)
-      this.scene.mario.hurtBy(enemy);
-    }
-  }, {
-    key: 'starKilled',
-    value: function starKilled() {
-      // Killed by a star or hit from below with a block, later on also fire
-      if (!this.alive) {
-        return;
-      }
-      this.body.velocity.x = 0;
-      this.body.velocity.y = -200;
-      this.alive = false;
-      this.flipY = true;
-      this.scene.sound.playAudioSprite('sfx', 'smb_stomp');
-      this.scene.updateScore(100);
-    }
-  }, {
-    key: 'kill',
-    value: function kill() {
-      // Forget about this enemy
-      this.scene.enemyGroup.remove(this);
-      this.destroy();
-    }
-  }]);
-
-  return Enemy;
-}(Phaser.GameObjects.Sprite);
-
-exports.default = Enemy;
-
-/***/ }),
-/* 553 */
 /*!******************************************!*\
   !*** multi babel-polyfill ./src/main.js ***!
   \******************************************/
@@ -4777,12 +4657,12 @@ exports.default = Enemy;
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! babel-polyfill */554);
-module.exports = __webpack_require__(/*! /home/dillon/phaser3-es6-webpack/src/main.js */756);
+__webpack_require__(/*! babel-polyfill */553);
+module.exports = __webpack_require__(/*! C:\Users\dillon\Documents\GitHub\es6MultiplayerGame\src\main.js */755);
 
 
 /***/ }),
-/* 554 */
+/* 553 */
 /*!**************************************************!*\
   !*** ./node_modules/babel-polyfill/lib/index.js ***!
   \**************************************************/
@@ -4793,11 +4673,11 @@ module.exports = __webpack_require__(/*! /home/dillon/phaser3-es6-webpack/src/ma
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-__webpack_require__(/*! core-js/shim */ 555);
+__webpack_require__(/*! core-js/shim */ 554);
 
-__webpack_require__(/*! regenerator-runtime/runtime */ 752);
+__webpack_require__(/*! regenerator-runtime/runtime */ 751);
 
-__webpack_require__(/*! core-js/fn/regexp/escape */ 753);
+__webpack_require__(/*! core-js/fn/regexp/escape */ 752);
 
 if (global._babelPolyfill) {
   throw new Error("only one instance of babel-polyfill is allowed");
@@ -4822,7 +4702,7 @@ define(String.prototype, "padRight", "".padEnd);
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../webpack/buildin/global.js */ 146)))
 
 /***/ }),
-/* 555 */
+/* 554 */
 /*!**************************************!*\
   !*** ./node_modules/core-js/shim.js ***!
   \**************************************/
@@ -4830,207 +4710,207 @@ define(String.prototype, "padRight", "".padEnd);
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./modules/es6.symbol */ 556);
-__webpack_require__(/*! ./modules/es6.object.create */ 558);
-__webpack_require__(/*! ./modules/es6.object.define-property */ 559);
-__webpack_require__(/*! ./modules/es6.object.define-properties */ 560);
-__webpack_require__(/*! ./modules/es6.object.get-own-property-descriptor */ 561);
-__webpack_require__(/*! ./modules/es6.object.get-prototype-of */ 562);
-__webpack_require__(/*! ./modules/es6.object.keys */ 563);
-__webpack_require__(/*! ./modules/es6.object.get-own-property-names */ 564);
-__webpack_require__(/*! ./modules/es6.object.freeze */ 565);
-__webpack_require__(/*! ./modules/es6.object.seal */ 566);
-__webpack_require__(/*! ./modules/es6.object.prevent-extensions */ 567);
-__webpack_require__(/*! ./modules/es6.object.is-frozen */ 568);
-__webpack_require__(/*! ./modules/es6.object.is-sealed */ 569);
-__webpack_require__(/*! ./modules/es6.object.is-extensible */ 570);
-__webpack_require__(/*! ./modules/es6.object.assign */ 571);
-__webpack_require__(/*! ./modules/es6.object.is */ 572);
-__webpack_require__(/*! ./modules/es6.object.set-prototype-of */ 574);
-__webpack_require__(/*! ./modules/es6.object.to-string */ 575);
-__webpack_require__(/*! ./modules/es6.function.bind */ 576);
-__webpack_require__(/*! ./modules/es6.function.name */ 577);
-__webpack_require__(/*! ./modules/es6.function.has-instance */ 578);
-__webpack_require__(/*! ./modules/es6.parse-int */ 579);
-__webpack_require__(/*! ./modules/es6.parse-float */ 580);
-__webpack_require__(/*! ./modules/es6.number.constructor */ 581);
-__webpack_require__(/*! ./modules/es6.number.to-fixed */ 582);
-__webpack_require__(/*! ./modules/es6.number.to-precision */ 583);
-__webpack_require__(/*! ./modules/es6.number.epsilon */ 584);
-__webpack_require__(/*! ./modules/es6.number.is-finite */ 585);
-__webpack_require__(/*! ./modules/es6.number.is-integer */ 586);
-__webpack_require__(/*! ./modules/es6.number.is-nan */ 587);
-__webpack_require__(/*! ./modules/es6.number.is-safe-integer */ 588);
-__webpack_require__(/*! ./modules/es6.number.max-safe-integer */ 589);
-__webpack_require__(/*! ./modules/es6.number.min-safe-integer */ 590);
-__webpack_require__(/*! ./modules/es6.number.parse-float */ 591);
-__webpack_require__(/*! ./modules/es6.number.parse-int */ 592);
-__webpack_require__(/*! ./modules/es6.math.acosh */ 593);
-__webpack_require__(/*! ./modules/es6.math.asinh */ 594);
-__webpack_require__(/*! ./modules/es6.math.atanh */ 595);
-__webpack_require__(/*! ./modules/es6.math.cbrt */ 596);
-__webpack_require__(/*! ./modules/es6.math.clz32 */ 597);
-__webpack_require__(/*! ./modules/es6.math.cosh */ 598);
-__webpack_require__(/*! ./modules/es6.math.expm1 */ 599);
-__webpack_require__(/*! ./modules/es6.math.fround */ 600);
-__webpack_require__(/*! ./modules/es6.math.hypot */ 601);
-__webpack_require__(/*! ./modules/es6.math.imul */ 602);
-__webpack_require__(/*! ./modules/es6.math.log10 */ 603);
-__webpack_require__(/*! ./modules/es6.math.log1p */ 604);
-__webpack_require__(/*! ./modules/es6.math.log2 */ 605);
-__webpack_require__(/*! ./modules/es6.math.sign */ 606);
-__webpack_require__(/*! ./modules/es6.math.sinh */ 607);
-__webpack_require__(/*! ./modules/es6.math.tanh */ 608);
-__webpack_require__(/*! ./modules/es6.math.trunc */ 609);
-__webpack_require__(/*! ./modules/es6.string.from-code-point */ 610);
-__webpack_require__(/*! ./modules/es6.string.raw */ 611);
-__webpack_require__(/*! ./modules/es6.string.trim */ 612);
-__webpack_require__(/*! ./modules/es6.string.iterator */ 613);
-__webpack_require__(/*! ./modules/es6.string.code-point-at */ 614);
-__webpack_require__(/*! ./modules/es6.string.ends-with */ 615);
-__webpack_require__(/*! ./modules/es6.string.includes */ 616);
-__webpack_require__(/*! ./modules/es6.string.repeat */ 617);
-__webpack_require__(/*! ./modules/es6.string.starts-with */ 618);
-__webpack_require__(/*! ./modules/es6.string.anchor */ 619);
-__webpack_require__(/*! ./modules/es6.string.big */ 620);
-__webpack_require__(/*! ./modules/es6.string.blink */ 621);
-__webpack_require__(/*! ./modules/es6.string.bold */ 622);
-__webpack_require__(/*! ./modules/es6.string.fixed */ 623);
-__webpack_require__(/*! ./modules/es6.string.fontcolor */ 624);
-__webpack_require__(/*! ./modules/es6.string.fontsize */ 625);
-__webpack_require__(/*! ./modules/es6.string.italics */ 626);
-__webpack_require__(/*! ./modules/es6.string.link */ 627);
-__webpack_require__(/*! ./modules/es6.string.small */ 628);
-__webpack_require__(/*! ./modules/es6.string.strike */ 629);
-__webpack_require__(/*! ./modules/es6.string.sub */ 630);
-__webpack_require__(/*! ./modules/es6.string.sup */ 631);
-__webpack_require__(/*! ./modules/es6.date.now */ 632);
-__webpack_require__(/*! ./modules/es6.date.to-json */ 633);
-__webpack_require__(/*! ./modules/es6.date.to-iso-string */ 634);
-__webpack_require__(/*! ./modules/es6.date.to-string */ 636);
-__webpack_require__(/*! ./modules/es6.date.to-primitive */ 637);
-__webpack_require__(/*! ./modules/es6.array.is-array */ 639);
-__webpack_require__(/*! ./modules/es6.array.from */ 640);
-__webpack_require__(/*! ./modules/es6.array.of */ 641);
-__webpack_require__(/*! ./modules/es6.array.join */ 642);
-__webpack_require__(/*! ./modules/es6.array.slice */ 643);
-__webpack_require__(/*! ./modules/es6.array.sort */ 644);
-__webpack_require__(/*! ./modules/es6.array.for-each */ 645);
-__webpack_require__(/*! ./modules/es6.array.map */ 647);
-__webpack_require__(/*! ./modules/es6.array.filter */ 648);
-__webpack_require__(/*! ./modules/es6.array.some */ 649);
-__webpack_require__(/*! ./modules/es6.array.every */ 650);
-__webpack_require__(/*! ./modules/es6.array.reduce */ 651);
-__webpack_require__(/*! ./modules/es6.array.reduce-right */ 652);
-__webpack_require__(/*! ./modules/es6.array.index-of */ 653);
-__webpack_require__(/*! ./modules/es6.array.last-index-of */ 654);
-__webpack_require__(/*! ./modules/es6.array.copy-within */ 655);
-__webpack_require__(/*! ./modules/es6.array.fill */ 656);
-__webpack_require__(/*! ./modules/es6.array.find */ 657);
-__webpack_require__(/*! ./modules/es6.array.find-index */ 658);
-__webpack_require__(/*! ./modules/es6.array.species */ 659);
+__webpack_require__(/*! ./modules/es6.symbol */ 555);
+__webpack_require__(/*! ./modules/es6.object.create */ 557);
+__webpack_require__(/*! ./modules/es6.object.define-property */ 558);
+__webpack_require__(/*! ./modules/es6.object.define-properties */ 559);
+__webpack_require__(/*! ./modules/es6.object.get-own-property-descriptor */ 560);
+__webpack_require__(/*! ./modules/es6.object.get-prototype-of */ 561);
+__webpack_require__(/*! ./modules/es6.object.keys */ 562);
+__webpack_require__(/*! ./modules/es6.object.get-own-property-names */ 563);
+__webpack_require__(/*! ./modules/es6.object.freeze */ 564);
+__webpack_require__(/*! ./modules/es6.object.seal */ 565);
+__webpack_require__(/*! ./modules/es6.object.prevent-extensions */ 566);
+__webpack_require__(/*! ./modules/es6.object.is-frozen */ 567);
+__webpack_require__(/*! ./modules/es6.object.is-sealed */ 568);
+__webpack_require__(/*! ./modules/es6.object.is-extensible */ 569);
+__webpack_require__(/*! ./modules/es6.object.assign */ 570);
+__webpack_require__(/*! ./modules/es6.object.is */ 571);
+__webpack_require__(/*! ./modules/es6.object.set-prototype-of */ 573);
+__webpack_require__(/*! ./modules/es6.object.to-string */ 574);
+__webpack_require__(/*! ./modules/es6.function.bind */ 575);
+__webpack_require__(/*! ./modules/es6.function.name */ 576);
+__webpack_require__(/*! ./modules/es6.function.has-instance */ 577);
+__webpack_require__(/*! ./modules/es6.parse-int */ 578);
+__webpack_require__(/*! ./modules/es6.parse-float */ 579);
+__webpack_require__(/*! ./modules/es6.number.constructor */ 580);
+__webpack_require__(/*! ./modules/es6.number.to-fixed */ 581);
+__webpack_require__(/*! ./modules/es6.number.to-precision */ 582);
+__webpack_require__(/*! ./modules/es6.number.epsilon */ 583);
+__webpack_require__(/*! ./modules/es6.number.is-finite */ 584);
+__webpack_require__(/*! ./modules/es6.number.is-integer */ 585);
+__webpack_require__(/*! ./modules/es6.number.is-nan */ 586);
+__webpack_require__(/*! ./modules/es6.number.is-safe-integer */ 587);
+__webpack_require__(/*! ./modules/es6.number.max-safe-integer */ 588);
+__webpack_require__(/*! ./modules/es6.number.min-safe-integer */ 589);
+__webpack_require__(/*! ./modules/es6.number.parse-float */ 590);
+__webpack_require__(/*! ./modules/es6.number.parse-int */ 591);
+__webpack_require__(/*! ./modules/es6.math.acosh */ 592);
+__webpack_require__(/*! ./modules/es6.math.asinh */ 593);
+__webpack_require__(/*! ./modules/es6.math.atanh */ 594);
+__webpack_require__(/*! ./modules/es6.math.cbrt */ 595);
+__webpack_require__(/*! ./modules/es6.math.clz32 */ 596);
+__webpack_require__(/*! ./modules/es6.math.cosh */ 597);
+__webpack_require__(/*! ./modules/es6.math.expm1 */ 598);
+__webpack_require__(/*! ./modules/es6.math.fround */ 599);
+__webpack_require__(/*! ./modules/es6.math.hypot */ 600);
+__webpack_require__(/*! ./modules/es6.math.imul */ 601);
+__webpack_require__(/*! ./modules/es6.math.log10 */ 602);
+__webpack_require__(/*! ./modules/es6.math.log1p */ 603);
+__webpack_require__(/*! ./modules/es6.math.log2 */ 604);
+__webpack_require__(/*! ./modules/es6.math.sign */ 605);
+__webpack_require__(/*! ./modules/es6.math.sinh */ 606);
+__webpack_require__(/*! ./modules/es6.math.tanh */ 607);
+__webpack_require__(/*! ./modules/es6.math.trunc */ 608);
+__webpack_require__(/*! ./modules/es6.string.from-code-point */ 609);
+__webpack_require__(/*! ./modules/es6.string.raw */ 610);
+__webpack_require__(/*! ./modules/es6.string.trim */ 611);
+__webpack_require__(/*! ./modules/es6.string.iterator */ 612);
+__webpack_require__(/*! ./modules/es6.string.code-point-at */ 613);
+__webpack_require__(/*! ./modules/es6.string.ends-with */ 614);
+__webpack_require__(/*! ./modules/es6.string.includes */ 615);
+__webpack_require__(/*! ./modules/es6.string.repeat */ 616);
+__webpack_require__(/*! ./modules/es6.string.starts-with */ 617);
+__webpack_require__(/*! ./modules/es6.string.anchor */ 618);
+__webpack_require__(/*! ./modules/es6.string.big */ 619);
+__webpack_require__(/*! ./modules/es6.string.blink */ 620);
+__webpack_require__(/*! ./modules/es6.string.bold */ 621);
+__webpack_require__(/*! ./modules/es6.string.fixed */ 622);
+__webpack_require__(/*! ./modules/es6.string.fontcolor */ 623);
+__webpack_require__(/*! ./modules/es6.string.fontsize */ 624);
+__webpack_require__(/*! ./modules/es6.string.italics */ 625);
+__webpack_require__(/*! ./modules/es6.string.link */ 626);
+__webpack_require__(/*! ./modules/es6.string.small */ 627);
+__webpack_require__(/*! ./modules/es6.string.strike */ 628);
+__webpack_require__(/*! ./modules/es6.string.sub */ 629);
+__webpack_require__(/*! ./modules/es6.string.sup */ 630);
+__webpack_require__(/*! ./modules/es6.date.now */ 631);
+__webpack_require__(/*! ./modules/es6.date.to-json */ 632);
+__webpack_require__(/*! ./modules/es6.date.to-iso-string */ 633);
+__webpack_require__(/*! ./modules/es6.date.to-string */ 635);
+__webpack_require__(/*! ./modules/es6.date.to-primitive */ 636);
+__webpack_require__(/*! ./modules/es6.array.is-array */ 638);
+__webpack_require__(/*! ./modules/es6.array.from */ 639);
+__webpack_require__(/*! ./modules/es6.array.of */ 640);
+__webpack_require__(/*! ./modules/es6.array.join */ 641);
+__webpack_require__(/*! ./modules/es6.array.slice */ 642);
+__webpack_require__(/*! ./modules/es6.array.sort */ 643);
+__webpack_require__(/*! ./modules/es6.array.for-each */ 644);
+__webpack_require__(/*! ./modules/es6.array.map */ 646);
+__webpack_require__(/*! ./modules/es6.array.filter */ 647);
+__webpack_require__(/*! ./modules/es6.array.some */ 648);
+__webpack_require__(/*! ./modules/es6.array.every */ 649);
+__webpack_require__(/*! ./modules/es6.array.reduce */ 650);
+__webpack_require__(/*! ./modules/es6.array.reduce-right */ 651);
+__webpack_require__(/*! ./modules/es6.array.index-of */ 652);
+__webpack_require__(/*! ./modules/es6.array.last-index-of */ 653);
+__webpack_require__(/*! ./modules/es6.array.copy-within */ 654);
+__webpack_require__(/*! ./modules/es6.array.fill */ 655);
+__webpack_require__(/*! ./modules/es6.array.find */ 656);
+__webpack_require__(/*! ./modules/es6.array.find-index */ 657);
+__webpack_require__(/*! ./modules/es6.array.species */ 658);
 __webpack_require__(/*! ./modules/es6.array.iterator */ 210);
-__webpack_require__(/*! ./modules/es6.regexp.constructor */ 660);
-__webpack_require__(/*! ./modules/es6.regexp.to-string */ 661);
+__webpack_require__(/*! ./modules/es6.regexp.constructor */ 659);
+__webpack_require__(/*! ./modules/es6.regexp.to-string */ 660);
 __webpack_require__(/*! ./modules/es6.regexp.flags */ 312);
-__webpack_require__(/*! ./modules/es6.regexp.match */ 662);
-__webpack_require__(/*! ./modules/es6.regexp.replace */ 663);
-__webpack_require__(/*! ./modules/es6.regexp.search */ 664);
-__webpack_require__(/*! ./modules/es6.regexp.split */ 665);
-__webpack_require__(/*! ./modules/es6.promise */ 666);
+__webpack_require__(/*! ./modules/es6.regexp.match */ 661);
+__webpack_require__(/*! ./modules/es6.regexp.replace */ 662);
+__webpack_require__(/*! ./modules/es6.regexp.search */ 663);
+__webpack_require__(/*! ./modules/es6.regexp.split */ 664);
+__webpack_require__(/*! ./modules/es6.promise */ 665);
 __webpack_require__(/*! ./modules/es6.map */ 315);
 __webpack_require__(/*! ./modules/es6.set */ 317);
 __webpack_require__(/*! ./modules/es6.weak-map */ 318);
-__webpack_require__(/*! ./modules/es6.weak-set */ 667);
-__webpack_require__(/*! ./modules/es6.typed.array-buffer */ 668);
-__webpack_require__(/*! ./modules/es6.typed.data-view */ 669);
-__webpack_require__(/*! ./modules/es6.typed.int8-array */ 670);
-__webpack_require__(/*! ./modules/es6.typed.uint8-array */ 671);
-__webpack_require__(/*! ./modules/es6.typed.uint8-clamped-array */ 672);
-__webpack_require__(/*! ./modules/es6.typed.int16-array */ 673);
-__webpack_require__(/*! ./modules/es6.typed.uint16-array */ 674);
-__webpack_require__(/*! ./modules/es6.typed.int32-array */ 675);
-__webpack_require__(/*! ./modules/es6.typed.uint32-array */ 676);
-__webpack_require__(/*! ./modules/es6.typed.float32-array */ 677);
-__webpack_require__(/*! ./modules/es6.typed.float64-array */ 678);
-__webpack_require__(/*! ./modules/es6.reflect.apply */ 679);
-__webpack_require__(/*! ./modules/es6.reflect.construct */ 680);
-__webpack_require__(/*! ./modules/es6.reflect.define-property */ 681);
-__webpack_require__(/*! ./modules/es6.reflect.delete-property */ 682);
-__webpack_require__(/*! ./modules/es6.reflect.enumerate */ 683);
-__webpack_require__(/*! ./modules/es6.reflect.get */ 684);
-__webpack_require__(/*! ./modules/es6.reflect.get-own-property-descriptor */ 685);
-__webpack_require__(/*! ./modules/es6.reflect.get-prototype-of */ 686);
-__webpack_require__(/*! ./modules/es6.reflect.has */ 687);
-__webpack_require__(/*! ./modules/es6.reflect.is-extensible */ 688);
-__webpack_require__(/*! ./modules/es6.reflect.own-keys */ 689);
-__webpack_require__(/*! ./modules/es6.reflect.prevent-extensions */ 690);
-__webpack_require__(/*! ./modules/es6.reflect.set */ 691);
-__webpack_require__(/*! ./modules/es6.reflect.set-prototype-of */ 692);
-__webpack_require__(/*! ./modules/es7.array.includes */ 693);
-__webpack_require__(/*! ./modules/es7.array.flat-map */ 694);
-__webpack_require__(/*! ./modules/es7.array.flatten */ 695);
-__webpack_require__(/*! ./modules/es7.string.at */ 696);
-__webpack_require__(/*! ./modules/es7.string.pad-start */ 697);
-__webpack_require__(/*! ./modules/es7.string.pad-end */ 698);
-__webpack_require__(/*! ./modules/es7.string.trim-left */ 699);
-__webpack_require__(/*! ./modules/es7.string.trim-right */ 700);
-__webpack_require__(/*! ./modules/es7.string.match-all */ 701);
-__webpack_require__(/*! ./modules/es7.symbol.async-iterator */ 702);
-__webpack_require__(/*! ./modules/es7.symbol.observable */ 703);
-__webpack_require__(/*! ./modules/es7.object.get-own-property-descriptors */ 704);
-__webpack_require__(/*! ./modules/es7.object.values */ 705);
-__webpack_require__(/*! ./modules/es7.object.entries */ 706);
-__webpack_require__(/*! ./modules/es7.object.define-getter */ 707);
-__webpack_require__(/*! ./modules/es7.object.define-setter */ 708);
-__webpack_require__(/*! ./modules/es7.object.lookup-getter */ 709);
-__webpack_require__(/*! ./modules/es7.object.lookup-setter */ 710);
-__webpack_require__(/*! ./modules/es7.map.to-json */ 711);
-__webpack_require__(/*! ./modules/es7.set.to-json */ 712);
-__webpack_require__(/*! ./modules/es7.map.of */ 713);
-__webpack_require__(/*! ./modules/es7.set.of */ 714);
-__webpack_require__(/*! ./modules/es7.weak-map.of */ 715);
-__webpack_require__(/*! ./modules/es7.weak-set.of */ 716);
-__webpack_require__(/*! ./modules/es7.map.from */ 717);
-__webpack_require__(/*! ./modules/es7.set.from */ 718);
-__webpack_require__(/*! ./modules/es7.weak-map.from */ 719);
-__webpack_require__(/*! ./modules/es7.weak-set.from */ 720);
-__webpack_require__(/*! ./modules/es7.global */ 721);
-__webpack_require__(/*! ./modules/es7.system.global */ 722);
-__webpack_require__(/*! ./modules/es7.error.is-error */ 723);
-__webpack_require__(/*! ./modules/es7.math.clamp */ 724);
-__webpack_require__(/*! ./modules/es7.math.deg-per-rad */ 725);
-__webpack_require__(/*! ./modules/es7.math.degrees */ 726);
-__webpack_require__(/*! ./modules/es7.math.fscale */ 727);
-__webpack_require__(/*! ./modules/es7.math.iaddh */ 728);
-__webpack_require__(/*! ./modules/es7.math.isubh */ 729);
-__webpack_require__(/*! ./modules/es7.math.imulh */ 730);
-__webpack_require__(/*! ./modules/es7.math.rad-per-deg */ 731);
-__webpack_require__(/*! ./modules/es7.math.radians */ 732);
-__webpack_require__(/*! ./modules/es7.math.scale */ 733);
-__webpack_require__(/*! ./modules/es7.math.umulh */ 734);
-__webpack_require__(/*! ./modules/es7.math.signbit */ 735);
-__webpack_require__(/*! ./modules/es7.promise.finally */ 736);
-__webpack_require__(/*! ./modules/es7.promise.try */ 737);
-__webpack_require__(/*! ./modules/es7.reflect.define-metadata */ 738);
-__webpack_require__(/*! ./modules/es7.reflect.delete-metadata */ 739);
-__webpack_require__(/*! ./modules/es7.reflect.get-metadata */ 740);
-__webpack_require__(/*! ./modules/es7.reflect.get-metadata-keys */ 741);
-__webpack_require__(/*! ./modules/es7.reflect.get-own-metadata */ 742);
-__webpack_require__(/*! ./modules/es7.reflect.get-own-metadata-keys */ 743);
-__webpack_require__(/*! ./modules/es7.reflect.has-metadata */ 744);
-__webpack_require__(/*! ./modules/es7.reflect.has-own-metadata */ 745);
-__webpack_require__(/*! ./modules/es7.reflect.metadata */ 746);
-__webpack_require__(/*! ./modules/es7.asap */ 747);
-__webpack_require__(/*! ./modules/es7.observable */ 748);
-__webpack_require__(/*! ./modules/web.timers */ 749);
-__webpack_require__(/*! ./modules/web.immediate */ 750);
-__webpack_require__(/*! ./modules/web.dom.iterable */ 751);
+__webpack_require__(/*! ./modules/es6.weak-set */ 666);
+__webpack_require__(/*! ./modules/es6.typed.array-buffer */ 667);
+__webpack_require__(/*! ./modules/es6.typed.data-view */ 668);
+__webpack_require__(/*! ./modules/es6.typed.int8-array */ 669);
+__webpack_require__(/*! ./modules/es6.typed.uint8-array */ 670);
+__webpack_require__(/*! ./modules/es6.typed.uint8-clamped-array */ 671);
+__webpack_require__(/*! ./modules/es6.typed.int16-array */ 672);
+__webpack_require__(/*! ./modules/es6.typed.uint16-array */ 673);
+__webpack_require__(/*! ./modules/es6.typed.int32-array */ 674);
+__webpack_require__(/*! ./modules/es6.typed.uint32-array */ 675);
+__webpack_require__(/*! ./modules/es6.typed.float32-array */ 676);
+__webpack_require__(/*! ./modules/es6.typed.float64-array */ 677);
+__webpack_require__(/*! ./modules/es6.reflect.apply */ 678);
+__webpack_require__(/*! ./modules/es6.reflect.construct */ 679);
+__webpack_require__(/*! ./modules/es6.reflect.define-property */ 680);
+__webpack_require__(/*! ./modules/es6.reflect.delete-property */ 681);
+__webpack_require__(/*! ./modules/es6.reflect.enumerate */ 682);
+__webpack_require__(/*! ./modules/es6.reflect.get */ 683);
+__webpack_require__(/*! ./modules/es6.reflect.get-own-property-descriptor */ 684);
+__webpack_require__(/*! ./modules/es6.reflect.get-prototype-of */ 685);
+__webpack_require__(/*! ./modules/es6.reflect.has */ 686);
+__webpack_require__(/*! ./modules/es6.reflect.is-extensible */ 687);
+__webpack_require__(/*! ./modules/es6.reflect.own-keys */ 688);
+__webpack_require__(/*! ./modules/es6.reflect.prevent-extensions */ 689);
+__webpack_require__(/*! ./modules/es6.reflect.set */ 690);
+__webpack_require__(/*! ./modules/es6.reflect.set-prototype-of */ 691);
+__webpack_require__(/*! ./modules/es7.array.includes */ 692);
+__webpack_require__(/*! ./modules/es7.array.flat-map */ 693);
+__webpack_require__(/*! ./modules/es7.array.flatten */ 694);
+__webpack_require__(/*! ./modules/es7.string.at */ 695);
+__webpack_require__(/*! ./modules/es7.string.pad-start */ 696);
+__webpack_require__(/*! ./modules/es7.string.pad-end */ 697);
+__webpack_require__(/*! ./modules/es7.string.trim-left */ 698);
+__webpack_require__(/*! ./modules/es7.string.trim-right */ 699);
+__webpack_require__(/*! ./modules/es7.string.match-all */ 700);
+__webpack_require__(/*! ./modules/es7.symbol.async-iterator */ 701);
+__webpack_require__(/*! ./modules/es7.symbol.observable */ 702);
+__webpack_require__(/*! ./modules/es7.object.get-own-property-descriptors */ 703);
+__webpack_require__(/*! ./modules/es7.object.values */ 704);
+__webpack_require__(/*! ./modules/es7.object.entries */ 705);
+__webpack_require__(/*! ./modules/es7.object.define-getter */ 706);
+__webpack_require__(/*! ./modules/es7.object.define-setter */ 707);
+__webpack_require__(/*! ./modules/es7.object.lookup-getter */ 708);
+__webpack_require__(/*! ./modules/es7.object.lookup-setter */ 709);
+__webpack_require__(/*! ./modules/es7.map.to-json */ 710);
+__webpack_require__(/*! ./modules/es7.set.to-json */ 711);
+__webpack_require__(/*! ./modules/es7.map.of */ 712);
+__webpack_require__(/*! ./modules/es7.set.of */ 713);
+__webpack_require__(/*! ./modules/es7.weak-map.of */ 714);
+__webpack_require__(/*! ./modules/es7.weak-set.of */ 715);
+__webpack_require__(/*! ./modules/es7.map.from */ 716);
+__webpack_require__(/*! ./modules/es7.set.from */ 717);
+__webpack_require__(/*! ./modules/es7.weak-map.from */ 718);
+__webpack_require__(/*! ./modules/es7.weak-set.from */ 719);
+__webpack_require__(/*! ./modules/es7.global */ 720);
+__webpack_require__(/*! ./modules/es7.system.global */ 721);
+__webpack_require__(/*! ./modules/es7.error.is-error */ 722);
+__webpack_require__(/*! ./modules/es7.math.clamp */ 723);
+__webpack_require__(/*! ./modules/es7.math.deg-per-rad */ 724);
+__webpack_require__(/*! ./modules/es7.math.degrees */ 725);
+__webpack_require__(/*! ./modules/es7.math.fscale */ 726);
+__webpack_require__(/*! ./modules/es7.math.iaddh */ 727);
+__webpack_require__(/*! ./modules/es7.math.isubh */ 728);
+__webpack_require__(/*! ./modules/es7.math.imulh */ 729);
+__webpack_require__(/*! ./modules/es7.math.rad-per-deg */ 730);
+__webpack_require__(/*! ./modules/es7.math.radians */ 731);
+__webpack_require__(/*! ./modules/es7.math.scale */ 732);
+__webpack_require__(/*! ./modules/es7.math.umulh */ 733);
+__webpack_require__(/*! ./modules/es7.math.signbit */ 734);
+__webpack_require__(/*! ./modules/es7.promise.finally */ 735);
+__webpack_require__(/*! ./modules/es7.promise.try */ 736);
+__webpack_require__(/*! ./modules/es7.reflect.define-metadata */ 737);
+__webpack_require__(/*! ./modules/es7.reflect.delete-metadata */ 738);
+__webpack_require__(/*! ./modules/es7.reflect.get-metadata */ 739);
+__webpack_require__(/*! ./modules/es7.reflect.get-metadata-keys */ 740);
+__webpack_require__(/*! ./modules/es7.reflect.get-own-metadata */ 741);
+__webpack_require__(/*! ./modules/es7.reflect.get-own-metadata-keys */ 742);
+__webpack_require__(/*! ./modules/es7.reflect.has-metadata */ 743);
+__webpack_require__(/*! ./modules/es7.reflect.has-own-metadata */ 744);
+__webpack_require__(/*! ./modules/es7.reflect.metadata */ 745);
+__webpack_require__(/*! ./modules/es7.asap */ 746);
+__webpack_require__(/*! ./modules/es7.observable */ 747);
+__webpack_require__(/*! ./modules/web.timers */ 748);
+__webpack_require__(/*! ./modules/web.immediate */ 749);
+__webpack_require__(/*! ./modules/web.dom.iterable */ 750);
 module.exports = __webpack_require__(/*! ./modules/_core */ 50);
 
 
 /***/ }),
-/* 556 */
+/* 555 */
 /*!****************************************************!*\
   !*** ./node_modules/core-js/modules/es6.symbol.js ***!
   \****************************************************/
@@ -5054,7 +4934,7 @@ var uid = __webpack_require__(/*! ./_uid */ 84);
 var wks = __webpack_require__(/*! ./_wks */ 13);
 var wksExt = __webpack_require__(/*! ./_wks-ext */ 295);
 var wksDefine = __webpack_require__(/*! ./_wks-define */ 190);
-var enumKeys = __webpack_require__(/*! ./_enum-keys */ 557);
+var enumKeys = __webpack_require__(/*! ./_enum-keys */ 556);
 var isArray = __webpack_require__(/*! ./_is-array */ 150);
 var anObject = __webpack_require__(/*! ./_an-object */ 5);
 var toIObject = __webpack_require__(/*! ./_to-iobject */ 41);
@@ -5276,7 +5156,7 @@ setToStringTag(global.JSON, 'JSON', true);
 
 
 /***/ }),
-/* 557 */
+/* 556 */
 /*!****************************************************!*\
   !*** ./node_modules/core-js/modules/_enum-keys.js ***!
   \****************************************************/
@@ -5302,7 +5182,7 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 558 */
+/* 557 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.create.js ***!
   \***********************************************************/
@@ -5316,7 +5196,7 @@ $export($export.S, 'Object', { create: __webpack_require__(/*! ./_object-create 
 
 
 /***/ }),
-/* 559 */
+/* 558 */
 /*!********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.define-property.js ***!
   \********************************************************************/
@@ -5330,7 +5210,7 @@ $export($export.S + $export.F * !__webpack_require__(/*! ./_descriptors */ 16), 
 
 
 /***/ }),
-/* 560 */
+/* 559 */
 /*!**********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.define-properties.js ***!
   \**********************************************************************/
@@ -5344,7 +5224,7 @@ $export($export.S + $export.F * !__webpack_require__(/*! ./_descriptors */ 16), 
 
 
 /***/ }),
-/* 561 */
+/* 560 */
 /*!********************************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.get-own-property-descriptor.js ***!
   \********************************************************************************/
@@ -5364,7 +5244,7 @@ __webpack_require__(/*! ./_object-sap */ 54)('getOwnPropertyDescriptor', functio
 
 
 /***/ }),
-/* 562 */
+/* 561 */
 /*!*********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.get-prototype-of.js ***!
   \*********************************************************************/
@@ -5384,7 +5264,7 @@ __webpack_require__(/*! ./_object-sap */ 54)('getPrototypeOf', function () {
 
 
 /***/ }),
-/* 563 */
+/* 562 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.keys.js ***!
   \*********************************************************/
@@ -5404,7 +5284,7 @@ __webpack_require__(/*! ./_object-sap */ 54)('keys', function () {
 
 
 /***/ }),
-/* 564 */
+/* 563 */
 /*!***************************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.get-own-property-names.js ***!
   \***************************************************************************/
@@ -5419,7 +5299,7 @@ __webpack_require__(/*! ./_object-sap */ 54)('getOwnPropertyNames', function () 
 
 
 /***/ }),
-/* 565 */
+/* 564 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.freeze.js ***!
   \***********************************************************/
@@ -5439,7 +5319,7 @@ __webpack_require__(/*! ./_object-sap */ 54)('freeze', function ($freeze) {
 
 
 /***/ }),
-/* 566 */
+/* 565 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.seal.js ***!
   \*********************************************************/
@@ -5459,7 +5339,7 @@ __webpack_require__(/*! ./_object-sap */ 54)('seal', function ($seal) {
 
 
 /***/ }),
-/* 567 */
+/* 566 */
 /*!***********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.prevent-extensions.js ***!
   \***********************************************************************/
@@ -5479,7 +5359,7 @@ __webpack_require__(/*! ./_object-sap */ 54)('preventExtensions', function ($pre
 
 
 /***/ }),
-/* 568 */
+/* 567 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.is-frozen.js ***!
   \**************************************************************/
@@ -5498,7 +5378,7 @@ __webpack_require__(/*! ./_object-sap */ 54)('isFrozen', function ($isFrozen) {
 
 
 /***/ }),
-/* 569 */
+/* 568 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.is-sealed.js ***!
   \**************************************************************/
@@ -5517,7 +5397,7 @@ __webpack_require__(/*! ./_object-sap */ 54)('isSealed', function ($isSealed) {
 
 
 /***/ }),
-/* 570 */
+/* 569 */
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.is-extensible.js ***!
   \******************************************************************/
@@ -5536,7 +5416,7 @@ __webpack_require__(/*! ./_object-sap */ 54)('isExtensible', function ($isExtens
 
 
 /***/ }),
-/* 571 */
+/* 570 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.assign.js ***!
   \***********************************************************/
@@ -5551,7 +5431,7 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(/*! ./_ob
 
 
 /***/ }),
-/* 572 */
+/* 571 */
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.is.js ***!
   \*******************************************************/
@@ -5561,11 +5441,11 @@ $export($export.S + $export.F, 'Object', { assign: __webpack_require__(/*! ./_ob
 
 // 19.1.3.10 Object.is(value1, value2)
 var $export = __webpack_require__(/*! ./_export */ 1);
-$export($export.S, 'Object', { is: __webpack_require__(/*! ./_same-value */ 573) });
+$export($export.S, 'Object', { is: __webpack_require__(/*! ./_same-value */ 572) });
 
 
 /***/ }),
-/* 573 */
+/* 572 */
 /*!*****************************************************!*\
   !*** ./node_modules/core-js/modules/_same-value.js ***!
   \*****************************************************/
@@ -5581,7 +5461,7 @@ module.exports = Object.is || function is(x, y) {
 
 
 /***/ }),
-/* 574 */
+/* 573 */
 /*!*********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.set-prototype-of.js ***!
   \*********************************************************************/
@@ -5595,7 +5475,7 @@ $export($export.S, 'Object', { setPrototypeOf: __webpack_require__(/*! ./_set-pr
 
 
 /***/ }),
-/* 575 */
+/* 574 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.object.to-string.js ***!
   \**************************************************************/
@@ -5617,7 +5497,7 @@ if (test + '' != '[object z]') {
 
 
 /***/ }),
-/* 576 */
+/* 575 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.function.bind.js ***!
   \***********************************************************/
@@ -5632,7 +5512,7 @@ $export($export.P, 'Function', { bind: __webpack_require__(/*! ./_bind */ 300) }
 
 
 /***/ }),
-/* 577 */
+/* 576 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.function.name.js ***!
   \***********************************************************/
@@ -5659,7 +5539,7 @@ NAME in FProto || __webpack_require__(/*! ./_descriptors */ 16) && dP(FProto, NA
 
 
 /***/ }),
-/* 578 */
+/* 577 */
 /*!*******************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.function.has-instance.js ***!
   \*******************************************************************/
@@ -5684,7 +5564,7 @@ if (!(HAS_INSTANCE in FunctionProto)) __webpack_require__(/*! ./_object-dp */ 17
 
 
 /***/ }),
-/* 579 */
+/* 578 */
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.parse-int.js ***!
   \*******************************************************/
@@ -5699,7 +5579,7 @@ $export($export.G + $export.F * (parseInt != $parseInt), { parseInt: $parseInt }
 
 
 /***/ }),
-/* 580 */
+/* 579 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.parse-float.js ***!
   \*********************************************************/
@@ -5714,7 +5594,7 @@ $export($export.G + $export.F * (parseFloat != $parseFloat), { parseFloat: $pars
 
 
 /***/ }),
-/* 581 */
+/* 580 */
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.number.constructor.js ***!
   \****************************************************************/
@@ -5795,7 +5675,7 @@ if (!$Number(' 0o1') || !$Number('0b1') || $Number('+0x1')) {
 
 
 /***/ }),
-/* 582 */
+/* 581 */
 /*!*************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.number.to-fixed.js ***!
   \*************************************************************/
@@ -5921,7 +5801,7 @@ $export($export.P + $export.F * (!!$toFixed && (
 
 
 /***/ }),
-/* 583 */
+/* 582 */
 /*!*****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.number.to-precision.js ***!
   \*****************************************************************/
@@ -5951,7 +5831,7 @@ $export($export.P + $export.F * ($fails(function () {
 
 
 /***/ }),
-/* 584 */
+/* 583 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.number.epsilon.js ***!
   \************************************************************/
@@ -5966,7 +5846,7 @@ $export($export.S, 'Number', { EPSILON: Math.pow(2, -52) });
 
 
 /***/ }),
-/* 585 */
+/* 584 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.number.is-finite.js ***!
   \**************************************************************/
@@ -5986,7 +5866,7 @@ $export($export.S, 'Number', {
 
 
 /***/ }),
-/* 586 */
+/* 585 */
 /*!***************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.number.is-integer.js ***!
   \***************************************************************/
@@ -6001,7 +5881,7 @@ $export($export.S, 'Number', { isInteger: __webpack_require__(/*! ./_is-integer 
 
 
 /***/ }),
-/* 587 */
+/* 586 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.number.is-nan.js ***!
   \***********************************************************/
@@ -6021,7 +5901,7 @@ $export($export.S, 'Number', {
 
 
 /***/ }),
-/* 588 */
+/* 587 */
 /*!********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.number.is-safe-integer.js ***!
   \********************************************************************/
@@ -6042,7 +5922,7 @@ $export($export.S, 'Number', {
 
 
 /***/ }),
-/* 589 */
+/* 588 */
 /*!*********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.number.max-safe-integer.js ***!
   \*********************************************************************/
@@ -6057,7 +5937,7 @@ $export($export.S, 'Number', { MAX_SAFE_INTEGER: 0x1fffffffffffff });
 
 
 /***/ }),
-/* 590 */
+/* 589 */
 /*!*********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.number.min-safe-integer.js ***!
   \*********************************************************************/
@@ -6072,7 +5952,7 @@ $export($export.S, 'Number', { MIN_SAFE_INTEGER: -0x1fffffffffffff });
 
 
 /***/ }),
-/* 591 */
+/* 590 */
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.number.parse-float.js ***!
   \****************************************************************/
@@ -6087,7 +5967,7 @@ $export($export.S + $export.F * (Number.parseFloat != $parseFloat), 'Number', { 
 
 
 /***/ }),
-/* 592 */
+/* 591 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.number.parse-int.js ***!
   \**************************************************************/
@@ -6102,7 +5982,7 @@ $export($export.S + $export.F * (Number.parseInt != $parseInt), 'Number', { pars
 
 
 /***/ }),
-/* 593 */
+/* 592 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.acosh.js ***!
   \********************************************************/
@@ -6131,7 +6011,7 @@ $export($export.S + $export.F * !($acosh
 
 
 /***/ }),
-/* 594 */
+/* 593 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.asinh.js ***!
   \********************************************************/
@@ -6152,7 +6032,7 @@ $export($export.S + $export.F * !($asinh && 1 / $asinh(0) > 0), 'Math', { asinh:
 
 
 /***/ }),
-/* 595 */
+/* 594 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.atanh.js ***!
   \********************************************************/
@@ -6173,7 +6053,7 @@ $export($export.S + $export.F * !($atanh && 1 / $atanh(-0) < 0), 'Math', {
 
 
 /***/ }),
-/* 596 */
+/* 595 */
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.cbrt.js ***!
   \*******************************************************/
@@ -6193,7 +6073,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 597 */
+/* 596 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.clz32.js ***!
   \********************************************************/
@@ -6212,7 +6092,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 598 */
+/* 597 */
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.cosh.js ***!
   \*******************************************************/
@@ -6232,7 +6112,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 599 */
+/* 598 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.expm1.js ***!
   \********************************************************/
@@ -6248,7 +6128,7 @@ $export($export.S + $export.F * ($expm1 != Math.expm1), 'Math', { expm1: $expm1 
 
 
 /***/ }),
-/* 600 */
+/* 599 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.fround.js ***!
   \*********************************************************/
@@ -6263,7 +6143,7 @@ $export($export.S, 'Math', { fround: __webpack_require__(/*! ./_math-fround */ 3
 
 
 /***/ }),
-/* 601 */
+/* 600 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.hypot.js ***!
   \********************************************************/
@@ -6299,7 +6179,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 602 */
+/* 601 */
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.imul.js ***!
   \*******************************************************/
@@ -6327,7 +6207,7 @@ $export($export.S + $export.F * __webpack_require__(/*! ./_fails */ 9)(function 
 
 
 /***/ }),
-/* 603 */
+/* 602 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.log10.js ***!
   \********************************************************/
@@ -6346,7 +6226,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 604 */
+/* 603 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.log1p.js ***!
   \********************************************************/
@@ -6361,7 +6241,7 @@ $export($export.S, 'Math', { log1p: __webpack_require__(/*! ./_math-log1p */ 306
 
 
 /***/ }),
-/* 605 */
+/* 604 */
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.log2.js ***!
   \*******************************************************/
@@ -6380,7 +6260,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 606 */
+/* 605 */
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.sign.js ***!
   \*******************************************************/
@@ -6395,7 +6275,7 @@ $export($export.S, 'Math', { sign: __webpack_require__(/*! ./_math-sign */ 198) 
 
 
 /***/ }),
-/* 607 */
+/* 606 */
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.sinh.js ***!
   \*******************************************************/
@@ -6421,7 +6301,7 @@ $export($export.S + $export.F * __webpack_require__(/*! ./_fails */ 9)(function 
 
 
 /***/ }),
-/* 608 */
+/* 607 */
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.tanh.js ***!
   \*******************************************************/
@@ -6444,7 +6324,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 609 */
+/* 608 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.math.trunc.js ***!
   \********************************************************/
@@ -6463,7 +6343,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 610 */
+/* 609 */
 /*!********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.from-code-point.js ***!
   \********************************************************************/
@@ -6497,7 +6377,7 @@ $export($export.S + $export.F * (!!$fromCodePoint && $fromCodePoint.length != 1)
 
 
 /***/ }),
-/* 611 */
+/* 610 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.raw.js ***!
   \********************************************************/
@@ -6526,7 +6406,7 @@ $export($export.S, 'String', {
 
 
 /***/ }),
-/* 612 */
+/* 611 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.trim.js ***!
   \*********************************************************/
@@ -6545,7 +6425,7 @@ __webpack_require__(/*! ./_string-trim */ 105)('trim', function ($trim) {
 
 
 /***/ }),
-/* 613 */
+/* 612 */
 /*!*************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.iterator.js ***!
   \*************************************************************/
@@ -6574,7 +6454,7 @@ __webpack_require__(/*! ./_iter-define */ 201)(String, 'String', function (itera
 
 
 /***/ }),
-/* 614 */
+/* 613 */
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.code-point-at.js ***!
   \******************************************************************/
@@ -6595,7 +6475,7 @@ $export($export.P, 'String', {
 
 
 /***/ }),
-/* 615 */
+/* 614 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.ends-with.js ***!
   \**************************************************************/
@@ -6627,7 +6507,7 @@ $export($export.P + $export.F * __webpack_require__(/*! ./_fails-is-regexp */ 20
 
 
 /***/ }),
-/* 616 */
+/* 615 */
 /*!*************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.includes.js ***!
   \*************************************************************/
@@ -6651,7 +6531,7 @@ $export($export.P + $export.F * __webpack_require__(/*! ./_fails-is-regexp */ 20
 
 
 /***/ }),
-/* 617 */
+/* 616 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.repeat.js ***!
   \***********************************************************/
@@ -6668,7 +6548,7 @@ $export($export.P, 'String', {
 
 
 /***/ }),
-/* 618 */
+/* 617 */
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.starts-with.js ***!
   \****************************************************************/
@@ -6698,7 +6578,7 @@ $export($export.P + $export.F * __webpack_require__(/*! ./_fails-is-regexp */ 20
 
 
 /***/ }),
-/* 619 */
+/* 618 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.anchor.js ***!
   \***********************************************************/
@@ -6717,7 +6597,7 @@ __webpack_require__(/*! ./_string-html */ 36)('anchor', function (createHTML) {
 
 
 /***/ }),
-/* 620 */
+/* 619 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.big.js ***!
   \********************************************************/
@@ -6736,7 +6616,7 @@ __webpack_require__(/*! ./_string-html */ 36)('big', function (createHTML) {
 
 
 /***/ }),
-/* 621 */
+/* 620 */
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.blink.js ***!
   \**********************************************************/
@@ -6755,7 +6635,7 @@ __webpack_require__(/*! ./_string-html */ 36)('blink', function (createHTML) {
 
 
 /***/ }),
-/* 622 */
+/* 621 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.bold.js ***!
   \*********************************************************/
@@ -6774,7 +6654,7 @@ __webpack_require__(/*! ./_string-html */ 36)('bold', function (createHTML) {
 
 
 /***/ }),
-/* 623 */
+/* 622 */
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.fixed.js ***!
   \**********************************************************/
@@ -6793,7 +6673,7 @@ __webpack_require__(/*! ./_string-html */ 36)('fixed', function (createHTML) {
 
 
 /***/ }),
-/* 624 */
+/* 623 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.fontcolor.js ***!
   \**************************************************************/
@@ -6812,7 +6692,7 @@ __webpack_require__(/*! ./_string-html */ 36)('fontcolor', function (createHTML)
 
 
 /***/ }),
-/* 625 */
+/* 624 */
 /*!*************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.fontsize.js ***!
   \*************************************************************/
@@ -6831,7 +6711,7 @@ __webpack_require__(/*! ./_string-html */ 36)('fontsize', function (createHTML) 
 
 
 /***/ }),
-/* 626 */
+/* 625 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.italics.js ***!
   \************************************************************/
@@ -6850,7 +6730,7 @@ __webpack_require__(/*! ./_string-html */ 36)('italics', function (createHTML) {
 
 
 /***/ }),
-/* 627 */
+/* 626 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.link.js ***!
   \*********************************************************/
@@ -6869,7 +6749,7 @@ __webpack_require__(/*! ./_string-html */ 36)('link', function (createHTML) {
 
 
 /***/ }),
-/* 628 */
+/* 627 */
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.small.js ***!
   \**********************************************************/
@@ -6888,7 +6768,7 @@ __webpack_require__(/*! ./_string-html */ 36)('small', function (createHTML) {
 
 
 /***/ }),
-/* 629 */
+/* 628 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.strike.js ***!
   \***********************************************************/
@@ -6907,7 +6787,7 @@ __webpack_require__(/*! ./_string-html */ 36)('strike', function (createHTML) {
 
 
 /***/ }),
-/* 630 */
+/* 629 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.sub.js ***!
   \********************************************************/
@@ -6926,7 +6806,7 @@ __webpack_require__(/*! ./_string-html */ 36)('sub', function (createHTML) {
 
 
 /***/ }),
-/* 631 */
+/* 630 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.string.sup.js ***!
   \********************************************************/
@@ -6945,7 +6825,7 @@ __webpack_require__(/*! ./_string-html */ 36)('sup', function (createHTML) {
 
 
 /***/ }),
-/* 632 */
+/* 631 */
 /*!******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.date.now.js ***!
   \******************************************************/
@@ -6960,7 +6840,7 @@ $export($export.S, 'Date', { now: function () { return new Date().getTime(); } }
 
 
 /***/ }),
-/* 633 */
+/* 632 */
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.date.to-json.js ***!
   \**********************************************************/
@@ -6988,7 +6868,7 @@ $export($export.P + $export.F * __webpack_require__(/*! ./_fails */ 9)(function 
 
 
 /***/ }),
-/* 634 */
+/* 633 */
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.date.to-iso-string.js ***!
   \****************************************************************/
@@ -6998,7 +6878,7 @@ $export($export.P + $export.F * __webpack_require__(/*! ./_fails */ 9)(function 
 
 // 20.3.4.36 / 15.9.5.43 Date.prototype.toISOString()
 var $export = __webpack_require__(/*! ./_export */ 1);
-var toISOString = __webpack_require__(/*! ./_date-to-iso-string */ 635);
+var toISOString = __webpack_require__(/*! ./_date-to-iso-string */ 634);
 
 // PhantomJS / old WebKit has a broken implementations
 $export($export.P + $export.F * (Date.prototype.toISOString !== toISOString), 'Date', {
@@ -7007,7 +6887,7 @@ $export($export.P + $export.F * (Date.prototype.toISOString !== toISOString), 'D
 
 
 /***/ }),
-/* 635 */
+/* 634 */
 /*!*************************************************************!*\
   !*** ./node_modules/core-js/modules/_date-to-iso-string.js ***!
   \*************************************************************/
@@ -7045,7 +6925,7 @@ module.exports = (fails(function () {
 
 
 /***/ }),
-/* 636 */
+/* 635 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.date.to-string.js ***!
   \************************************************************/
@@ -7068,7 +6948,7 @@ if (new Date(NaN) + '' != INVALID_DATE) {
 
 
 /***/ }),
-/* 637 */
+/* 636 */
 /*!***************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.date.to-primitive.js ***!
   \***************************************************************/
@@ -7079,11 +6959,11 @@ if (new Date(NaN) + '' != INVALID_DATE) {
 var TO_PRIMITIVE = __webpack_require__(/*! ./_wks */ 13)('toPrimitive');
 var proto = Date.prototype;
 
-if (!(TO_PRIMITIVE in proto)) __webpack_require__(/*! ./_hide */ 34)(proto, TO_PRIMITIVE, __webpack_require__(/*! ./_date-to-primitive */ 638));
+if (!(TO_PRIMITIVE in proto)) __webpack_require__(/*! ./_hide */ 34)(proto, TO_PRIMITIVE, __webpack_require__(/*! ./_date-to-primitive */ 637));
 
 
 /***/ }),
-/* 638 */
+/* 637 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/_date-to-primitive.js ***!
   \************************************************************/
@@ -7104,7 +6984,7 @@ module.exports = function (hint) {
 
 
 /***/ }),
-/* 639 */
+/* 638 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.is-array.js ***!
   \************************************************************/
@@ -7119,7 +6999,7 @@ $export($export.S, 'Array', { isArray: __webpack_require__(/*! ./_is-array */ 15
 
 
 /***/ }),
-/* 640 */
+/* 639 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.from.js ***!
   \********************************************************/
@@ -7168,7 +7048,7 @@ $export($export.S + $export.F * !__webpack_require__(/*! ./_iter-detect */ 152)(
 
 
 /***/ }),
-/* 641 */
+/* 640 */
 /*!******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.of.js ***!
   \******************************************************/
@@ -7199,7 +7079,7 @@ $export($export.S + $export.F * __webpack_require__(/*! ./_fails */ 9)(function 
 
 
 /***/ }),
-/* 642 */
+/* 641 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.join.js ***!
   \********************************************************/
@@ -7223,7 +7103,7 @@ $export($export.P + $export.F * (__webpack_require__(/*! ./_iobject */ 124) != O
 
 
 /***/ }),
-/* 643 */
+/* 642 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.slice.js ***!
   \*********************************************************/
@@ -7263,7 +7143,7 @@ $export($export.P + $export.F * __webpack_require__(/*! ./_fails */ 9)(function 
 
 
 /***/ }),
-/* 644 */
+/* 643 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.sort.js ***!
   \********************************************************/
@@ -7298,7 +7178,7 @@ $export($export.P + $export.F * (fails(function () {
 
 
 /***/ }),
-/* 645 */
+/* 644 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.for-each.js ***!
   \************************************************************/
@@ -7321,7 +7201,7 @@ $export($export.P + $export.F * !STRICT, 'Array', {
 
 
 /***/ }),
-/* 646 */
+/* 645 */
 /*!********************************************************************!*\
   !*** ./node_modules/core-js/modules/_array-species-constructor.js ***!
   \********************************************************************/
@@ -7348,7 +7228,7 @@ module.exports = function (original) {
 
 
 /***/ }),
-/* 647 */
+/* 646 */
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.map.js ***!
   \*******************************************************/
@@ -7370,7 +7250,7 @@ $export($export.P + $export.F * !__webpack_require__(/*! ./_strict-method */ 49)
 
 
 /***/ }),
-/* 648 */
+/* 647 */
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.filter.js ***!
   \**********************************************************/
@@ -7392,7 +7272,7 @@ $export($export.P + $export.F * !__webpack_require__(/*! ./_strict-method */ 49)
 
 
 /***/ }),
-/* 649 */
+/* 648 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.some.js ***!
   \********************************************************/
@@ -7414,7 +7294,7 @@ $export($export.P + $export.F * !__webpack_require__(/*! ./_strict-method */ 49)
 
 
 /***/ }),
-/* 650 */
+/* 649 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.every.js ***!
   \*********************************************************/
@@ -7436,7 +7316,7 @@ $export($export.P + $export.F * !__webpack_require__(/*! ./_strict-method */ 49)
 
 
 /***/ }),
-/* 651 */
+/* 650 */
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.reduce.js ***!
   \**********************************************************/
@@ -7458,7 +7338,7 @@ $export($export.P + $export.F * !__webpack_require__(/*! ./_strict-method */ 49)
 
 
 /***/ }),
-/* 652 */
+/* 651 */
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.reduce-right.js ***!
   \****************************************************************/
@@ -7480,7 +7360,7 @@ $export($export.P + $export.F * !__webpack_require__(/*! ./_strict-method */ 49)
 
 
 /***/ }),
-/* 653 */
+/* 652 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.index-of.js ***!
   \************************************************************/
@@ -7507,7 +7387,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(/*! ./_st
 
 
 /***/ }),
-/* 654 */
+/* 653 */
 /*!*****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.last-index-of.js ***!
   \*****************************************************************/
@@ -7541,7 +7421,7 @@ $export($export.P + $export.F * (NEGATIVE_ZERO || !__webpack_require__(/*! ./_st
 
 
 /***/ }),
-/* 655 */
+/* 654 */
 /*!***************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.copy-within.js ***!
   \***************************************************************/
@@ -7558,7 +7438,7 @@ __webpack_require__(/*! ./_add-to-unscopables */ 76)('copyWithin');
 
 
 /***/ }),
-/* 656 */
+/* 655 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.fill.js ***!
   \********************************************************/
@@ -7575,7 +7455,7 @@ __webpack_require__(/*! ./_add-to-unscopables */ 76)('fill');
 
 
 /***/ }),
-/* 657 */
+/* 656 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.find.js ***!
   \********************************************************/
@@ -7601,7 +7481,7 @@ __webpack_require__(/*! ./_add-to-unscopables */ 76)(KEY);
 
 
 /***/ }),
-/* 658 */
+/* 657 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.find-index.js ***!
   \**************************************************************/
@@ -7627,7 +7507,7 @@ __webpack_require__(/*! ./_add-to-unscopables */ 76)(KEY);
 
 
 /***/ }),
-/* 659 */
+/* 658 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.array.species.js ***!
   \***********************************************************/
@@ -7639,7 +7519,7 @@ __webpack_require__(/*! ./_set-species */ 90)('Array');
 
 
 /***/ }),
-/* 660 */
+/* 659 */
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.regexp.constructor.js ***!
   \****************************************************************/
@@ -7693,7 +7573,7 @@ __webpack_require__(/*! ./_set-species */ 90)('RegExp');
 
 
 /***/ }),
-/* 661 */
+/* 660 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.regexp.to-string.js ***!
   \**************************************************************/
@@ -7730,7 +7610,7 @@ if (__webpack_require__(/*! ./_fails */ 9)(function () { return $toString.call({
 
 
 /***/ }),
-/* 662 */
+/* 661 */
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.regexp.match.js ***!
   \**********************************************************/
@@ -7751,7 +7631,7 @@ __webpack_require__(/*! ./_fix-re-wks */ 154)('match', 1, function (defined, MAT
 
 
 /***/ }),
-/* 663 */
+/* 662 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.regexp.replace.js ***!
   \************************************************************/
@@ -7774,7 +7654,7 @@ __webpack_require__(/*! ./_fix-re-wks */ 154)('replace', 2, function (defined, R
 
 
 /***/ }),
-/* 664 */
+/* 663 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.regexp.search.js ***!
   \***********************************************************/
@@ -7795,7 +7675,7 @@ __webpack_require__(/*! ./_fix-re-wks */ 154)('search', 1, function (defined, SE
 
 
 /***/ }),
-/* 665 */
+/* 664 */
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.regexp.split.js ***!
   \**********************************************************/
@@ -7877,7 +7757,7 @@ __webpack_require__(/*! ./_fix-re-wks */ 154)('split', 2, function (defined, SPL
 
 
 /***/ }),
-/* 666 */
+/* 665 */
 /*!*****************************************************!*\
   !*** ./node_modules/core-js/modules/es6.promise.js ***!
   \*****************************************************/
@@ -8169,7 +8049,7 @@ $export($export.S + $export.F * !(USE_NATIVE && __webpack_require__(/*! ./_iter-
 
 
 /***/ }),
-/* 667 */
+/* 666 */
 /*!******************************************************!*\
   !*** ./node_modules/core-js/modules/es6.weak-set.js ***!
   \******************************************************/
@@ -8195,7 +8075,7 @@ __webpack_require__(/*! ./_collection */ 156)(WEAK_SET, function (get) {
 
 
 /***/ }),
-/* 668 */
+/* 667 */
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.typed.array-buffer.js ***!
   \****************************************************************/
@@ -8253,7 +8133,7 @@ __webpack_require__(/*! ./_set-species */ 90)(ARRAY_BUFFER);
 
 
 /***/ }),
-/* 669 */
+/* 668 */
 /*!*************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.typed.data-view.js ***!
   \*************************************************************/
@@ -8268,7 +8148,7 @@ $export($export.G + $export.W + $export.F * !__webpack_require__(/*! ./_typed */
 
 
 /***/ }),
-/* 670 */
+/* 669 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.typed.int8-array.js ***!
   \**************************************************************/
@@ -8284,7 +8164,7 @@ __webpack_require__(/*! ./_typed-array */ 58)('Int8', 1, function (init) {
 
 
 /***/ }),
-/* 671 */
+/* 670 */
 /*!***************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.typed.uint8-array.js ***!
   \***************************************************************/
@@ -8300,7 +8180,7 @@ __webpack_require__(/*! ./_typed-array */ 58)('Uint8', 1, function (init) {
 
 
 /***/ }),
-/* 672 */
+/* 671 */
 /*!***********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.typed.uint8-clamped-array.js ***!
   \***********************************************************************/
@@ -8316,7 +8196,7 @@ __webpack_require__(/*! ./_typed-array */ 58)('Uint8', 1, function (init) {
 
 
 /***/ }),
-/* 673 */
+/* 672 */
 /*!***************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.typed.int16-array.js ***!
   \***************************************************************/
@@ -8332,7 +8212,7 @@ __webpack_require__(/*! ./_typed-array */ 58)('Int16', 2, function (init) {
 
 
 /***/ }),
-/* 674 */
+/* 673 */
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.typed.uint16-array.js ***!
   \****************************************************************/
@@ -8348,7 +8228,7 @@ __webpack_require__(/*! ./_typed-array */ 58)('Uint16', 2, function (init) {
 
 
 /***/ }),
-/* 675 */
+/* 674 */
 /*!***************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.typed.int32-array.js ***!
   \***************************************************************/
@@ -8364,7 +8244,7 @@ __webpack_require__(/*! ./_typed-array */ 58)('Int32', 4, function (init) {
 
 
 /***/ }),
-/* 676 */
+/* 675 */
 /*!****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.typed.uint32-array.js ***!
   \****************************************************************/
@@ -8380,7 +8260,7 @@ __webpack_require__(/*! ./_typed-array */ 58)('Uint32', 4, function (init) {
 
 
 /***/ }),
-/* 677 */
+/* 676 */
 /*!*****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.typed.float32-array.js ***!
   \*****************************************************************/
@@ -8396,7 +8276,7 @@ __webpack_require__(/*! ./_typed-array */ 58)('Float32', 4, function (init) {
 
 
 /***/ }),
-/* 678 */
+/* 677 */
 /*!*****************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.typed.float64-array.js ***!
   \*****************************************************************/
@@ -8412,7 +8292,7 @@ __webpack_require__(/*! ./_typed-array */ 58)('Float64', 8, function (init) {
 
 
 /***/ }),
-/* 679 */
+/* 678 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.apply.js ***!
   \***********************************************************/
@@ -8439,7 +8319,7 @@ $export($export.S + $export.F * !__webpack_require__(/*! ./_fails */ 9)(function
 
 
 /***/ }),
-/* 680 */
+/* 679 */
 /*!***************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.construct.js ***!
   \***************************************************************/
@@ -8497,7 +8377,7 @@ $export($export.S + $export.F * (NEW_TARGET_BUG || ARGS_BUG), 'Reflect', {
 
 
 /***/ }),
-/* 681 */
+/* 680 */
 /*!*********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.define-property.js ***!
   \*********************************************************************/
@@ -8531,7 +8411,7 @@ $export($export.S + $export.F * __webpack_require__(/*! ./_fails */ 9)(function 
 
 
 /***/ }),
-/* 682 */
+/* 681 */
 /*!*********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.delete-property.js ***!
   \*********************************************************************/
@@ -8553,7 +8433,7 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 683 */
+/* 682 */
 /*!***************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.enumerate.js ***!
   \***************************************************************/
@@ -8591,7 +8471,7 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 684 */
+/* 683 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.get.js ***!
   \*********************************************************/
@@ -8623,7 +8503,7 @@ $export($export.S, 'Reflect', { get: get });
 
 
 /***/ }),
-/* 685 */
+/* 684 */
 /*!*********************************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.get-own-property-descriptor.js ***!
   \*********************************************************************************/
@@ -8644,7 +8524,7 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 686 */
+/* 685 */
 /*!**********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.get-prototype-of.js ***!
   \**********************************************************************/
@@ -8665,7 +8545,7 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 687 */
+/* 686 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.has.js ***!
   \*********************************************************/
@@ -8684,7 +8564,7 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 688 */
+/* 687 */
 /*!*******************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.is-extensible.js ***!
   \*******************************************************************/
@@ -8706,7 +8586,7 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 689 */
+/* 688 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.own-keys.js ***!
   \**************************************************************/
@@ -8721,7 +8601,7 @@ $export($export.S, 'Reflect', { ownKeys: __webpack_require__(/*! ./_own-keys */ 
 
 
 /***/ }),
-/* 690 */
+/* 689 */
 /*!************************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.prevent-extensions.js ***!
   \************************************************************************/
@@ -8748,7 +8628,7 @@ $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 691 */
+/* 690 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.set.js ***!
   \*********************************************************/
@@ -8790,7 +8670,7 @@ $export($export.S, 'Reflect', { set: set });
 
 
 /***/ }),
-/* 692 */
+/* 691 */
 /*!**********************************************************************!*\
   !*** ./node_modules/core-js/modules/es6.reflect.set-prototype-of.js ***!
   \**********************************************************************/
@@ -8816,7 +8696,7 @@ if (setProto) $export($export.S, 'Reflect', {
 
 
 /***/ }),
-/* 693 */
+/* 692 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.array.includes.js ***!
   \************************************************************/
@@ -8840,7 +8720,7 @@ __webpack_require__(/*! ./_add-to-unscopables */ 76)('includes');
 
 
 /***/ }),
-/* 694 */
+/* 693 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.array.flat-map.js ***!
   \************************************************************/
@@ -8874,7 +8754,7 @@ __webpack_require__(/*! ./_add-to-unscopables */ 76)('flatMap');
 
 
 /***/ }),
-/* 695 */
+/* 694 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.array.flatten.js ***!
   \***********************************************************/
@@ -8907,7 +8787,7 @@ __webpack_require__(/*! ./_add-to-unscopables */ 76)('flatten');
 
 
 /***/ }),
-/* 696 */
+/* 695 */
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/es7.string.at.js ***!
   \*******************************************************/
@@ -8929,7 +8809,7 @@ $export($export.P, 'String', {
 
 
 /***/ }),
-/* 697 */
+/* 696 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.string.pad-start.js ***!
   \**************************************************************/
@@ -8951,7 +8831,7 @@ $export($export.P, 'String', {
 
 
 /***/ }),
-/* 698 */
+/* 697 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.string.pad-end.js ***!
   \************************************************************/
@@ -8973,7 +8853,7 @@ $export($export.P, 'String', {
 
 
 /***/ }),
-/* 699 */
+/* 698 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.string.trim-left.js ***!
   \**************************************************************/
@@ -8992,7 +8872,7 @@ __webpack_require__(/*! ./_string-trim */ 105)('trimLeft', function ($trim) {
 
 
 /***/ }),
-/* 700 */
+/* 699 */
 /*!***************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.string.trim-right.js ***!
   \***************************************************************/
@@ -9011,7 +8891,7 @@ __webpack_require__(/*! ./_string-trim */ 105)('trimRight', function ($trim) {
 
 
 /***/ }),
-/* 701 */
+/* 700 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.string.match-all.js ***!
   \**************************************************************/
@@ -9053,7 +8933,7 @@ $export($export.P, 'String', {
 
 
 /***/ }),
-/* 702 */
+/* 701 */
 /*!*******************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.symbol.async-iterator.js ***!
   \*******************************************************************/
@@ -9065,7 +8945,7 @@ __webpack_require__(/*! ./_wks-define */ 190)('asyncIterator');
 
 
 /***/ }),
-/* 703 */
+/* 702 */
 /*!***************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.symbol.observable.js ***!
   \***************************************************************/
@@ -9077,7 +8957,7 @@ __webpack_require__(/*! ./_wks-define */ 190)('observable');
 
 
 /***/ }),
-/* 704 */
+/* 703 */
 /*!*********************************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.object.get-own-property-descriptors.js ***!
   \*********************************************************************************/
@@ -9110,7 +8990,7 @@ $export($export.S, 'Object', {
 
 
 /***/ }),
-/* 705 */
+/* 704 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.object.values.js ***!
   \***********************************************************/
@@ -9130,7 +9010,7 @@ $export($export.S, 'Object', {
 
 
 /***/ }),
-/* 706 */
+/* 705 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.object.entries.js ***!
   \************************************************************/
@@ -9150,7 +9030,7 @@ $export($export.S, 'Object', {
 
 
 /***/ }),
-/* 707 */
+/* 706 */
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.object.define-getter.js ***!
   \******************************************************************/
@@ -9174,7 +9054,7 @@ __webpack_require__(/*! ./_descriptors */ 16) && $export($export.P + __webpack_r
 
 
 /***/ }),
-/* 708 */
+/* 707 */
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.object.define-setter.js ***!
   \******************************************************************/
@@ -9198,7 +9078,7 @@ __webpack_require__(/*! ./_descriptors */ 16) && $export($export.P + __webpack_r
 
 
 /***/ }),
-/* 709 */
+/* 708 */
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.object.lookup-getter.js ***!
   \******************************************************************/
@@ -9228,7 +9108,7 @@ __webpack_require__(/*! ./_descriptors */ 16) && $export($export.P + __webpack_r
 
 
 /***/ }),
-/* 710 */
+/* 709 */
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.object.lookup-setter.js ***!
   \******************************************************************/
@@ -9258,7 +9138,7 @@ __webpack_require__(/*! ./_descriptors */ 16) && $export($export.P + __webpack_r
 
 
 /***/ }),
-/* 711 */
+/* 710 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.map.to-json.js ***!
   \*********************************************************/
@@ -9273,7 +9153,7 @@ $export($export.P + $export.R, 'Map', { toJSON: __webpack_require__(/*! ./_colle
 
 
 /***/ }),
-/* 712 */
+/* 711 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.set.to-json.js ***!
   \*********************************************************/
@@ -9288,7 +9168,7 @@ $export($export.P + $export.R, 'Set', { toJSON: __webpack_require__(/*! ./_colle
 
 
 /***/ }),
-/* 713 */
+/* 712 */
 /*!****************************************************!*\
   !*** ./node_modules/core-js/modules/es7.map.of.js ***!
   \****************************************************/
@@ -9301,7 +9181,7 @@ __webpack_require__(/*! ./_set-collection-of */ 159)('Map');
 
 
 /***/ }),
-/* 714 */
+/* 713 */
 /*!****************************************************!*\
   !*** ./node_modules/core-js/modules/es7.set.of.js ***!
   \****************************************************/
@@ -9314,7 +9194,7 @@ __webpack_require__(/*! ./_set-collection-of */ 159)('Set');
 
 
 /***/ }),
-/* 715 */
+/* 714 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.weak-map.of.js ***!
   \*********************************************************/
@@ -9327,7 +9207,7 @@ __webpack_require__(/*! ./_set-collection-of */ 159)('WeakMap');
 
 
 /***/ }),
-/* 716 */
+/* 715 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.weak-set.of.js ***!
   \*********************************************************/
@@ -9340,7 +9220,7 @@ __webpack_require__(/*! ./_set-collection-of */ 159)('WeakSet');
 
 
 /***/ }),
-/* 717 */
+/* 716 */
 /*!******************************************************!*\
   !*** ./node_modules/core-js/modules/es7.map.from.js ***!
   \******************************************************/
@@ -9353,7 +9233,7 @@ __webpack_require__(/*! ./_set-collection-from */ 160)('Map');
 
 
 /***/ }),
-/* 718 */
+/* 717 */
 /*!******************************************************!*\
   !*** ./node_modules/core-js/modules/es7.set.from.js ***!
   \******************************************************/
@@ -9366,7 +9246,7 @@ __webpack_require__(/*! ./_set-collection-from */ 160)('Set');
 
 
 /***/ }),
-/* 719 */
+/* 718 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.weak-map.from.js ***!
   \***********************************************************/
@@ -9379,7 +9259,7 @@ __webpack_require__(/*! ./_set-collection-from */ 160)('WeakMap');
 
 
 /***/ }),
-/* 720 */
+/* 719 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.weak-set.from.js ***!
   \***********************************************************/
@@ -9392,7 +9272,7 @@ __webpack_require__(/*! ./_set-collection-from */ 160)('WeakSet');
 
 
 /***/ }),
-/* 721 */
+/* 720 */
 /*!****************************************************!*\
   !*** ./node_modules/core-js/modules/es7.global.js ***!
   \****************************************************/
@@ -9407,7 +9287,7 @@ $export($export.G, { global: __webpack_require__(/*! ./_global */ 6) });
 
 
 /***/ }),
-/* 722 */
+/* 721 */
 /*!***********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.system.global.js ***!
   \***********************************************************/
@@ -9422,7 +9302,7 @@ $export($export.S, 'System', { global: __webpack_require__(/*! ./_global */ 6) }
 
 
 /***/ }),
-/* 723 */
+/* 722 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.error.is-error.js ***!
   \************************************************************/
@@ -9442,7 +9322,7 @@ $export($export.S, 'Error', {
 
 
 /***/ }),
-/* 724 */
+/* 723 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.math.clamp.js ***!
   \********************************************************/
@@ -9461,7 +9341,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 725 */
+/* 724 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.math.deg-per-rad.js ***!
   \**************************************************************/
@@ -9476,7 +9356,7 @@ $export($export.S, 'Math', { DEG_PER_RAD: Math.PI / 180 });
 
 
 /***/ }),
-/* 726 */
+/* 725 */
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.math.degrees.js ***!
   \**********************************************************/
@@ -9496,7 +9376,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 727 */
+/* 726 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.math.fscale.js ***!
   \*********************************************************/
@@ -9517,7 +9397,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 728 */
+/* 727 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.math.iaddh.js ***!
   \********************************************************/
@@ -9539,7 +9419,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 729 */
+/* 728 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.math.isubh.js ***!
   \********************************************************/
@@ -9561,7 +9441,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 730 */
+/* 729 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.math.imulh.js ***!
   \********************************************************/
@@ -9588,7 +9468,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 731 */
+/* 730 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.math.rad-per-deg.js ***!
   \**************************************************************/
@@ -9603,7 +9483,7 @@ $export($export.S, 'Math', { RAD_PER_DEG: 180 / Math.PI });
 
 
 /***/ }),
-/* 732 */
+/* 731 */
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.math.radians.js ***!
   \**********************************************************/
@@ -9623,7 +9503,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 733 */
+/* 732 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.math.scale.js ***!
   \********************************************************/
@@ -9638,7 +9518,7 @@ $export($export.S, 'Math', { scale: __webpack_require__(/*! ./_math-scale */ 327
 
 
 /***/ }),
-/* 734 */
+/* 733 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.math.umulh.js ***!
   \********************************************************/
@@ -9665,7 +9545,7 @@ $export($export.S, 'Math', {
 
 
 /***/ }),
-/* 735 */
+/* 734 */
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.math.signbit.js ***!
   \**********************************************************/
@@ -9683,7 +9563,7 @@ $export($export.S, 'Math', { signbit: function signbit(x) {
 
 
 /***/ }),
-/* 736 */
+/* 735 */
 /*!*************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.promise.finally.js ***!
   \*************************************************************/
@@ -9715,7 +9595,7 @@ $export($export.P + $export.R, 'Promise', { 'finally': function (onFinally) {
 
 
 /***/ }),
-/* 737 */
+/* 736 */
 /*!*********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.promise.try.js ***!
   \*********************************************************/
@@ -9739,7 +9619,7 @@ $export($export.S, 'Promise', { 'try': function (callbackfn) {
 
 
 /***/ }),
-/* 738 */
+/* 737 */
 /*!*********************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.reflect.define-metadata.js ***!
   \*********************************************************************/
@@ -9758,7 +9638,7 @@ metadata.exp({ defineMetadata: function defineMetadata(metadataKey, metadataValu
 
 
 /***/ }),
-/* 739 */
+/* 738 */
 /*!*********************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.reflect.delete-metadata.js ***!
   \*********************************************************************/
@@ -9784,7 +9664,7 @@ metadata.exp({ deleteMetadata: function deleteMetadata(metadataKey, target /* , 
 
 
 /***/ }),
-/* 740 */
+/* 739 */
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.reflect.get-metadata.js ***!
   \******************************************************************/
@@ -9812,7 +9692,7 @@ metadata.exp({ getMetadata: function getMetadata(metadataKey, target /* , target
 
 
 /***/ }),
-/* 741 */
+/* 740 */
 /*!***********************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.reflect.get-metadata-keys.js ***!
   \***********************************************************************/
@@ -9842,7 +9722,7 @@ metadata.exp({ getMetadataKeys: function getMetadataKeys(target /* , targetKey *
 
 
 /***/ }),
-/* 742 */
+/* 741 */
 /*!**********************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.reflect.get-own-metadata.js ***!
   \**********************************************************************/
@@ -9862,7 +9742,7 @@ metadata.exp({ getOwnMetadata: function getOwnMetadata(metadataKey, target /* , 
 
 
 /***/ }),
-/* 743 */
+/* 742 */
 /*!***************************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.reflect.get-own-metadata-keys.js ***!
   \***************************************************************************/
@@ -9881,7 +9761,7 @@ metadata.exp({ getOwnMetadataKeys: function getOwnMetadataKeys(target /* , targe
 
 
 /***/ }),
-/* 744 */
+/* 743 */
 /*!******************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.reflect.has-metadata.js ***!
   \******************************************************************/
@@ -9908,7 +9788,7 @@ metadata.exp({ hasMetadata: function hasMetadata(metadataKey, target /* , target
 
 
 /***/ }),
-/* 745 */
+/* 744 */
 /*!**********************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.reflect.has-own-metadata.js ***!
   \**********************************************************************/
@@ -9928,7 +9808,7 @@ metadata.exp({ hasOwnMetadata: function hasOwnMetadata(metadataKey, target /* , 
 
 
 /***/ }),
-/* 746 */
+/* 745 */
 /*!**************************************************************!*\
   !*** ./node_modules/core-js/modules/es7.reflect.metadata.js ***!
   \**************************************************************/
@@ -9954,7 +9834,7 @@ $metadata.exp({ metadata: function metadata(metadataKey, metadataValue) {
 
 
 /***/ }),
-/* 747 */
+/* 746 */
 /*!**************************************************!*\
   !*** ./node_modules/core-js/modules/es7.asap.js ***!
   \**************************************************/
@@ -9977,7 +9857,7 @@ $export($export.G, {
 
 
 /***/ }),
-/* 748 */
+/* 747 */
 /*!********************************************************!*\
   !*** ./node_modules/core-js/modules/es7.observable.js ***!
   \********************************************************/
@@ -10188,7 +10068,7 @@ __webpack_require__(/*! ./_set-species */ 90)('Observable');
 
 
 /***/ }),
-/* 749 */
+/* 748 */
 /*!****************************************************!*\
   !*** ./node_modules/core-js/modules/web.timers.js ***!
   \****************************************************/
@@ -10219,7 +10099,7 @@ $export($export.G + $export.B + $export.F * MSIE, {
 
 
 /***/ }),
-/* 750 */
+/* 749 */
 /*!*******************************************************!*\
   !*** ./node_modules/core-js/modules/web.immediate.js ***!
   \*******************************************************/
@@ -10236,7 +10116,7 @@ $export($export.G + $export.B, {
 
 
 /***/ }),
-/* 751 */
+/* 750 */
 /*!**********************************************************!*\
   !*** ./node_modules/core-js/modules/web.dom.iterable.js ***!
   \**********************************************************/
@@ -10305,7 +10185,7 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
 
 
 /***/ }),
-/* 752 */
+/* 751 */
 /*!*********************************************************************************!*\
   !*** ./node_modules/babel-polyfill/node_modules/regenerator-runtime/runtime.js ***!
   \*********************************************************************************/
@@ -11053,7 +10933,7 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 146)))
 
 /***/ }),
-/* 753 */
+/* 752 */
 /*!**************************************************!*\
   !*** ./node_modules/core-js/fn/regexp/escape.js ***!
   \**************************************************/
@@ -11061,12 +10941,12 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ../../modules/core.regexp.escape */ 754);
+__webpack_require__(/*! ../../modules/core.regexp.escape */ 753);
 module.exports = __webpack_require__(/*! ../../modules/_core */ 50).RegExp.escape;
 
 
 /***/ }),
-/* 754 */
+/* 753 */
 /*!************************************************************!*\
   !*** ./node_modules/core-js/modules/core.regexp.escape.js ***!
   \************************************************************/
@@ -11076,13 +10956,13 @@ module.exports = __webpack_require__(/*! ../../modules/_core */ 50).RegExp.escap
 
 // https://github.com/benjamingr/RexExp.escape
 var $export = __webpack_require__(/*! ./_export */ 1);
-var $re = __webpack_require__(/*! ./_replacer */ 755)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
+var $re = __webpack_require__(/*! ./_replacer */ 754)(/[\\^$*+?.()|[\]{}]/g, '\\$&');
 
 $export($export.S, 'RegExp', { escape: function escape(it) { return $re(it); } });
 
 
 /***/ }),
-/* 755 */
+/* 754 */
 /*!***************************************************!*\
   !*** ./node_modules/core-js/modules/_replacer.js ***!
   \***************************************************/
@@ -11101,53 +10981,38 @@ module.exports = function (regExp, replace) {
 
 
 /***/ }),
-/* 756 */
+/* 755 */
 /*!*********************!*\
   !*** ./src/main.js ***!
   \*********************/
-/*! dynamic exports provided */
+/*! no exports provided */
 /*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 328);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_phaser__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scenes_BootScene__ = __webpack_require__(/*! ./scenes/BootScene */ 1392);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scenes_GameScene__ = __webpack_require__(/*! ./scenes/GameScene */ 1393);
 
 
-__webpack_require__(/*! phaser */ 328);
 
-var _BootScene = __webpack_require__(/*! ./scenes/BootScene */ 1393);
 
-var _BootScene2 = _interopRequireDefault(_BootScene);
-
-var _GameScene = __webpack_require__(/*! ./scenes/GameScene */ 1395);
-
-var _GameScene2 = _interopRequireDefault(_GameScene);
-
-var _TitleScene = __webpack_require__(/*! ./scenes/TitleScene */ 1402);
-
-var _TitleScene2 = _interopRequireDefault(_TitleScene);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var config = {
+const config = {
     // For more settings see <https://github.com/photonstorm/phaser/blob/master/src/boot/Config.js>
-    type: Phaser.WEBGL,
+    type: Phaser.CANVAS,
     pixelArt: true,
     parent: 'content',
-    width: 400,
-    height: 240,
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 800 },
-            debug: false
-        }
-    },
-    scene: [_BootScene2.default, _TitleScene2.default, _GameScene2.default]
+    width: 1280,
+    height: 720,
+    scene: [__WEBPACK_IMPORTED_MODULE_1__scenes_BootScene__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__scenes_GameScene__["a" /* default */]]
 };
 
-var game = new Phaser.Game(config);
+const game = new Phaser.Game(config);
 
 /***/ }),
+/* 756 */,
 /* 757 */,
 /* 758 */,
 /* 759 */,
@@ -11783,1997 +11648,51 @@ var game = new Phaser.Game(config);
 /* 1389 */,
 /* 1390 */,
 /* 1391 */,
-/* 1392 */,
-/* 1393 */
+/* 1392 */
 /*!*********************************!*\
   !*** ./src/scenes/BootScene.js ***!
   \*********************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/*! exports used: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _animations = __webpack_require__(/*! ../helpers/animations */ 1394);
-
-var _animations2 = _interopRequireDefault(_animations);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var BootScene = function (_Phaser$Scene) {
-    _inherits(BootScene, _Phaser$Scene);
-
-    function BootScene(test) {
-        _classCallCheck(this, BootScene);
-
-        return _possibleConstructorReturn(this, (BootScene.__proto__ || Object.getPrototypeOf(BootScene)).call(this, {
-            key: 'BootScene'
-        }));
+class BootScene extends Phaser.Scene {
+    constructor(test) {
+        super({ key: 'BootScene' });
     }
-
-    _createClass(BootScene, [{
-        key: 'preload',
-        value: function preload() {
-            var _this2 = this;
-
-            var progress = this.add.graphics();
-
-            // Register a load progress event to show a load bar
-            this.load.on('progress', function (value) {
-                progress.clear();
-                progress.fillStyle(0xffffff, 1);
-                progress.fillRect(0, _this2.sys.game.config.height / 2, _this2.sys.game.config.width * value, 60);
-            });
-
-            // Register a load complete event to launch the title screen when all files are loaded
-            this.load.on('complete', function () {
-                // prepare all animations, defined in a separate file
-                (0, _animations2.default)(_this2);
-                progress.destroy();
-                _this2.scene.start('TitleScene');
-            });
-
-            this.load.image('background-clouds', 'assets/images/clouds.png'); // 16-bit later
-
-            // Tilemap with a lot of objects and tile-properties tricks
-            this.load.tilemapTiledJSON('map', 'assets/tilemaps/super-mario.json');
-
-            // I load the tiles as a spritesheet so I can use it for both sprites and tiles,
-            // Normally you should load it as an image.
-            this.load.spritesheet('tiles', 'assets/images/super-mario.png', {
-                frameWidth: 16,
-                frameHeight: 16,
-                spacing: 2
-            });
-
-            // Support for switching between 8-bit and 16-bit tiles
-            this.load.spritesheet('tiles-16bit', 'assets/images/super-mario-16bit.png', {
-                frameWidth: 16,
-                frameHeight: 16,
-                spacing: 2
-            });
-
-            // Spritesheets with fixed sizes. Should be replaced with atlas:
-            this.load.spritesheet('mario', 'assets/images/mario-sprites.png', {
-                frameWidth: 16,
-                frameHeight: 32
-            });
-            this.load.spritesheet('sprites16', 'assets/images/16x16sprites.png', {
-                frameWidth: 16,
-                frameHeight: 16
-            });
-
-            // Beginning of an atlas to replace the spritesheets above. Always use spriteatlases. I use TexturePacker to prepare them.
-            // Check rawAssets folder for the TexturePacker project I use to prepare these files.
-            this.load.atlas('mario-sprites', 'assets/mario-sprites.png', 'assets/mario-sprites.json');
-
-            // Music to play. It's not properly edited for an continous loop, but game play experience isn't really the aim of this repository either.
-            this.load.audio('overworld', ['assets/music/overworld.ogg', 'assets/music/overworld.mp3']);
-
-            // Sound effects in a audioSprite.
-            this.load.audioSprite('sfx', 'assets/audio/sfx.json', ['assets/audio/sfx.ogg', 'assets/audio/sfx.mp3'], {
-                instances: 4
-            });
-
-            this.load.bitmapFont('font', 'assets/fonts/font.png', 'assets/fonts/font.fnt');
-
-            // This json contain recorded gamep
-            this.load.json('attractMode', 'assets/json/attractMode.json');
-        }
-    }]);
-
-    return BootScene;
-}(Phaser.Scene);
-
-exports.default = BootScene;
-
-/***/ }),
-/* 1394 */
-/*!***********************************!*\
-  !*** ./src/helpers/animations.js ***!
-  \***********************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-exports.default = makeAnimations;
-function makeAnimations(scene) {
-    // TONS of animations. Everything animation-related is ugly and stupid below. 
-    // TODO:  maybe use JSON to load animations
-    var config = {
-        key: 'brickTile',
-        frames: scene.anims.generateFrameNumbers('tiles', { start: 14, end: 14, first: 14 })
-    };
-    scene.anims.create(config);
-    config = {
-        key: 'blockTile',
-        frames: scene.anims.generateFrameNumbers('tiles', { start: 43, end: 43, first: 43 })
-    };
-
-    scene.anims.create(config);
-    config = {
-        key: 'runSuper',
-        frames: scene.anims.generateFrameNumbers('mario', { start: 0, end: 2, first: 0 }),
-        frameRate: 10,
-        repeat: -1,
-        repeatDelay: 0
-    };
-    scene.anims.create(config);
-    config.key = "run";
-    config.frames = scene.anims.generateFrameNumbers('mario', { start: 17, end: 19 }), scene.anims.create(config);
-    config = {
-        key: 'jumpSuper',
-        frames: scene.anims.generateFrameNumbers('mario', { start: 4, end: 4 })
-    };
-    scene.anims.create(config);
-    config.key = "jump";
-    config.frames = scene.anims.generateFrameNumbers('mario', { start: 21, end: 21 }), scene.anims.create(config);
-
-    config.key = "death";
-    config.frames = scene.anims.generateFrameNumbers('mario', { start: 22, end: 22 }), scene.anims.create(config);
-
-    config = {
-        key: 'standSuper',
-        frames: scene.anims.generateFrameNumbers('mario', { start: 6, end: 6, first: 6 })
-    };
-    scene.anims.create(config);
-
-    config.key = "stand";
-    config.frames = scene.anims.generateFrameNumbers('mario', { start: 23, end: 23 }), scene.anims.create(config);
-
-    config = {
-        key: 'turnSuper',
-        frames: scene.anims.generateFrameNumbers('mario', { start: 3, end: 3, first: 3 })
-    };
-    scene.anims.create(config);
-    config.key = "turn";
-    config.frames = scene.anims.generateFrameNumbers('mario', { start: 20, end: 20 }), scene.anims.create(config);
-    config.key = "bendSuper";
-    config.frames = [{ key: "mario-sprites", frame: 'mario/bend' }], scene.anims.create(config);
-
-    // Didn't find a good way to create an animation with frame names without a pattern.
-    var frames = [];
-    ['mario/half', 'mario/stand', 'mario/half', 'mario/standSuper', 'mario/half', 'mario/standSuper'].forEach(function (frame) {
-        frames.push({ frame: frame, key: 'mario-sprites' });
-    });
-    // scene is actually pretty cool. The powerup pauses physics and the animation onComplete-callback resumes it.
-    config = {
-        key: "grow",
-        frames: frames,
-        frameRate: 10,
-        onComplete: function onComplete() {
-            scene.physics.world.resume();
-        },
-        repeat: 0,
-        repeatDelay: 0
-    };
-    scene.anims.create(config);
-    config = {
-        key: "shrink",
-        frames: frames.reverse(),
-        frameRate: 10,
-        onComplete: function onComplete() {
-            scene.physics.world.resume();
-        },
-        repeat: 0,
-        repeatDelay: 0
-    };
-    scene.anims.create(config);
-    config = {
-        key: 'goomba',
-        frames: scene.anims.generateFrameNumbers('sprites16', { start: 4, end: 5 }),
-        frameRate: 5,
-        repeat: -1,
-        repeatDelay: 0
-    };
-    scene.anims.create(config);
-    config = {
-        key: 'goombaFlat',
-        frames: scene.anims.generateFrameNumbers('sprites16', { start: 6, end: 6 })
-    };
-    scene.anims.create(config);
-    config = {
-        key: 'turtle',
-        frames: scene.anims.generateFrameNames('mario-sprites', { prefix: 'turtle/turtle', end: 1 }),
-        frameRate: 5,
-        repeat: -1,
-        repeatDelay: 0
-    };
-
-    scene.anims.create(config);
-    config = {
-        key: 'mario/climb',
-        frames: scene.anims.generateFrameNames('mario-sprites', { prefix: 'mario/climb', end: 1 }),
-        frameRate: 5,
-        repeat: -1,
-        repeatDelay: 0
-    };
-    scene.anims.create(config);
-    config = {
-        key: 'mario/climbSuper',
-        frames: scene.anims.generateFrameNames('mario-sprites', { prefix: 'mario/climbSuper', end: 1 }),
-        frameRate: 5,
-        repeat: -1,
-        repeatDelay: 0
-    };
-
-    scene.anims.create(config);
-
-    config = {
-        key: 'flag',
-        frames: [{ key: "mario-sprites", frame: 'flag' }],
-        repeat: -1
-    };
-    scene.anims.create(config);
-
-    config = {
-        key: 'turtleShell',
-        frames: [{ frame: 'turtle/shell', key: 'mario-sprites' }]
-    };
-
-    scene.anims.create(config);
-
-    config = {
-        key: 'mushroom',
-        frames: scene.anims.generateFrameNumbers('sprites16', { start: 2, end: 2 }),
-        frameRate: 10,
-        repeat: -1,
-        repeatDelay: 0
-    };
-    scene.anims.create(config);
-
-    config = {
-        key: 'coin',
-        frames: scene.anims.generateFrameNumbers('sprites16', { start: 3, end: 3 })
-    };
-    scene.anims.create(config);
-
-    config = {
-        key: '1up',
-        frames: scene.anims.generateFrameNumbers('sprites16', { start: 0, end: 0 })
-    };
-    scene.anims.create(config);
-
-    config = {
-        key: 'star',
-        frames: scene.anims.generateFrameNumbers('sprites16', { start: 1, end: 1 })
-    };
-    scene.anims.create(config);
-    config = {
-        key: 'dpad',
-        frames: [{ frame: 'controller/dpad', key: 'mario-sprites' }]
-    };
-    scene.anims.create(config);
-    config = {
-        key: 'button',
-        frames: [{ frame: 'controller/button', key: 'mario-sprites' }]
-    };
-    scene.anims.create(config);
+    preload() {}
 }
 
+/* harmony default export */ __webpack_exports__["a"] = (BootScene);
+
 /***/ }),
-/* 1395 */
+/* 1393 */
 /*!*********************************!*\
   !*** ./src/scenes/GameScene.js ***!
   \*********************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/*! exports used: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Mario = __webpack_require__(/*! ../sprites/Mario */ 1396);
-
-var _Mario2 = _interopRequireDefault(_Mario);
-
-var _Goomba = __webpack_require__(/*! ../sprites/Goomba */ 1397);
-
-var _Goomba2 = _interopRequireDefault(_Goomba);
-
-var _Turtle = __webpack_require__(/*! ../sprites/Turtle */ 1398);
-
-var _Turtle2 = _interopRequireDefault(_Turtle);
-
-var _PowerUp = __webpack_require__(/*! ../sprites/PowerUp */ 1399);
-
-var _PowerUp2 = _interopRequireDefault(_PowerUp);
-
-var _SMBTileSprite = __webpack_require__(/*! ../sprites/SMBTileSprite */ 1400);
-
-var _SMBTileSprite2 = _interopRequireDefault(_SMBTileSprite);
-
-var _AnimatedTilesMin = __webpack_require__(/*! phaser-animated-tiles/dist/AnimatedTiles.min.js */ 1401);
-
-var _AnimatedTilesMin2 = _interopRequireDefault(_AnimatedTilesMin);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var GameScene = function (_Phaser$Scene) {
-    _inherits(GameScene, _Phaser$Scene);
-
-    function GameScene(test) {
-        _classCallCheck(this, GameScene);
-
-        return _possibleConstructorReturn(this, (GameScene.__proto__ || Object.getPrototypeOf(GameScene)).call(this, {
-            key: 'GameScene'
-        }));
+class GameScene extends Phaser.Scene {
+    constructor(test) {
+        super({ key: 'GameScene' });
     }
 
-    _createClass(GameScene, [{
-        key: 'preload',
-        value: function preload() {
-            this.load.scenePlugin('animatedTiles', _AnimatedTilesMin2.default, 'animatedTiles', 'animatedTiles');
-        }
-    }, {
-        key: 'create',
-        value: function create() {
-            var _this2 = this;
+    preload() {}
 
-            // This scene is either called to run in attract mode in the background of the title screen
-            // or for actual gameplay. Attract mode is based on a JSON-recording.
-            if (this.registry.get('attractMode')) {
-                this.attractMode = {
-                    recording: this.sys.cache.json.entries.entries.attractMode,
-                    current: 0,
-                    time: 0
-                };
-            } else {
-                this.attractMode = null;
-            }
+    create() {}
 
-            // Places to warp to (from pipes). These coordinates is used also to define current room (see below)
-            this.destinations = {};
+    update(time, delta) {}
 
-            // Array of rooms to keep bounds within to avoid the need of multiple tilemaps per level.
-            // It might be a singe screen room like when going down a pipe or a sidescrolling level.
-            // It's defined as objects in Tiled.
-            this.rooms = [];
+}
 
-            // Running in 8-bit mode (16-bit mode is avaliable for the tiles, but I haven't done any work on sprites etc)
-            this.eightBit = true;
-
-            // Add and play the music
-            this.music = this.sound.add('overworld');
-            this.music.play({
-                loop: true
-            });
-
-            // Add the map + bind the tileset
-            this.map = this.make.tilemap({
-                key: 'map'
-            });
-            this.tileset = this.map.addTilesetImage('SuperMarioBros-World1-1', 'tiles');
-
-            // Dynamic layer because we want breakable and animated tiles
-            this.groundLayer = this.map.createDynamicLayer('world', this.tileset, 0, 0);
-
-            // We got the map. Tell animated tiles plugin to loop through the tileset properties and get ready.
-            // We don't need to do anything beyond this point for animated tiles to work.
-            this.sys.animatedTiles.init(this.map);
-
-            // Probably not the correct way of doing this:
-            this.physics.world.bounds.width = this.groundLayer.width;
-
-            // Add the background as an tilesprite.
-            this.add.tileSprite(0, 0, this.groundLayer.width, 500, 'background-clouds');
-
-            // Set collision by property
-            this.groundLayer.setCollisionByProperty({
-                collide: true
-            });
-
-            // This group contains all enemies for collision and calling update-methods
-            this.enemyGroup = this.add.group();
-
-            // A group powerUps to update
-            this.powerUps = this.add.group();
-
-            // Populate enemyGroup, powerUps, pipes and destinations from object layers
-            this.parseObjectLayers();
-
-            // this.keys will contain all we need to control Mario.
-            // Any key could just replace the default (like this.key.jump)
-            this.keys = {
-                jump: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP),
-                jump2: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X),
-                left: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT),
-                right: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT),
-                down: this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN)
-            };
-
-            // An emitter for bricks when blocks are destroyed.
-            this.blockEmitter = this.add.particles('mario-sprites');
-
-            this.blockEmitter.createEmitter({
-                frame: {
-                    frames: ['brick'],
-                    cycle: true
-                },
-                gravityY: 1000,
-                lifespan: 2000,
-                speed: 400,
-                angle: {
-                    min: -90 - 25,
-                    max: -45 - 25
-                },
-                frequency: -1
-            });
-
-            // Used when hitting a tile from below that should bounce up.
-            this.bounceTile = new _SMBTileSprite2.default({
-                scene: this
-            });
-
-            // Hack to get sprite's destroy method to function.
-            this.sys.physicsManager = this.physics.world;
-
-            var hud = this.add.bitmapText(5 * 8, 8, 'font', 'MARIO                      TIME', 8);
-            hud.setScrollFactor(0, 0);
-            this.levelTimer = {
-                textObject: this.add.bitmapText(36 * 8, 16, 'font', '255', 8),
-                time: 150 * 1000,
-                displayedTime: 255,
-                hurry: false
-            };
-            this.levelTimer.textObject.setScrollFactor(0, 0);
-            this.score = {
-                pts: 0,
-                textObject: this.add.bitmapText(5 * 8, 16, 'font', '000000', 8)
-            };
-            this.score.textObject.setScrollFactor(0, 0);
-
-            if (this.attractMode) {
-                hud.alpha = 0;
-                this.levelTimer.textObject.alpha = 0;
-                this.score.textObject.alpha = 0;
-            }
-
-            // Prepare the finishLine
-            var worldEndAt = -1;
-            for (var x = 0; x < this.groundLayer.width; x++) {
-                var tile = this.groundLayer.getTileAt(x, 2);
-                if (tile && tile.properties.worldsEnd) {
-                    worldEndAt = tile.pixelX;
-                    break;
-                }
-            }
-            this.finishLine = {
-                x: worldEndAt,
-                flag: this.add.sprite(worldEndAt + 8, 4 * 16),
-                active: false
-            };
-            this.finishLine.flag.play('flag');
-
-            // Touch controls is really just a quick hack to try out performance on mobiles,
-            // It's not itended as a suggestion on how to do it in a real game.
-            var jumpButton = this.add.sprite(350, 180);
-            jumpButton.play('button');
-            var dpad = this.add.sprite(20, 170);
-            dpad.play('dpad');
-            this.touchControls = {
-                dpad: dpad,
-                abutton: jumpButton,
-                left: false,
-                right: false,
-                down: false,
-                jump: false,
-                visible: false
-            };
-            jumpButton.setScrollFactor(0, 0);
-            jumpButton.alpha = 0;
-            jumpButton.setInteractive();
-            jumpButton.on('pointerdown', function (pointer) {
-                _this2.touchControls.jump = true;
-            });
-            jumpButton.on('pointerup', function (pointer) {
-                _this2.touchControls.jump = false;
-            });
-            dpad.setScrollFactor(0, 0);
-            dpad.alpha = 0;
-            dpad.setInteractive();
-            dpad.on('pointerdown', function (pointer) {
-                var x = dpad.x + dpad.width - pointer.x;
-                var y = dpad.y + dpad.height - pointer.y;
-                console.log(x, y);
-                if (y > 0 || Math.abs(x) > -y) {
-                    if (x > 0) {
-                        console.log('going left');
-                        _this2.touchControls.left = true;
-                    } else {
-                        console.log('going right');
-                        _this2.touchControls.right = true;
-                    }
-                } else {
-                    _this2.touchControls.down = true;
-                }
-            });
-            dpad.on('pointerup', function (pointer) {
-                _this2.touchControls.left = false;
-                _this2.touchControls.right = false;
-                _this2.touchControls.down = false;
-            });
-            window.toggleTouch = this.toggleTouch.bind(this);
-
-            this.cameras.main.roundPixels = true;
-
-            // Hide stuff while in attract mode
-            if (this.attractMode) {
-                hud.alpha = 0;
-                this.levelTimer.textObject.alpha = 0;
-                this.score.textObject.alpha = 0;
-                this.music.volume = 0;
-            }
-
-            // If the game ended while physics was disabled
-            this.physics.world.resume();
-
-            // CREATE MARIO!!!
-            this.mario = new _Mario2.default({
-                scene: this,
-                key: 'mario',
-                x: 16 * 6,
-                y: this.sys.game.config.height - 48 - 48
-            });
-
-            // Set bounds for current room
-            this.mario.setRoomBounds(this.rooms);
-
-            // The camera should follow Mario
-            this.cameras.main.startFollow(this.mario);
-        }
-    }, {
-        key: 'update',
-        value: function update(time, delta) {
-            var _this3 = this;
-
-            // Avoid running updates when physics is paused
-            this.record(delta);
-
-            /* console.log(time);*/
-            if (this.attractMode) {
-                this.attractMode.time += delta;
-                //console.log(this.attractMode.current);
-                //      console.log(this.attractMode.current, this.attractMode.recording.length);
-
-                if (this.mario.y > 240 || this.attractMode.recording.length <= this.attractMode.current + 2 || this.attractMode.current === 14000) {
-                    this.attractMode.current = 0;
-                    this.attractMode.time = 0;
-                    this.mario.x = 16 * 6; // 3500, 
-                    this.tick = 0;
-                    this.registry.set('restartScene', true);
-
-                    //this.scene.stop();
-                    //this.scene.switch('GameScene');
-                    //this.create();
-                    console.log('RESET');
-                    //        this.mario.y = this.sys.game.config.height - 48 -48
-                    //return;
-                }
-
-                if (this.attractMode.time >= this.attractMode.recording[this.attractMode.current + 1].time) {
-                    this.attractMode.current++;
-                    this.mario.x = this.attractMode.recording[this.attractMode.current].x;
-                    this.mario.y = this.attractMode.recording[this.attractMode.current].y;
-                    this.mario.body.setVelocity(this.attractMode.recording[this.attractMode.current].vx, this.attractMode.recording[this.attractMode.current].vy);
-                }
-                this.keys = {
-                    jump: {
-                        isDown: this.attractMode.recording[this.attractMode.current].keys.jump
-                    },
-                    jump2: {
-                        isDown: false
-                    },
-                    left: {
-                        isDown: this.attractMode.recording[this.attractMode.current].keys.left
-                    },
-                    right: {
-                        isDown: this.attractMode.recording[this.attractMode.current].keys.right
-                    },
-                    down: {
-                        isDown: this.attractMode.recording[this.attractMode.current].keys.down
-                    }
-
-                };
-            }
-
-            if (this.physics.world.isPaused) {
-                return;
-            }
-
-            if (this.mario.x > this.finishLine.x && this.finishLine.active) {
-                this.removeFlag();
-                this.physics.world.pause();
-                return;
-            }
-
-            this.levelTimer.time -= delta * 2;
-            if (this.levelTimer.time - this.levelTimer.displayedTime * 1000 < 1000) {
-                this.levelTimer.displayedTime = Math.round(this.levelTimer.time / 1000);
-                this.levelTimer.textObject.setText(('' + this.levelTimer.displayedTime).padStart(3, '0'));
-                if (this.levelTimer.displayedTime < 50 && !this.levelTimer.hurry) {
-                    this.levelTimer.hurry = true;
-                    this.music.pause();
-                    var sound = this.sound.addAudioSprite('sfx');
-                    sound.on('ended', function (sound) {
-                        _this3.music.seek = 0;
-                        _this3.music.rate = 1.5;
-                        _this3.music.resume();
-                        sound.destroy();
-                    });
-                    sound.play('smb_warning');
-                }
-                if (this.levelTimer.displayedTime < 1) {
-                    this.mario.die();
-                    this.levelTimer.hurry = false;
-                    this.music.rate = 1;
-                    this.levelTimer.time = 150 * 1000;
-                    this.levelTimer.displayedTime = 255;
-                }
-            }
-
-            // Run the update method of Mario
-            this.mario.update(this.keys, time, delta);
-
-            // Run the update method of all enemies
-            this.enemyGroup.children.entries.forEach(function (sprite) {
-                sprite.update(time, delta);
-            });
-            // Run the update method of non-enemy sprites
-            this.powerUps.children.entries.forEach(function (sprite) {
-                sprite.update(time, delta);
-            });
-        }
-    }, {
-        key: 'tileCollision',
-        value: function tileCollision(sprite, tile) {
-
-            if (sprite.type === 'turtle') {
-                if (tile.y > Math.round(sprite.y / 16)) {
-                    // Turtles ignore the ground
-                    return;
-                }
-            } else if (sprite.type === 'mario') {
-                // Mario is bending on a pipe that leads somewhere:
-                if (sprite.bending && tile.properties.pipe && tile.properties.dest) {
-                    sprite.enterPipe(tile.properties.dest, tile.rotation);
-                }
-            }
-            // If it's Mario and the body isn't blocked up it can't hit question marks or break bricks
-            // Otherwise Mario will break bricks he touch from the side while moving up.
-            if (sprite.type === 'mario' && !sprite.body.blocked.up) {
-                return;
-            }
-
-            // If the tile has a callback, lets fire it
-            if (tile.properties.callback) {
-                switch (tile.properties.callback) {
-                    case 'questionMark':
-                        // Shift to a metallic block
-                        tile.index = 44;
-                        // Bounce it a bit
-                        sprite.scene.bounceTile.restart(tile);
-                        // The questionmark is no more
-                        tile.properties.callback = null;
-                        // Invincible blocks are only collidable from above, but everywhere once revealed
-                        tile.setCollision(true);
-                        // Check powerUp for what to do, make a coin if not defined
-                        var powerUp = tile.powerUp ? tile.powerUp : 'coin';
-                        // Make powerUp (including a coin)
-                        new _PowerUp2.default({
-                            scene: sprite.scene,
-                            key: 'sprites16',
-                            x: tile.x * 16 + 8,
-                            y: tile.y * 16 - 8,
-                            type: powerUp
-                        });
-                        break;
-                    case 'breakable':
-                        if (sprite.type === 'mario' && sprite.animSuffix === '') {
-                            // Can't break it anyway. Bounce it a bit.
-                            sprite.scene.bounceTile.restart(tile);
-                            sprite.scene.sound.playAudioSprite('sfx', 'smb_bump');
-                        } else {
-                            // get points
-                            sprite.scene.updateScore(50);
-                            sprite.scene.map.removeTileAt(tile.x, tile.y, true, true, this.groundLayer);
-                            sprite.scene.sound.playAudioSprite('sfx', 'smb_breakblock');
-                            sprite.scene.blockEmitter.emitParticle(6, tile.x * 16, tile.y * 16);
-                        }
-                        break;
-                    case 'toggle16bit':
-                        sprite.scene.eightBit = !sprite.scene.eightBit;
-                        if (sprite.scene.eightBit) {
-                            sprite.scene.tileset.setImage(sprite.scene.sys.textures.get('tiles'));
-                        } else {
-                            sprite.scene.tileset.setImage(sprite.scene.sys.textures.get('tiles-16bit'));
-                        }
-                        break;
-                    default:
-                        sprite.scene.sound.playAudioSprite('sfx', 'smb_bump');
-                        break;
-
-                }
-            } else {
-                sprite.scene.sound.playAudioSprite('sfx', 'smb_bump');
-            }
-        }
-
-        /** To be removed, supported natively now:
-         * setCollisionByProperty(map) {
-          Object.keys(map.tilesets[0].tileProperties).forEach(
-            (id) => {
-               if (map.tilesets[0].tileProperties[id].collide) {
-                map.setCollision(parseInt(id) + 1);
-              }
-            }
-          )
-        }*/
-
-    }, {
-        key: 'updateScore',
-        value: function updateScore(score) {
-            this.score.pts += score;
-            this.score.textObject.setText(('' + this.score.pts).padStart(6, '0'));
-        }
-    }, {
-        key: 'removeFlag',
-        value: function removeFlag() {
-            var _this4 = this;
-
-            var step = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-
-            switch (step) {
-                case 0:
-                    this.music.pause();
-                    this.sound.playAudioSprite('sfx', 'smb_flagpole');
-                    this.mario.play('mario/climb' + this.mario.animSuffix);
-                    this.mario.x = this.finishLine.x - 1;
-                    this.tweens.add({
-                        targets: this.finishLine.flag,
-                        y: 240 - 6 * 8,
-                        duration: 1500,
-                        onComplete: function onComplete() {
-                            return _this4.removeFlag(1);
-                        }
-                    });
-                    this.tweens.add({
-                        targets: this.mario,
-                        y: 240 - 3 * 16,
-                        duration: 1000,
-                        onComplete: function onComplete() {
-                            _this4.mario.flipX = true;
-                            _this4.mario.x += 11;
-                        }
-                    });
-                    break;
-                case 1:
-                    var sound = this.sound.addAudioSprite('sfx');
-                    sound.on('ended', function (sound) {
-                        /*this.mario.x = 48;
-                        this.mario.y = -32;
-                        this.mario.body.setVelocity(0);
-                        this.mario.alpha = 1;
-                        this.music.rate = 1;
-                        this.music.seek = 0;
-                        this.music.resume();
-                        this.levelTimer.hurry = false;
-                        this.levelTimer.time = 150 * 1000;
-                        this.levelTimer.displayedTime = 255;
-                        this.physics.world.resume();*/
-                        sound.destroy();
-                        _this4.scene.start('TitleScene');
-                    });
-                    sound.play('smb_stage_clear');
-
-                    this.mario.play('run' + this.mario.animSuffix);
-
-                    this.mario.flipX = false;
-                    this.tweens.add({
-                        targets: this.mario,
-                        x: this.finishLine.x + 6 * 16,
-                        duration: 1000,
-                        onComplete: function onComplete() {
-                            return _this4.removeFlag(2);
-                        }
-                    });
-                    break;
-                case 2:
-                    this.tweens.add({
-                        targets: this.mario,
-                        alpha: 0,
-                        duration: 500
-                    });
-                    break;
-            }
-        }
-    }, {
-        key: 'toggleTouch',
-        value: function toggleTouch() {
-            this.touchControls.visible = !this.touchControls.visible;
-            if (this.touchControls.visible) {
-                this.touchControls.dpad.alpha = 0;
-                this.touchControls.abutton.alpha = 0;
-            } else {
-                this.touchControls.dpad.alpha = 0.5;
-                this.touchControls.abutton.alpha = 0.5;
-            }
-        }
-    }, {
-        key: 'record',
-        value: function record(delta) {
-            var _this5 = this;
-
-            var update = void 0;
-            var keys = {
-                jump: this.keys.jump.isDown,
-                left: this.keys.left.isDown,
-                right: this.keys.right.isDown,
-                down: this.keys.down.isDown
-            };
-            if (typeof recording === 'undefined') {
-                console.log('DEFINE');
-                window.recording = [];
-                window.time = 0;
-                this.recordedKeys = {};
-                update = true;
-            } else if (window.recording.length === 1) {
-                update = false;
-            } else {
-                update = time - recording[recording.length - 1].time > 200; // update at least 5 times per second
-            }
-            time += delta;
-            if (!update) {
-                // update if keys changed
-                ['jump', 'left', 'right', 'down'].forEach(function (dir) {
-                    if (keys[dir] != _this5.recordedKeys[dir]) {
-                        update = true;
-                    }
-                });
-            }
-            if (update) {
-                recording.push({
-                    time: time,
-                    keys: keys,
-                    x: this.mario.x,
-                    y: this.mario.y,
-                    vx: this.mario.body.velocity.x,
-                    vy: this.mario.body.velocity.y
-                });
-            }
-            this.recordedKeys = keys;
-        }
-    }, {
-        key: 'parseObjectLayers',
-        value: function parseObjectLayers() {
-            var _this6 = this;
-
-            // The map has one object layer with enemies as stamped tiles, 
-            // each tile has properties containing info on what enemy it represents.
-            this.map.getObjectLayer('enemies').objects.forEach(function (enemy) {
-                var enemyObject = void 0;
-                switch (_this6.tileset.tileProperties[enemy.gid - 1].name) {
-                    case 'goomba':
-                        enemyObject = new _Goomba2.default({
-                            scene: _this6,
-                            key: 'sprites16',
-                            x: enemy.x,
-                            y: enemy.y
-                        });
-                        break;
-                    case 'turtle':
-                        enemyObject = new _Turtle2.default({
-                            scene: _this6,
-                            key: 'mario-sprites',
-                            x: enemy.x,
-                            y: enemy.y
-                        });
-                        break;
-                    default:
-                        console.error('Unknown:', _this6.tileset.tileProperties[enemy.gid - 1]);
-                        break;
-                }
-                _this6.enemyGroup.add(enemyObject);
-            });
-
-            // The map has an object layer with 'modifiers' that do 'stuff', see below
-            this.map.getObjectLayer('modifiers').objects.forEach(function (modifier) {
-                var tile = void 0,
-                    properties = void 0,
-                    type = void 0;
-
-                // Get property stuff from the tile if present or just from the object layer directly
-                if (typeof modifier.gid !== 'undefined') {
-                    properties = _this6.tileset.tileProperties[modifier.gid - 1];
-                    type = properties.type;
-                    if (properties.hasOwnProperty('powerUp')) {
-                        type = 'powerUp';
-                    }
-                } else {
-                    type = modifier.properties.type;
-                }
-
-                switch (type) {
-                    case 'powerUp':
-                        // Modifies a questionmark below the modifier to contain something else than the default (coin)
-                        tile = _this6.groundLayer.getTileAt(modifier.x / 16, modifier.y / 16 - 1);
-                        tile.powerUp = properties.powerUp;
-                        tile.properties.callback = 'questionMark';
-                        if (!tile.collides) {
-                            // Hidden block without a question mark
-                            tile.setCollision(false, false, false, true);
-                        }
-                        break;
-                    case 'pipe':
-                        // Adds info on where to go from a pipe under the modifier
-                        tile = _this6.groundLayer.getTileAt(modifier.x / 16, modifier.y / 16);
-                        tile.properties.dest = parseInt(modifier.properties.goto);
-                        break;
-                    case 'dest':
-                        // Adds a destination so that a pipe can find it
-                        _this6.destinations[modifier.properties.id] = {
-                            x: modifier.x + modifier.width / 2,
-                            top: modifier.y < 16
-                        };
-                        break;
-                    case 'room':
-                        // Adds a 'room' that is just info on bounds so that we can add sections below pipes 
-                        // in an level just using one tilemap.
-                        _this6.rooms.push({
-                            x: modifier.x,
-                            width: modifier.width,
-                            sky: modifier.properties.sky
-                        });
-                        break;
-                }
-            });
-        }
-    }, {
-        key: 'cleanUp',
-        value: function cleanUp() {
-            var _this7 = this;
-
-            // Never called since 3.10 update (I called it from create before). If Everything is fine, I'll remove this method.
-            // Scenes isn't properly destroyed yet.
-            var ignore = ['sys', 'anims', 'cache', 'registry', 'sound', 'textures', 'events', 'cameras', 'make', 'add', 'scene', 'children', 'cameras3d', 'time', 'data', 'input', 'load', 'tweens', 'lights', 'physics'];
-            var whatThisHad = ['sys', 'anims', 'cache', 'registry', 'sound', 'textures', 'events', 'cameras', 'make', 'add', 'scene', 'children', 'cameras3d', 'time', 'data', 'input', 'load', 'tweens', 'lights', 'physics', 'attractMode', 'destinations', 'rooms', 'eightBit', 'music', 'map', 'tileset', 'groundLayer', 'mario', 'enemyGroup', 'powerUps', 'keys', 'blockEmitter', 'bounceTile', 'levelTimer', 'score', 'finishLine', 'touchControls'];
-            whatThisHad.forEach(function (key) {
-                if (ignore.indexOf(key) === -1 && _this7[key]) {
-                    switch (key) {
-                        case 'enemyGroup':
-                        case 'music':
-                        case 'map':
-                            _this7[key].destroy();
-                            break;
-                    }
-                    _this7[key] = null;
-                }
-            });
-        }
-    }]);
-
-    return GameScene;
-}(Phaser.Scene);
-
-exports.default = GameScene;
-
-/***/ }),
-/* 1396 */
-/*!******************************!*\
-  !*** ./src/sprites/Mario.js ***!
-  \******************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Mario = function (_Phaser$GameObjects$S) {
-    _inherits(Mario, _Phaser$GameObjects$S);
-
-    function Mario(config) {
-        _classCallCheck(this, Mario);
-
-        var _this = _possibleConstructorReturn(this, (Mario.__proto__ || Object.getPrototypeOf(Mario)).call(this, config.scene, config.x, config.y, config.key));
-
-        config.scene.physics.world.enable(_this);
-        config.scene.add.existing(_this);
-        _this.acceleration = 600;
-        _this.body.maxVelocity.x = 200;
-        _this.body.maxVelocity.y = 500;
-        _this.animSuffix = '';
-        _this.small();
-        _this.bending = false;
-        _this.wasHurt = -1;
-        _this.flashToggle = false;
-        _this.star = {
-            active: false,
-            timer: -1,
-            step: 0
-        };
-        _this.enteringPipe = false;
-        _this.anims.play('stand');
-        _this.alive = true;
-        _this.type = 'mario';
-        _this.jumpTimer = 0;
-        _this.jumping = false;
-        return _this;
-    }
-
-    _createClass(Mario, [{
-        key: 'update',
-        value: function update(keys, time, delta) {
-
-            // If Mario falls down a cliff or died, just let him drop from the sky and prentend like nothing happened
-
-
-            if (this.y > 2040) {
-                // Really superdead, has been falling for a while.
-                this.scene.scene.start('TitleScene');
-
-                //this.y = -32;
-                //if(this.x<16){
-                //  this.x = 16;
-                // }
-                //this.alive = true;
-                //this.scene.music.seek = 0;
-                //this.scene.music.play();
-            } else if (this.y > 240 && this.alive) {
-                this.die();
-            }
-
-            // Don't do updates while entering the pipe or being dead
-            if (this.enteringPipe || !this.alive) {
-                return;
-            }
-
-            // Just run callbacks when hitting something from below or trying to enter it
-            if (this.body.velocity.y < 0 || this.bending) {
-                this.scene.physics.world.collide(this, this.scene.groundLayer, this.scene.tileCollision);
-            } else {
-                this.scene.physics.world.collide(this, this.scene.groundLayer);
-            }
-
-            if (this.wasHurt > 0) {
-                this.wasHurt -= delta;
-                this.flashToggle = !this.flashToggle;
-                this.alpha = this.flashToggle ? 0.2 : 1;
-                if (this.wasHurt <= 0) {
-                    this.alpha = 1;
-                }
-            }
-
-            if (this.star.active) {
-                if (this.star.timer < 0) {
-                    this.star.active = false;
-                    this.tint = 0xFFFFFF;
-                } else {
-                    this.star.timer -= delta;
-                    this.star.step = this.star.step === 5 ? 0 : this.star.step + 1;
-                    this.tint = [0xFFFFFF, 0xFF0000, 0xFFFFFF, 0x00FF00, 0xFFFFFF, 0x0000FF][this.star.step];
-                }
-            }
-
-            //
-            var input = {
-                left: keys.left.isDown || this.scene.touchControls.left,
-                right: keys.right.isDown || this.scene.touchControls.right,
-                down: keys.down.isDown || this.scene.touchControls.down,
-                jump: keys.jump.isDown || keys.jump2.isDown || this.scene.touchControls.jump
-
-                //this.angle++
-                //  console.log(this.body.velocity.y);
-            };if (this.body.velocity.y > 0) {
-                this.hasFalled = true;
-            }
-
-            this.bending = false;
-
-            this.jumpTimer -= delta;
-
-            if (input.left) {
-                if (this.body.velocity.y === 0) {
-                    this.run(-this.acceleration);
-                } else {
-                    this.run(-this.acceleration / 3);
-                }
-                this.flipX = true;
-            } else if (input.right) {
-                if (this.body.velocity.y === 0) {
-                    this.run(this.acceleration);
-                } else {
-                    this.run(this.acceleration / 3);
-                }
-                this.flipX = false;
-            } else if (this.body.blocked.down) {
-
-                if (Math.abs(this.body.velocity.x) < 10) {
-                    this.body.setVelocityX(0);
-                    this.run(0);
-                } else {
-
-                    this.run((this.body.velocity.x > 0 ? -1 : 1) * this.acceleration / 2);
-                }
-            } else if (!this.body.blocked.down) {
-                this.run(0);
-            }
-
-            if (input.jump && (!this.jumping || this.jumpTimer > 0)) {
-                this.jump();
-            } else if (!input.jump) {
-                this.jumpTimer = -1; // Don't resume jump if button is released, prevents mini double-jumps
-                if (this.body.blocked.down) {
-                    this.jumping = false;
-                }
-            }
-
-            var anim = null;
-            if (this.body.velocity.y !== 0) {
-                anim = 'jump';
-            } else if (this.body.velocity.x !== 0) {
-                anim = 'run';
-                if ((input.left || input.right) && (this.body.velocity.x > 0 && this.body.acceleration.x < 0 || this.body.velocity.x < 0 && this.body.acceleration.x > 0)) {
-                    anim = 'turn';
-                } else if (this.animSuffix != '' && input.down && !(input.right || input.left)) {
-                    anim = 'bend';
-                }
-            } else {
-                anim = 'stand';
-                if (this.animSuffix != '' && input.down && !(input.right || input.left)) {
-                    anim = 'bend';
-                }
-            }
-
-            anim += this.animSuffix;
-            if (this.anims.currentAnim.key !== anim) {
-                this.anims.play(anim);
-            }
-
-            if (input.down && this.body.velocity.x < 100) {
-                this.bending = true;
-            }
-
-            this.physicsCheck = true;
-        }
-    }, {
-        key: 'run',
-        value: function run(vel) {
-            this.body.setAccelerationX(vel);
-        }
-    }, {
-        key: 'jump',
-        value: function jump() {
-
-            if (!this.body.blocked.down && !this.jumping) {
-                return;
-            }
-
-            if (!this.jumping) {
-                if (this.animSuffix === '') {
-                    this.scene.sound.playAudioSprite('sfx', 'smb_jump-small');
-                } else {
-                    this.scene.sound.playAudioSprite('sfx', 'smb_jump-super');
-                }
-            }
-            if (this.body.velocity.y < 0 || this.body.blocked.down) {
-                this.body.setVelocityY(-200);
-            }
-            if (!this.jumping) {
-                this.jumpTimer = 300;
-            }
-            this.jumping = true;
-        }
-    }, {
-        key: 'enemyBounce',
-        value: function enemyBounce(enemy) {
-            // Force Mario y-position up a bit (on top of the enemy) to avoid getting killed 
-            // by neigbouring enemy before being able to bounce
-            this.body.y = enemy.body.y - this.body.height;
-            // TODO: if jump-key is down, add a boost value to jump-velocity to use and init jump for controls to handle.
-            this.body.setVelocityY(-150);
-        }
-    }, {
-        key: 'hurtBy',
-        value: function hurtBy(enemy) {
-            if (!this.alive) {
-                return;
-            }
-            if (this.star.active) {
-                enemy.starKilled(enemy, this);
-            } else if (this.wasHurt < 1) {
-                if (this.animSuffix !== '') {
-                    this.resize(false);
-                    this.scene.sound.playAudioSprite('sfx', 'smb_pipe');
-
-                    this.wasHurt = 2000;
-                } else {
-                    this.die();
-                }
-            }
-        }
-    }, {
-        key: 'resize',
-        value: function resize(large) {
-            var _this2 = this;
-
-            this.scene.physics.world.pause();
-            this.on('animationcomplete', function () {
-                if (_this2.scene.physics.world.isPaused) {
-                    console.log(_this2.scene.physics.world);
-
-                    _this2.scene.physics.world.resume();
-                }
-            }, this);
-
-            if (large) {
-                this.large();
-                this.animSuffix = 'Super';
-                this.play('grow');
-            } else {
-                this.small();
-                this.animSuffix = '';
-                this.play('shrink');
-            }
-        }
-    }, {
-        key: 'small',
-        value: function small() {
-            this.body.setSize(10, 10);
-            this.body.offset.set(3, 22);
-        }
-    }, {
-        key: 'large',
-        value: function large() {
-            this.body.setSize(10, 22);
-            this.body.offset.set(3, 10);
-        }
-    }, {
-        key: 'die',
-        value: function die() {
-            this.scene.music.pause();
-            this.play('death');
-            this.scene.sound.playAudioSprite('sfx', 'smb_mariodie');
-            this.body.setAcceleration(0);
-            this.body.setVelocity(0, -300);
-            this.alive = false;
-        }
-    }, {
-        key: 'enterPipe',
-        value: function enterPipe(id, dir) {
-            var init = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : true;
-
-
-            if (init) {
-                if (this.animSuffix === '') {
-                    this.play('stand');
-                } else {
-                    this.play('bend' + this.animSuffix);
-                }
-                this.scene.sound.playAudioSprite('sfx', 'smb_pipe');
-
-                this.enteringPipe = true;
-                this.body.setVelocity(0);
-                this.body.setAcceleration(0);
-                this.setDepth(-100);
-                this.scene.tweens.add({
-                    targets: this,
-                    y: this.y + 40,
-                    duration: 800,
-                    onComplete: function onComplete() {
-                        console.log(this.targets, id, dir);
-                        console.log(id);
-                        console.log(dir);
-                        this.targets[0].enterPipe(id, dir, false);
-                    }
-                });
-            } else {
-                this.setDepth(1);
-                this.enteringPipe = false;
-                this.x = this.scene.destinations[id].x;
-                this.y = this.scene.destinations[id].top ? -100 : 100;
-                this.setRoomBounds(this.scene.rooms);
-            }
-        }
-    }, {
-        key: 'setRoomBounds',
-        value: function setRoomBounds(rooms) {
-            var _this3 = this;
-
-            rooms.forEach(function (room) {
-                if (_this3.x >= room.x && _this3.x <= room.x + room.width) {
-                    var cam = _this3.scene.cameras.main;
-                    var layer = _this3.scene.groundLayer;
-                    cam.setBounds(room.x, 0, room.width * layer.scaleX, layer.height * layer.scaleY);
-                    _this3.scene.finishLine.active = room.x === 0;
-                    _this3.scene.cameras.main.setBackgroundColor(room.sky);
-                    return;
-                }
-            });
-        }
-    }]);
-
-    return Mario;
-}(Phaser.GameObjects.Sprite);
-
-exports.default = Mario;
-
-/***/ }),
-/* 1397 */
-/*!*******************************!*\
-  !*** ./src/sprites/Goomba.js ***!
-  \*******************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Enemy2 = __webpack_require__(/*! ./Enemy */ 552);
-
-var _Enemy3 = _interopRequireDefault(_Enemy2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Goomba = function (_Enemy) {
-  _inherits(Goomba, _Enemy);
-
-  function Goomba(config) {
-    _classCallCheck(this, Goomba);
-
-    var _this = _possibleConstructorReturn(this, (Goomba.__proto__ || Object.getPrototypeOf(Goomba)).call(this, config));
-
-    _this.body.setVelocity(0, 0).setBounce(0, 0).setCollideWorldBounds(false);
-    _this.anims.play('goomba');
-    _this.killAt = 0;
-    return _this;
-  }
-
-  _createClass(Goomba, [{
-    key: 'update',
-    value: function update(time, delta) {
-      // If it's not activated, then just skip the update method (see Enemy.js)
-      if (!this.activated()) {
-        return;
-      }
-      this.scene.physics.world.collide(this, this.scene.groundLayer);
-      if (this.killAt !== 0) {
-        // The killtimer is set, keep the flat Goomba then kill it for good.
-        this.body.setVelocityX(0);
-        this.killAt -= delta;
-        if (this.killAt < 0) {
-          this.kill();
-        }
-        return;
-      }
-      // Collide with Mario!
-      this.scene.physics.world.overlap(this, this.mario, this.marioHit);
-      // The Goomba stopped, better try to walk in the other direction.
-      if (this.body.velocity.x === 0) {
-        this.direction = -this.direction;
-        this.body.velocity.x = this.direction;
-      }
-    }
-  }, {
-    key: 'marioHit',
-    value: function marioHit(enemy, mario) {
-      if (enemy.verticalHit(enemy, mario)) {
-        // Mario jumps on the enemy
-        mario.enemyBounce(enemy);
-        enemy.scene.sound.playAudioSprite('sfx', 'smb_stomp');
-        enemy.getFlat(enemy, mario);
-        // get points
-        enemy.scene.updateScore(100);
-      } else {
-        // Mario collides with the enemy
-        enemy.hurtMario(enemy, mario);
-      }
-    }
-  }, {
-    key: 'getFlat',
-    value: function getFlat(enemy, mario) {
-      enemy.play("goombaFlat");
-      enemy.body.setVelocityX(0);
-      enemy.body.acceleration.x = 0;
-      // Keep goomba flat for 500ms, then remove it.
-      enemy.killAt = 500;
-    }
-  }]);
-
-  return Goomba;
-}(_Enemy3.default);
-
-exports.default = Goomba;
-
-/***/ }),
-/* 1398 */
-/*!*******************************!*\
-  !*** ./src/sprites/Turtle.js ***!
-  \*******************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _Enemy2 = __webpack_require__(/*! ./Enemy */ 552);
-
-var _Enemy3 = _interopRequireDefault(_Enemy2);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var Turtle = function (_Enemy) {
-    _inherits(Turtle, _Enemy);
-
-    function Turtle(config) {
-        _classCallCheck(this, Turtle);
-
-        var _this = _possibleConstructorReturn(this, (Turtle.__proto__ || Object.getPrototypeOf(Turtle)).call(this, config));
-
-        _this.flipX = true;
-        _this.anims.play('turtle');
-        _this.sliding = false;
-        _this.type = 'turtle';
-        _this.body.setSize(12, 12);
-        _this.body.offset.set(2, 2);
-        return _this;
-    }
-
-    _createClass(Turtle, [{
-        key: 'update',
-        value: function update() {
-            var _this2 = this;
-
-            if (!this.activated()) {
-                return;
-            }
-            if (this.sliding) {
-                this.scene.physics.world.collide(this, this.scene.groundLayer, this.scene.tileCollision);
-                this.scene.enemyGroup.children.entries.forEach(function (enemy) {
-                    if (_this2 != enemy) {
-                        _this2.scene.physics.world.overlap(_this2, enemy, _this2.slidekill);
-                    }
-                });
-            } else {
-                this.scene.physics.world.collide(this, this.scene.groundLayer);
-            }
-            this.scene.physics.world.overlap(this, this.scene.mario, this.marioHit);
-            if (this.body.velocity.x === 0) {
-                this.direction = -this.direction;
-                this.body.velocity.x = this.direction;
-                this.flipX = this.direction < 0;
-            }
-        }
-    }, {
-        key: 'slidekill',
-        value: function slidekill(turtle, victim) {
-            if (typeof victim.starKilled !== 'undefined') {
-                victim.starKilled();
-            }
-        }
-    }, {
-        key: 'marioHit',
-        value: function marioHit(enemy, mario) {
-            // direction
-            // den av overlap x or overlap y som är störst
-            // let verticalHit = Math.abs(enemy.x-mario.x)<Math.abs(enemy.y-mario.y);
-
-            // console.log('vertical',verticalHit);
-            if (mario.star.active) {
-                enemy.hurtMario(enemy, mario);
-                return;
-            }
-
-            if (enemy.verticalHit(enemy, mario)) {
-                // get points
-                enemy.scene.updateScore(100);
-                if (!enemy.sliding || enemy.sliding && enemy.body.velocity.x === 0) {
-                    enemy.scene.sound.playAudioSprite('sfx', 'smb_kick');
-                    //enemy.body.height = 16;
-                    enemy.direction = 150 * (mario.x < enemy.x ? 1 : -1);
-
-                    enemy.body.velocity.x = enemy.direction;
-                    enemy.sliding = true;
-                    enemy.play('turtleShell');
-                } else {
-                    enemy.scene.sound.playAudioSprite('sfx', 'smb_stomp');
-
-                    enemy.direction = 0;
-                    enemy.body.velocity.x = 0;
-                    enemy.sliding = true;
-                    enemy.play('turtleShell');
-                }
-                mario.enemyBounce(enemy);
-            } else {
-                if (enemy.sliding && enemy.body.velocity.x === 0) {
-                    enemy.scene.sound.playAudioSprite('sfx', 'smb_kick');
-
-                    enemy.direction = 150;
-                    enemy.body.velocity.x = 150;
-                } else {
-                    enemy.hurtMario(enemy, mario);
-                }
-            }
-        }
-    }]);
-
-    return Turtle;
-}(_Enemy3.default);
-
-exports.default = Turtle;
-
-/***/ }),
-/* 1399 */
-/*!********************************!*\
-  !*** ./src/sprites/PowerUp.js ***!
-  \********************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var PowerUp = function (_Phaser$GameObjects$S) {
-  _inherits(PowerUp, _Phaser$GameObjects$S);
-
-  function PowerUp(config) {
-    var _ret;
-
-    _classCallCheck(this, PowerUp);
-
-    var _this = _possibleConstructorReturn(this, (PowerUp.__proto__ || Object.getPrototypeOf(PowerUp)).call(this, config.scene, config.x, config.y, config.key));
-
-    config.scene.physics.world.enable(_this);
-    config.scene.add.existing(_this);
-    _this.type = config.type;
-
-    _this.direction = 70;
-    if (_this.scene.mario.x > config.x + 8) {
-      // Mario on the right -> powerup bounces left
-      _this.direction = -_this.direction;
-    }
-    _this.body.velocity.x = _this.direction;
-
-    // Standard sprite is 16x16 pixels with a smaller body
-    _this.body.setSize(12, 12);
-    _this.body.offset.set(2, 4);
-
-    if (_this.type === "mushroom" || _this.type === "1up") {
-      _this.body.velocity.y = -150;
-    } else if (_this.type === "coin") {
-      _this.body.setVelocity(0, 0);
-      _this.body.allowGravity = false;
-      _this.scene.tweens.add({
-        targets: _this,
-        y: _this.y - 50,
-        duration: 300,
-        onComplete: function onComplete() {
-          _this.destroy();
-        }
-      });
-    }
-
-    _this.anims.play(_this.type);
-    _this.tintCnt = 0;
-    _this.tintIndex = 0;
-
-    if (_this.type === "coin") {
-      _this.scene.sound.playAudioSprite('sfx', 'smb_coin');
-    } else {
-      _this.scene.sound.playAudioSprite('sfx', 'smb_powerup_appears');
-      _this.scene.powerUps.add(_this);
-    }
-
-    //    this.scene.updateLoop.push(this);
-
-    return _ret = _this, _possibleConstructorReturn(_this, _ret);
-  }
-
-  _createClass(PowerUp, [{
-    key: "update",
-    value: function update() {
-      if (this.alpha === 0) {
-        this.scene.powerUps.remove(this);
-        this.destroy();
-        return;
-      }
-
-      this.scene.physics.world.collide(this, this.scene.groundLayer);
-      this.scene.physics.world.overlap(this, this.scene.mario, this.collected);
-
-      if (!this.body) {
-        return;
-      }
-
-      if (this.body.velocity.x === 0) {
-        this.direction = -this.direction;
-        this.body.velocity.x = this.direction;
-      }
-      if (this.type === "star") {
-        if (this.body.blocked.down) {
-          this.body.velocity.y = -300;
-        }
-        this.tintCnt++;
-        if (this.tintCnt > 5) {
-          this.tintIndex++;
-          this.tintCnt = 0;
-          if (this.tintCnt > 7) {
-            this.tintCnt = 0;
-          }
-        }
-        this.tint = [0xFFFFFF, 0xFF0000, 0xFFFFFF, 0x00FF00, 0xFFFFFF, 0x0000FF][this.tintCnt];
-      }
-    }
-  }, {
-    key: "collected",
-    value: function collected(powerUp, mario) {
-      switch (powerUp.type) {
-        case "mushroom":
-          // Powerup will not be removed until next loop after physics is running again
-          // (physics is paused by mario.resize), until then we'll just hide it.
-          mario.resize(true);
-          powerUp.scene.sound.playAudioSprite('sfx', 'smb_powerup');
-          break;
-        case "star":
-          mario.star.active = true;
-          mario.star.timer = 10000;
-          powerUp.scene.sound.playAudioSprite('sfx', 'smb_powerup');
-          break;
-        case "1up":
-          powerUp.scene.sound.playAudioSprite('sfx', 'smb_1-up');
-          break;
-      }
-      // get points
-      powerUp.scene.updateScore(1000);
-      powerUp.alpha = 0;
-    }
-  }]);
-
-  return PowerUp;
-}(Phaser.GameObjects.Sprite);
-
-exports.default = PowerUp;
-
-/***/ }),
-/* 1400 */
-/*!**************************************!*\
-  !*** ./src/sprites/SMBTileSprite.js ***!
-  \**************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var SMBTileSprite = function (_Phaser$GameObjects$S) {
-  _inherits(SMBTileSprite, _Phaser$GameObjects$S);
-
-  function SMBTileSprite(config) {
-    _classCallCheck(this, SMBTileSprite);
-
-    var _this = _possibleConstructorReturn(this, (SMBTileSprite.__proto__ || Object.getPrototypeOf(SMBTileSprite)).call(this, config.scene, -100, 0, "tiles"));
-
-    config.scene.add.existing(_this);
-    _this.tile = null;
-    _this.scene = config.scene;
-    _this.play("brickTile");
-    _this.alpha = 0;
-    config.scene.physics.world.enable(_this);
-    _this.body.allowGravity = false;
-    return _this;
-  }
-
-  _createClass(SMBTileSprite, [{
-    key: "update",
-    value: function update() {
-      var _this2 = this;
-
-      //this.scene.physics.world.collide(this, this.scene.enemyGroup, ()=>{console.log("COLLIDED!")});
-      this.scene.enemyGroup.children.entries.forEach(function (enemy) {
-        _this2.scene.physics.world.overlap(_this2, enemy, function () {
-          enemy.starKilled();
-        });
-      });
-
-      /*this.scene.updateLoop.forEach(
-        (sprite) => { sprite.update(delta); }
-      )*/
-    }
-  }, {
-    key: "restart",
-    value: function restart(tile) {
-      var _this3 = this;
-
-      var anim = "brickTile";
-      this.tile = tile;
-      this.tile.alpha = 0;
-      this.alpha = 1;
-      // tile
-      if (tile.index === 44) {
-        anim = "blockTile";
-      }
-
-      this.play(anim);
-      this.x = this.tile.x * 16 + 8;
-      this.y = this.tile.y * 16 + 8;
-      this.scene.tweens.add({
-        targets: this,
-        y: this.y - 8,
-        yoyo: true,
-        duration: 100,
-        onUpdate: function onUpdate() {
-          return _this3.update();
-        },
-        onComplete: function onComplete() {
-          _this3.tile.alpha = 1;_this3.x = -100;_this3.alpha = 0;
-        }
-      });
-    }
-  }]);
-
-  return SMBTileSprite;
-}(Phaser.GameObjects.Sprite);
-
-exports.default = SMBTileSprite;
-
-/***/ }),
-/* 1401 */
-/*!**********************************************************************!*\
-  !*** ./node_modules/phaser-animated-tiles/dist/AnimatedTiles.min.js ***!
-  \**********************************************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-!function(e,t){ true?module.exports=t():"function"==typeof define&&define.amd?define([],t):"object"==typeof exports?exports["AnimatedTiles.min"]=t():e["AnimatedTiles.min"]=t()}(window,function(){return function(e){var t={};function n(i){if(t[i])return t[i].exports;var a=t[i]={i:i,l:!1,exports:{}};return e[i].call(a.exports,a,a.exports,n),a.l=!0,a.exports}return n.m=e,n.c=t,n.d=function(e,t,i){n.o(e,t)||Object.defineProperty(e,t,{configurable:!1,enumerable:!0,get:i})},n.r=function(e){Object.defineProperty(e,"__esModule",{value:!0})},n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,"a",t),t},n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},n.p="",n(n.s=0)}([function(e,t,n){"use strict";var i=function(){function e(e,t){for(var n=0;n<t.length;n++){var i=t[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}return function(t,n,i){return n&&e(t.prototype,n),i&&e(t,i),t}}();var a=function(e){function t(e,n){!function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}(this,t);var i=function(e,t){if(!e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called");return!t||"object"!=typeof t&&"function"!=typeof t?e:t}(this,(t.__proto__||Object.getPrototypeOf(t)).call(this,e,n));return i.map=null,i.animatedTiles=[],i.rate=1,i.active=!1,i.activeLayer=[],i.followTimeScale=!0,e.sys.settings.isBooted||e.sys.events.once("boot",i.boot,i),i}return function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function, not "+typeof t);e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,enumerable:!1,writable:!0,configurable:!0}}),t&&(Object.setPrototypeOf?Object.setPrototypeOf(e,t):e.__proto__=t)}(t,Phaser.Plugins.ScenePlugin),i(t,[{key:"boot",value:function(){var e=this.systems.events;e.on("postupdate",this.postUpdate,this),e.on("shutdown",this.shutdown,this),e.on("destroy",this.destroy,this)}},{key:"init",value:function(e){var t={map:e,animatedTiles:this.getAnimatedTiles(e),active:!0,rate:1,activeLayer:[]};e.layers.forEach(function(){return t.activeLayer.push(!0)}),this.animatedTiles.push(t),1===this.animatedTiles.length&&(this.active=!0)}},{key:"setRate",value:function(e){var t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:null;if(null===t)null===n?this.rate=e:this.animatedTiles[n].rate=e;else{var i=function(n){n.forEach(function(n){n.index===t&&(n.rate=e)})};null===n?this.animatedTiles.forEach(function(e){i(e.animatedTiles)}):i(this.animatedTiles[n].animatedTiles)}}},{key:"resetRates",value:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null;null===e?(this.rate=1,this.animatedTiles.forEach(function(e){e.rate=1,e.animatedTiles.forEach(function(e){e.rate=1})})):(this.animatedTiles[e].rate=1,this.animatedTiles[e].animatedTiles.forEach(function(e){e.rate=1}))}},{key:"resume",value:function(){var e=this,t=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,i=null===n?this:this.animatedTiles[n];null===t?i.active=!0:(i.activeLayer[t]=!0,i.animatedTiles.forEach(function(n){e.updateLayer(n,n.tiles[t])}))}},{key:"pause",value:function(){var e=arguments.length>0&&void 0!==arguments[0]?arguments[0]:null,t=arguments.length>1&&void 0!==arguments[1]?arguments[1]:null,n=null===t?this:this.animatedTiles[t];null===e?n.active=!1:n.activeLayer[e]=!1}},{key:"postUpdate",value:function(e,t){var n=this;if(this.active){var i=t*this.rate*(this.followTimeScale?this.scene.time.timeScale:1);this.animatedTiles.forEach(function(e){if(e.active){var t=i*e.rate;e.animatedTiles.forEach(function(i){if(i.next-=t*i.rate,i.next<0){var a=i.currentFrame,r=i.frames[a].tileid,o=a+1;o>i.frames.length-1&&(o=0),i.next=i.frames[o].duration,i.currentFrame=o,i.tiles.forEach(function(t,a){e.activeLayer[a]&&n.updateLayer(i,t,r)})}})}})}}},{key:"updateLayer",value:function(e,t){var n=arguments.length>2&&void 0!==arguments[2]?arguments[2]:-1,i=[],a=e.frames[e.currentFrame].tileid;t.forEach(function(e){n>-1&&(null===e||e.index!==n)?i.push(e):e.index=a}),i.forEach(function(e){var n=t.indexOf(e);n>-1?t.splice(n,1):console.error("This shouldn't happen. Not at all. Blame Phaser Animated Tiles plugin. You'll be fine though.")})}},{key:"shutdown",value:function(){}},{key:"destroy",value:function(){this.shutdown(),this.scene=void 0}},{key:"getAnimatedTiles",value:function(e){var t=this,n=[];return e.tilesets.forEach(function(t){var i=t.tileData;Object.keys(i).forEach(function(a){if(a=parseInt(a),i[a].hasOwnProperty("animation")){var r={index:a+t.firstgid,frames:[],currentFrame:0,tiles:[],rate:1};i[a].animation.forEach(function(e){var n={duration:e.duration,tileid:e.tileid+t.firstgid};r.frames.push(n)}),r.next=r.frames[0].duration,e.layers.forEach(function(e){if("StaticTilemapLayer"!==e.tilemapLayer.type){var n=[];e.data.forEach(function(e){e.forEach(function(e){e.index-t.firstgid===a&&n.push(e)})}),r.tiles.push(n)}else r.tiles.push([])}),n.push(r)}})}),e.layers.forEach(function(e,n){t.activeLayer[n]=!0}),n}},{key:"putTileAt",value:function(e,t,n,i){}},{key:"updateAnimatedTiles",value:function(){var e=null;null===e&&(e=[],this.animatedTiles.forEach(function(t){e.push(t)})),e.forEach(function(e){e.animatedTiles.forEach(function(t){t.tiles.forEach(function(n,i){if("StaticTilemapLayer"!==e.map.layers[i].type)for(var a=0;a<10;a++)for(var r=0;r<10;r++){var o=e.map.layers[i].data[a][r];o.index==t.index&&(-1===n.indexOf(o)&&n.push(o),o.index=t.frames[t.currentFrame].tileid)}})})})}}]),t}();a.register=function(e){e.register("AnimatedTiles",a,"animatedTiles")},e.exports=a}])});
-
-/***/ }),
-/* 1402 */
-/*!**********************************!*\
-  !*** ./src/scenes/TitleScene.js ***!
-  \**********************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var TitleScene = function (_Phaser$Scene) {
-    _inherits(TitleScene, _Phaser$Scene);
-
-    function TitleScene(test) {
-        _classCallCheck(this, TitleScene);
-
-        return _possibleConstructorReturn(this, (TitleScene.__proto__ || Object.getPrototypeOf(TitleScene)).call(this, {
-            key: 'TitleScene'
-        }));
-    }
-
-    _createClass(TitleScene, [{
-        key: 'preload',
-        value: function preload() {
-            this.load.atlas('mario-sprites', 'assets/mario-sprites.png', 'assets/mario-sprites.json');
-        }
-    }, {
-        key: 'create',
-        value: function create() {
-            var config = {
-                key: 'title',
-                frames: [{
-                    frame: 'title',
-                    key: 'mario-sprites'
-                }]
-            };
-            this.anims.create(config);
-
-            this.title = this.add.sprite(this.sys.game.config.width / 2, 16 * 5);
-            this.title.play('title');
-            this.attractMode = this.scene.launch('GameScene');
-            console.log(this.attractMode.stop);
-
-            this.scene.bringToTop();
-
-            this.registry.set('restartScene', false);
-            this.registry.set('attractMode', true);
-
-            var sh = window.screen.availHeight;
-            var sw = window.screen.availWidth;
-            var ch = 0;
-            var cw = 0;
-            if (sh / sw > 0.6) {
-                // Portrait
-                cw = sw;
-                ch = sw * 0.6;
-            } else {
-                // Landscape
-                console.log('landscape');
-                cw = sh / 0.6;
-                ch = sh;
-            }
-            var el = document.getElementsByTagName('canvas')[0];
-            console.log(el);
-            el.style.width = cw * 0.8 + 'px';
-            el.style.height = ch * 0.8 + 'px';
-            console.log(cw, ch);
-
-            this.pressX = this.add.bitmapText(16 * 8 + 4, 8 * 16, 'font', 'PRESS X TO START', 8);
-            this.blink = 1000;
-
-            this.startKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X);
-
-            this.input.on('pointerdown', function (pointer) {
-                this.startGame();
-            }, this);
-        }
-    }, {
-        key: 'update',
-        value: function update(time, delta) {
-            if (this.registry.get('restartScene')) {
-                this.restartScene();
-            }
-            this.blink -= delta;
-            if (this.blink < 0) {
-                this.pressX.alpha = this.pressX.alpha === 1 ? 0 : 1;
-                this.blink = 500;
-            }
-
-            if (!this.registry.get('attractMode')) {}
-            if (this.startKey.isDown) {
-                this.startGame();
-            }
-        }
-    }, {
-        key: 'startGame',
-        value: function startGame() {
-            this.scene.stop('GameScene');
-            this.registry.set('attractMode', false);
-            this.scene.start('GameScene');
-        }
-    }, {
-        key: 'restartScene',
-        value: function restartScene() {
-            //        this.attractMode.stop();
-            this.scene.stop('GameScene');
-            this.scene.launch('GameScene');
-            this.scene.bringToTop();
-
-            this.registry.set('restartScene', false);
-        }
-    }]);
-
-    return TitleScene;
-}(Phaser.Scene);
-
-exports.default = TitleScene;
+/* harmony default export */ __webpack_exports__["a"] = (GameScene);
 
 /***/ })
-],[553]);
+],[552]);
 //# sourceMappingURL=bundle.js.map

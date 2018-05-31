@@ -1,25 +1,16 @@
 import 'phaser';
 import BootScene from './scenes/BootScene';
 import GameScene from './scenes/GameScene';
-import TitleScene from './scenes/TitleScene';
 
 const config = {
     // For more settings see <https://github.com/photonstorm/phaser/blob/master/src/boot/Config.js>
-    type: Phaser.WEBGL,
+    type: Phaser.CANVAS,
     pixelArt: true,
     parent: 'content',
-    width: 400,
-    height: 240,
-    physics: {
-        default: 'arcade',
-        arcade: {
-            gravity: { y: 800 },
-            debug: false
-        }
-    },
+    width: 1280,
+    height: 720,
     scene: [
         BootScene,
-        TitleScene,
         GameScene
     ]
 };
