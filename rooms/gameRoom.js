@@ -13,6 +13,7 @@ class GameRoom extends colyseus.Room
     onJoin(client) 
     {
         console.log("Player joined");
+        this.state.addPlayer(client);
     }
     //Runs anytime a player leaves
     onLeave(client) 

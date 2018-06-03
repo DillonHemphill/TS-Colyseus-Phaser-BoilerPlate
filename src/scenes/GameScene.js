@@ -1,9 +1,13 @@
-
+/// <reference path="../phaser.d.ts"/>
+import "phaser";
+import {Client, Room, DataChange} from 'colyseus.js'
 class GameScene extends Phaser.Scene 
 {
     constructor(test) 
     {
         super({key: 'GameScene'});
+        this.client;
+        this.room;
     }
 
     preload() 
@@ -13,12 +17,18 @@ class GameScene extends Phaser.Scene
 
     create() 
     {
-       this.add.sprite(100,100,'Player');
+       this.joinRoom();
     }
 
     update(time, delta) 
     {
         
+    }
+
+    joinRoom()
+    {
+        this.client = new Client("ws://localhost:2657");
+        this.room = this.client.join("GameRoom");
     }
 
    
