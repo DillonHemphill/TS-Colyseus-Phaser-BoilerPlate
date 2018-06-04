@@ -3,10 +3,13 @@ import 'phaser'
 
 class Player extends Phaser.GameObjects.Sprite
 {
-    constructor(scene,x,y,key)
+    constructor(config)
     {
-        super(scene,x,y,key);
+        super(config.scene,config.x,config.y,config.key);
+        console.log(config);
+        this.scene.add.existing(this);
         this.id;
+        
     }
 }
 
