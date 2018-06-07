@@ -21,6 +21,8 @@ class GameScene extends Phaser.Scene
     {
        this.joinRoom();
        this.playerListener();
+       this.onMessage();
+       
        this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
        this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
        this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
@@ -49,8 +51,28 @@ class GameScene extends Phaser.Scene
 
     sendMove(xDir,yDir)
     {
-        var move = {action: "Move",xDir: xDir, yDir: yDir, ts: Date.now()};
+        let move = {action: "Move",xDir: xDir, yDir: yDir, ts: Date.now()};
         this.room.send(move);
+        let player = this.getPlayerById(this.room.id);
+        if(xDir == 1)
+        {
+            player.body.velocity.x += 400;
+        }
+        else if(xDir == -1)
+        {
+            player.body.velocity.x -= 400;
+        }
+
+        if(yDir == 1)
+        {
+            player.body.velocity.y += 400;
+        }
+        else if(yDir == -1)
+        {
+            player.body.velocity.y -= 400;
+        }
+        player.savedMoves.push(move);
+        
     }
 
     joinRoom()
@@ -82,6 +104,29 @@ class GameScene extends Phaser.Scene
                 player.y = change.value;
             }
         });
+    }
+
+    onMessage()
+    {
+        this.room.onMessage.add(function(message)
+        {
+            if(message.action === "Move")
+            {
+                let x = message.x;
+                let y = message.y;
+                let ts = message.ts;
+                let savedMoves = this.getPlayerById(this.room.id).savedMoves.filter(savedMove => {savedMove.ts > ts});
+                this.savedMove.forEach(savedMove => 
+                    {
+                        x += savedMove.x * 400;
+                        y += savedMove.y * 400;
+                    })
+                this.getPlayerById(this.room.id).x = x;
+                this.getPlayerById(this.room.id).y = y; 
+                
+            }
+        });
+        
     }
 
     getPlayerById(id)

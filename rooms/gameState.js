@@ -21,10 +21,10 @@ class GameState
         player.pendingChanges.push({x,y,ts});
         let delta = Date.now()-this.prevTs;
         this.prevTs = Date.now();
-        
         let ack;
         while(this.players[client.sessionId].pendingChanges > 0)
         {
+            console.log("this being called");
             let move = player.pendingChanges.shift();
             if(move.x != 0)
             {

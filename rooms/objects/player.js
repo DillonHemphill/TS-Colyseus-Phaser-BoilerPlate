@@ -7,8 +7,7 @@ class Player {
         this.id = id;
         this.x = x;
         this.y = y;
-        @nosync
-        var pendingChanges = [];
+        this.pendingChanges = [];
     }
 }
 exports.Player = Player;

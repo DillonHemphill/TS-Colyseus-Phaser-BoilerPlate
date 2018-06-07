@@ -9,6 +9,7 @@ class Player extends Phaser.GameObjects.Sprite
         console.log(config);
         this.scene.add.existing(this);
         this.id;
+        this.savedMoves = [];
         
     }
 }
