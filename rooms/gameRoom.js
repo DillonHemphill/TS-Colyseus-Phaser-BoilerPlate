@@ -6,7 +6,7 @@ class GameRoom extends colyseus.Room
     //On Init of the server
     onInit(options) 
     {
-        this.setState(new gameState.GameState());
+        this.setState(new gameState.GameState(this));
         console.log("Server started");
     }
     //Runs anytime a player joins
@@ -23,7 +23,10 @@ class GameRoom extends colyseus.Room
     //Runs anytime a message in sent to the server
     onMessage(client, data) 
     {
-
+        if(data.action === "Move")
+        {
+            this.state.movePlayer(clint,data.x,data.y,data.ts);
+        }
     }
     //Runs when the server is shutting down
     onDispose() 
