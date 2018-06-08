@@ -9,6 +9,13 @@ const config = {
     parent: 'content',
     width: 1280,
     height: 720,
+    physics: {
+        default: 'arcade',
+        arcade: {
+            gravity: { y: 0 },
+            debug: true
+        }
+      },
     scene: [
         BootScene,
         GameScene

@@ -7,11 +7,9 @@ class Player extends Phaser.Physics.Arcade.Sprite
     {
         super(config.scene,config.x,config.y,config.key);
         console.log(config);
-        this.scene.add.existing(this);
-        
         this.id;
         this.savedMoves = [];
-        
+        this.scene.physics.add.existing(this);
     }
 }
 
