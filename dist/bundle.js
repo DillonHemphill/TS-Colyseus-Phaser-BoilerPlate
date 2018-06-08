@@ -16562,7 +16562,7 @@ exports.varListener = varListener;
 /// <reference path="../../phaser.d.ts"/>
 
 
-class Player extends Phaser.GameObjects.Sprite {
+class Player extends Phaser.Physics.Arcade.Sprite {
     constructor(config) {
         super(config.scene, config.x, config.y, config.key);
         console.log(config);
