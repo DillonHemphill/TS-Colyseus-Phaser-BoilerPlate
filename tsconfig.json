@@ -1,0 +1,12 @@
+{
+    "compilerOptions": {
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "target": "es6",
+        "module": "commonjs" 
+    },
+
+    "include": [
+        "rooms/**/*"
+    ],
+}

@@ -1,37 +1,24 @@
-const colyseus = require("colyseus");
-const gameState = require("./gameState");
-//GameRoom class, calls the gameState on first player join
-class GameRoom extends colyseus.Room 
-{
-    //On Init of the server
-    onInit(options) 
-    {
-        this.setState(new gameState.GameState(this));
-        console.log("Server started");
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const colyseus_1 = require("colyseus");
+const gameState_1 = require("./gameState");
+class GameRoom extends colyseus_1.Room {
+    constructor() {
+        super(...arguments);
+        this.maxClients = 4;
     }
-    //Runs anytime a player joins
-    onJoin(client) 
-    {
-        console.log("Player joined");
+    onInit(options) {
+        this.setState(new gameState_1.GameState(this));
+    }
+    onJoin(client) {
         this.state.addPlayer(client);
     }
-    //Runs anytime a player leaves
-    onLeave(client) 
-    {
-        console.log("Player lefted");
-    }
-    //Runs anytime a message in sent to the server
-    onMessage(client, data) 
-    {
-        if(data.action === "Move")
-        {
-            this.state.movePlayer(clint,data.x,data.y,data.ts);
+    onMessage(client, data) {
+        if (data.action === "Move") {
+            this.state.movePlayer(client, data.x, data.y, data.ts);
         }
     }
-    //Runs when the server is shutting down
-    onDispose() 
-    {
-
+    onDispose() {
     }
 }
 exports.GameRoom = GameRoom;

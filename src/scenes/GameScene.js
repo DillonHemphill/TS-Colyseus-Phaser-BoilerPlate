@@ -52,6 +52,7 @@ class GameScene extends Phaser.Scene
     sendMove(xDir,yDir)
     {
         let move = {action: "Move",xDir: xDir, yDir: yDir, ts: Date.now()};
+        console.log(move);
         this.room.send(move);
         let player = this.getPlayerById(this.room.id);
         if(xDir == 1)
@@ -89,20 +90,6 @@ class GameScene extends Phaser.Scene
             console.log(newPlayer);
             newPlayer.id = change.path.id;
             this.playerGroup.add(newPlayer);
-        });
-
-        this.room.listen("players/:id/:axis",(change) =>
-        {
-            if(change.path.axis === "x")
-            {
-                let player = this.getPlayerById(change.path.id);
-                player.x = change.value;
-            }
-            else if(change.path.axis === "y")
-            {
-                let player = this.getPlayerById(change.path.id);
-                player.y = change.value;
-            }
         });
     }
 
