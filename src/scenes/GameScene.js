@@ -54,23 +54,23 @@ class GameScene extends Phaser.Scene
         let move = {action: "Move",xDir: xDir, yDir: yDir, ts: Date.now()};
         console.log(move);
         this.room.send(move);
-        let player = this.getPlayerById(this.room.id);
+        let player = this.getPlayerById(this.room.sessionId);
         if(xDir == 1)
         {
-            player.body.velocity.x += 400;
+            player.body.velocity.x += 4;
         }
         else if(xDir == -1)
         {
-            player.body.velocity.x -= 400;
+            player.body.velocity.x -= 4;
         }
 
         if(yDir == 1)
         {
-            player.body.velocity.y += 400;
+            player.body.velocity.y += 4;
         }
         else if(yDir == -1)
         {
-            player.body.velocity.y -= 400;
+            player.body.velocity.y -= 4;
         }
         player.savedMoves.push(move);
         
@@ -97,21 +97,27 @@ class GameScene extends Phaser.Scene
     {
         this.room.onMessage.add(function(message)
         {
-            if(message.action === "Move")
+            if(this.room)
             {
-                let x = message.x;
-                let y = message.y;
-                let ts = message.ts;
-                let savedMoves = this.getPlayerById(this.room.id).savedMoves.filter(savedMove => {savedMove.ts > ts});
-                this.savedMove.forEach(savedMove => 
-                    {
-                        x += savedMove.x * 400;
-                        y += savedMove.y * 400;
-                    })
-                this.getPlayerById(this.room.id).x = x;
-                this.getPlayerById(this.room.id).y = y; 
-                
+                if(message.action === "Move")
+                {
+                    let x = message.x;
+                    let y = message.y;
+                    let ts = message.ts;
+                    console.log(this.getPlayerById(this.room.sessionId));
+                    console.log(this.getPlayerById(this.room.id));
+                    let savedMoves = this.getPlayerById(this.room.id).savedMoves.filter(savedMove => {savedMove.ts > ts});
+                    this.savedMove.forEach(savedMove => 
+                        {
+                            x += savedMove.x * 400;
+                            y += savedMove.y * 400;
+                        })
+                    this.getPlayerById(this.room.id).x = x;
+                    this.getPlayerById(this.room.id).y = y; 
+                    
+                }
             }
+            
         });
         
     }
