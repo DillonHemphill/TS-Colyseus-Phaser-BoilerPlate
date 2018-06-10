@@ -12524,6 +12524,7 @@ class GameScene extends Phaser.Scene {
         super({ key: 'GameScene' });
         this.client;
         this.room;
+        this.player;
         this.playerGroup = new Phaser.GameObjects.Group(this, {});
     }
 
@@ -12579,10 +12580,28 @@ class GameScene extends Phaser.Scene {
 
     playerListener() {
         this.room.listen("players/:id", change => {
-            let newPlayer = new __WEBPACK_IMPORTED_MODULE_2__objects_player__["a" /* default */]({ scene: this, x: change.value.x, y: change.value.y, key: "Player" });
-            console.log(newPlayer);
-            newPlayer.id = change.path.id;
-            this.playerGroup.add(newPlayer);
+            if (change.path.id === this.room.sessionId) {
+                this.player = new __WEBPACK_IMPORTED_MODULE_2__objects_player__["a" /* default */]({ scene: this, x: change.value.x, y: change.value.y, key: "Player" });
+                console.log(newPlayer);
+                this.player = change.path.id;
+                this.playerGroup.add(newPlayer);
+            } else {
+                let newPlayer = new __WEBPACK_IMPORTED_MODULE_2__objects_player__["a" /* default */]({ scene: this, x: change.value.x, y: change.value.y, key: "Player" });
+                console.log(newPlayer);
+                newPlayer.id = change.path.id;
+                this.playerGroup.add(newPlayer);
+            }
+        });
+        this.room.listen("players/:id:axis", change => {
+            if (change.path.id != this.room.sessionId) {
+                if (change.path.axis === x) {
+                    let newPlayer = this.getPlayerById(change.path.id);
+                    newPlayer.x = change.value;
+                } else if (change.path.axis === y) {
+                    let newPlayer = this.getPlayerById(change.path.id);
+                    newPlayer.y = change.value;
+                }
+            }
         });
     }
 
@@ -12593,17 +12612,15 @@ class GameScene extends Phaser.Scene {
                     let x = message.x;
                     let y = message.y;
                     let ts = message.ts;
-                    console.log(this.getPlayerById(this.room.sessionId));
-                    console.log(this.getPlayerById(this.room.id));
-                    let savedMoves = this.getPlayerById(this.room.id).savedMoves.filter(savedMove => {
+                    let savedMoves = this.player.savedMoves.filter(savedMove => {
                         savedMove.ts > ts;
                     });
                     this.savedMove.forEach(savedMove => {
                         x += savedMove.x * 400;
                         y += savedMove.y * 400;
                     });
-                    this.getPlayerById(this.room.id).x = x;
-                    this.getPlayerById(this.room.id).y = y;
+                    this.player.x = x;
+                    this.player.y = y;
                 }
             }
         });
