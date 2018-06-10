@@ -15,7 +15,7 @@ class GameRoom extends colyseus_1.Room {
     }
     onMessage(client, data) {
         if (data.action === "Move") {
-            this.state.movePlayer(client, data.x, data.y, data.ts);
+            this.state.movePlayer(client, data.xDir, data.yDir, data.ts);
         }
     }
     onDispose() {

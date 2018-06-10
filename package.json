@@ -5,7 +5,7 @@
   "author": "niklas berg <me@niklasberg.se>",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack && tsc --p tsconfig.json && node server.js",
+    "dev": "webpack && tsc --p tsconfig.json && node --inspect server.js",
     "deploy": "webpack --config webpack.production.config.js",
     "test": "eslint ./src/**/**.js"
   },

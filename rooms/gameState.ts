@@ -23,22 +23,26 @@ export class GameState
 
     movePlayer(client, x,y,ts)
     {
-        console.log("this being called");
         let player = this.players[client.sessionId];
         player.pendingChanges.push({x,y,ts});
         let delta = Date.now()-this.prevTs;
         this.prevTs = Date.now();
         let ack;
-        while(this.players[client.sessionId].pendingChanges > 0)
+        
+        while(player.pendingChanges.length > 0)
         {
+            console.log(player.pendingChanges.length);
+            
             
             let move = player.pendingChanges.shift();
             if(move.x != 0)
             {
+                console.log("Updating x");
                 this.players[client.sessionId].x += move.x;
             }
             if(move.y != 0)
             {
+                console.log("Updating y");
                 this.players[client.sessionId].y += move.y;
             }
             ack = move.ts;
