@@ -38,21 +38,31 @@ class GameScene extends Phaser.Scene
         let yDir = 0;
         if(this.keyW.isDown)
         {
-            yDir = -1;
+            this.player.body.velocity.y -= 4;
         }
         else if(this.keyS.isDown)
         {
-            yDir = 1;
+            this.player.body.velocity.y += 4;
         }
         if(this.keyD.isDown)
         {
-            xDir = 1;
+            this.player.body.velocity.x += 4;
         }
         else if(this.keyA.isDown)
         {
-            xDir = -1;
+            this.player.body.velocity.x -= 4;
         }
-        try{this.sendMove(xDir,yDir);}catch(e){};
+        try
+        {
+            this.sendMove(this.player.body.x,this.player.body.y);
+            console.log(this.player.body.x);
+            console.log(this.player.body.y);
+        }
+        catch(e)
+        {
+            console.log(e);
+        };
+        
         
         
     }
@@ -61,30 +71,13 @@ class GameScene extends Phaser.Scene
     {
         let move = {action: "Move",xDir: xDir, yDir: yDir, ts: Date.now()};
         this.room.send(move);
-        if(xDir == 1)
-        {
-            this.player.body.velocity.x += 4;
-        }
-        else if(xDir == -1)
-        {
-            this.player.body.velocity.x -= 4;
-        }
-
-        if(yDir == 1)
-        {
-            this.player.body.velocity.y += 4;
-        }
-        else if(yDir == -1)
-        {
-            this.player.body.velocity.y -= 4;
-        }
         this.player.savedMoves.push(move);
         
     }
 
     joinRoom()
     {
-        this.client = new Client("ws://localhost:2657");
+        this.client = new Client("ws://7cbad52d.ngrok.io");
         this.room = this.client.join("GameRoom");
     }
 

@@ -35,16 +35,8 @@ export class GameState
             
             
             let move = player.pendingChanges.shift();
-            if(move.x != 0)
-            {
-                console.log("Updating x");
-                this.players[client.sessionId].x += move.x;
-            }
-            if(move.y != 0)
-            {
-                console.log("Updating y");
-                this.players[client.sessionId].y += move.y;
-            }
+            this.players[client.sessionId].x = move.x;
+            this.players[client.sessionId].y = move.y;
             ack = move.ts;
         }
         let message = {action: "Move", x: player.x, y: player.y, ts: ack };
