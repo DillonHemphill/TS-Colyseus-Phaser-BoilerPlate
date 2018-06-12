@@ -12586,15 +12586,16 @@ class GameScene extends Phaser.Scene {
             }
         });
         this.room.listen("players/:id/:axis", change => {
-            console.log("Being called");
             if (change.path.id != this.room.sessionId) {
 
                 if (change.path.axis === "x") {
                     let newPlayer = this.getPlayerById(change.path.id);
-                    let tween = this.tweens.add({ targets: newPlayer, x: change.value, delay: 1, duration: 10, ease: 'Power2' });
+                    console.log("Id: " + change.path.id + " x: " + newPlayer.x);
+                    console.log("New x: " + change.value);
+                    let tween = this.tweens.add({ targets: newPlayer, x: change.value, duration: 5, ease: 'Power2' });
                 } else if (change.path.axis === "y") {
                     let newPlayer = this.getPlayerById(change.path.id);
-                    let tween = this.tweens.add({ targets: newPlayer, y: change.value, delay: 1, duration: 10, ease: 'Power2' });
+                    let tween = this.tweens.add({ targets: newPlayer, y: change.value, duration: 5, ease: 'Power2' });
                 }
             }
         });
@@ -12614,6 +12615,8 @@ class GameScene extends Phaser.Scene {
                         x += savedMove.x * 400;
                         y += savedMove.y * 400;
                     });
+                    this.player.body.x = x;
+                    this.player.body.y = y;
                     this.player.x = x;
                     this.player.y = y;
                 }

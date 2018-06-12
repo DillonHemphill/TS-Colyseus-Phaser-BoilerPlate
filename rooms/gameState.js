@@ -24,10 +24,9 @@ class GameState {
         this.prevTs = Date.now();
         let ack;
         while (player.pendingChanges.length > 0) {
-            console.log(player.pendingChanges.length);
             let move = player.pendingChanges.shift();
-            this.players[client.sessionId].x = move.x;
-            this.players[client.sessionId].y = move.y;
+            player.x = move.x;
+            player.y = move.y;
             ack = move.ts;
         }
         let message = { action: "Move", x: player.x, y: player.y, ts: ack };
