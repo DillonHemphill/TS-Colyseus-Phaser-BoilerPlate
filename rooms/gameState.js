@@ -15,7 +15,7 @@ class GameState {
         this.room = room;
     }
     addPlayer(client) {
-        this.players[client.sessionId] = new Player_1.Player(client.sessionId, 100, 100, 0);
+        this.players[client.sessionId] = new Player_1.Player(client.sessionId, Math.floor(Math.random() * 500), Math.floor(Math.random() * 500), 0);
     }
     movePlayer(client, x, y, ts) {
         let player = this.players[client.sessionId];

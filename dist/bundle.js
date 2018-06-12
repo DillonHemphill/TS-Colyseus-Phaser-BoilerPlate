@@ -12557,8 +12557,6 @@ class GameScene extends Phaser.Scene {
         }
         try {
             this.sendMove(this.player.body.x, this.player.body.y);
-            console.log(this.player.body.x);
-            console.log(this.player.body.y);
         } catch (e) {
             console.log(e);
         };
@@ -12571,7 +12569,7 @@ class GameScene extends Phaser.Scene {
     }
 
     joinRoom() {
-        this.client = new __WEBPACK_IMPORTED_MODULE_1_colyseus_js__["Client"]("ws://7cbad52d.ngrok.io");
+        this.client = new __WEBPACK_IMPORTED_MODULE_1_colyseus_js__["Client"]("ws:localhost:2657");
         this.room = this.client.join("GameRoom");
     }
 
@@ -12590,12 +12588,13 @@ class GameScene extends Phaser.Scene {
         this.room.listen("players/:id/:axis", change => {
             console.log("Being called");
             if (change.path.id != this.room.sessionId) {
+
                 if (change.path.axis === "x") {
                     let newPlayer = this.getPlayerById(change.path.id);
-                    newPlayer.x = change.value;
+                    let tween = this.tweens.add({ targets: newPlayer, x: change.value, delay: 1, duration: 10, ease: 'Power2' });
                 } else if (change.path.axis === "y") {
                     let newPlayer = this.getPlayerById(change.path.id);
-                    newPlayer.y = change.value;
+                    let tween = this.tweens.add({ targets: newPlayer, y: change.value, delay: 1, duration: 10, ease: 'Power2' });
                 }
             }
         });

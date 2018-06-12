@@ -18,7 +18,7 @@ export class GameState
 
     addPlayer(client: Client)
     {
-        this.players[client.sessionId] = new Player(client.sessionId, 100, 100, 0);
+        this.players[client.sessionId] = new Player(client.sessionId, Math.floor(Math.random() * 500), Math.floor(Math.random() * 500), 0);
     }
 
     movePlayer(client, x,y,ts)
