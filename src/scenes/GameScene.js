@@ -34,32 +34,36 @@ class GameScene extends Phaser.Scene
 
     update(time, delta) 
     {
-        let xDir = 0;
-        let yDir = 0;
-        if(this.keyW.isDown)
+        if(this.player)
         {
-            this.player.body.velocity.y -= 4;
+            let xDir = 0;
+            let yDir = 0;
+            if(this.keyW.isDown)
+            {
+                this.player.body.velocity.y -= 4;
+            }
+            else if(this.keyS.isDown)
+            {
+                this.player.body.velocity.y += 4;
+            }
+            if(this.keyD.isDown)
+            {
+                this.player.body.velocity.x += 4;
+            }
+            else if(this.keyA.isDown)
+            {
+                this.player.body.velocity.x -= 4;
+            }
+            try
+            {
+                this.sendMove(this.player.x,this.player.y);
+            }
+            catch(e)
+            {
+                console.log(e);
+            };
         }
-        else if(this.keyS.isDown)
-        {
-            this.player.body.velocity.y += 4;
-        }
-        if(this.keyD.isDown)
-        {
-            this.player.body.velocity.x += 4;
-        }
-        else if(this.keyA.isDown)
-        {
-            this.player.body.velocity.x -= 4;
-        }
-        try
-        {
-            this.sendMove(this.player.body.x,this.player.body.y);
-        }
-        catch(e)
-        {
-            console.log(e);
-        };
+        
         
         
         
@@ -123,8 +127,10 @@ class GameScene extends Phaser.Scene
     {
         this.room.onMessage.add(function(message)
         {
+            console.log(message);
             if(this.room)
             {
+                
                 if(message.action === "Move")
                 {
                     let x = message.x;
@@ -133,14 +139,17 @@ class GameScene extends Phaser.Scene
                     let savedMoves = this.player.savedMoves.filter(savedMove => {savedMove.ts > ts});
                     this.savedMove.forEach(savedMove => 
                         {
-                            x += savedMove.x * 400;
-                            y += savedMove.y * 400;
+                            x = savedMove.x;
+                            y =savedMove.y;
                         })
-                    this.player.body.x = x;
-                    this.player.body.y = y;
                     this.player.x = x;
                     this.player.y = y; 
                     
+                }
+                else if(message.action === "Ready")
+                {
+                    this.clientConnected = true;
+                    console.log("Ready for data");
                 }
             }
             

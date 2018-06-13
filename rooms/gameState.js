@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const colyseus_1 = require("colyseus");
-const Player_1 = require("./objects/Player");
+const player_1 = require("./objects/player");
 class GameState {
     constructor(room) {
         this.prevTs = Date.now;
@@ -15,7 +15,8 @@ class GameState {
         this.room = room;
     }
     addPlayer(client) {
-        this.players[client.sessionId] = new Player_1.Player(client.sessionId, Math.floor(Math.random() * 500), Math.floor(Math.random() * 500), 0);
+        this.players[client.sessionId] = new player_1.Player(client.sessionId, Math.floor(Math.random() * 500), Math.floor(Math.random() * 500), 0);
+        this.room.send(client, { action: "Ready" });
     }
     movePlayer(client, x, y, ts) {
         let player = this.players[client.sessionId];

@@ -1,5 +1,5 @@
 import {EntityMap, Client, nosync, Clock, Room} from "colyseus"
-import {Player} from "./objects/Player";
+import {Player} from "./objects/player";
 
 export class GameState
 {
@@ -19,6 +19,7 @@ export class GameState
     addPlayer(client: Client)
     {
         this.players[client.sessionId] = new Player(client.sessionId, Math.floor(Math.random() * 500), Math.floor(Math.random() * 500), 0);
+        this.room.send(client,{action: "Ready"});
     }
 
     movePlayer(client, x,y,ts)

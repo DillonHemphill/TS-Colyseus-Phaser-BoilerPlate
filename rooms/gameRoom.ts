@@ -1,6 +1,6 @@
 import {Room,Client} from "colyseus"
 import {GameState} from "./gameState"
-import { Player } from "./objects/Player";
+import { Player } from "./objects/player";
 
 export class GameRoom extends Room<GameState>
 {
