@@ -21,7 +21,7 @@ export class GameRoom extends Room<GameState>
     {
         if(data.action === "Move")
         {
-            this.state.movePlayer(client,data.xDir,data.yDir,data.ts);
+            this.state.movePlayer(client,data.xDir,data.yDir,data.angle,data.ts);
         }
     }
 

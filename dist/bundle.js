@@ -5478,7 +5478,7 @@ exports.bindListeners = bindListeners;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! babel-polyfill */562);
-module.exports = __webpack_require__(/*! /home/dillon/phaser3-es6-webpack/src/main.js */764);
+module.exports = __webpack_require__(/*! C:\Users\dillon\Documents\GitHub\es6MultiplayerGame\src\main.js */764);
 
 
 /***/ }),
@@ -11805,26 +11805,21 @@ module.exports = function (regExp, replace) {
 /*!*********************!*\
   !*** ./src/main.js ***!
   \*********************/
-/*! dynamic exports provided */
+/*! no exports provided */
 /*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_phaser__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scenes_BootScene__ = __webpack_require__(/*! ./scenes/BootScene */ 1401);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scenes_GameScene__ = __webpack_require__(/*! ./scenes/GameScene */ 1402);
 
 
-__webpack_require__(/*! phaser */ 128);
 
-var _BootScene = __webpack_require__(/*! ./scenes/BootScene */ 1401);
 
-var _BootScene2 = _interopRequireDefault(_BootScene);
-
-var _GameScene = __webpack_require__(/*! ./scenes/GameScene */ 1402);
-
-var _GameScene2 = _interopRequireDefault(_GameScene);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var config = {
+const config = {
     // For more settings see <https://github.com/photonstorm/phaser/blob/master/src/boot/Config.js>
     type: Phaser.CANVAS,
     pixelArt: true,
@@ -11838,10 +11833,10 @@ var config = {
             debug: true
         }
     },
-    scene: [_BootScene2.default, _GameScene2.default]
+    scene: [__WEBPACK_IMPORTED_MODULE_1__scenes_BootScene__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__scenes_GameScene__["a" /* default */]]
 };
 
-var game = new Phaser.Game(config);
+const game = new Phaser.Game(config);
 
 /***/ }),
 /* 765 */,
@@ -12484,228 +12479,179 @@ var game = new Phaser.Game(config);
 /*!*********************************!*\
   !*** ./src/scenes/BootScene.js ***!
   \*********************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/*! exports used: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_phaser__);
+/// <reference path="../phaser.d.ts"/>
 
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(/*! phaser */ 128);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /// <reference path="../phaser.d.ts"/>
-
-
-var BootScene = function (_Phaser$Scene) {
-    _inherits(BootScene, _Phaser$Scene);
-
-    function BootScene(test) {
-        _classCallCheck(this, BootScene);
-
-        return _possibleConstructorReturn(this, (BootScene.__proto__ || Object.getPrototypeOf(BootScene)).call(this, { key: 'BootScene' }));
+class BootScene extends Phaser.Scene {
+    constructor(test) {
+        super({ key: 'BootScene' });
     }
+    preload() {
+        this.load.image('Player', "assets/images/player.png");
+        this.scene.start('GameScene');
+    }
+}
 
-    _createClass(BootScene, [{
-        key: 'preload',
-        value: function preload() {
-            this.load.image('Player', "assets/images/super-mario.png");
-            this.scene.start('GameScene');
-        }
-    }]);
-
-    return BootScene;
-}(Phaser.Scene);
-
-exports.default = BootScene;
+/* harmony default export */ __webpack_exports__["a"] = (BootScene);
 
 /***/ }),
 /* 1402 */
 /*!*********************************!*\
   !*** ./src/scenes/GameScene.js ***!
   \*********************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/*! exports used: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_phaser__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_colyseus_js__ = __webpack_require__(/*! colyseus.js */ 1403);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_colyseus_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_colyseus_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objects_player__ = __webpack_require__(/*! ./objects/player */ 1422);
+/// <reference path="../phaser.d.ts"/>
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-__webpack_require__(/*! phaser */ 128);
-
-var _colyseus = __webpack_require__(/*! colyseus.js */ 1403);
-
-var _player = __webpack_require__(/*! ./objects/player */ 1422);
-
-var _player2 = _interopRequireDefault(_player);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /// <reference path="../phaser.d.ts"/>
-
-
-var GameScene = function (_Phaser$Scene) {
-    _inherits(GameScene, _Phaser$Scene);
-
-    function GameScene(test) {
-        _classCallCheck(this, GameScene);
-
-        var _this = _possibleConstructorReturn(this, (GameScene.__proto__ || Object.getPrototypeOf(GameScene)).call(this, { key: 'GameScene' }));
-
-        _this.client;
-        _this.room;
-        _this.player;
-        _this.playerGroup = new Phaser.GameObjects.Group(_this, {});
-        _this.clientConnected = false;
-
-        return _this;
+class GameScene extends Phaser.Scene {
+    constructor(test) {
+        super({ key: 'GameScene' });
+        this.client;
+        this.room;
+        this.player;
+        this.playerGroup = new Phaser.GameObjects.Group(this, {});
+        this.clientConnected = false;
     }
 
-    _createClass(GameScene, [{
-        key: "preload",
-        value: function preload() {}
-    }, {
-        key: "create",
-        value: function create() {
-            this.joinRoom();
-            this.playerListener();
-            this.onMessage();
+    preload() {}
 
-            this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
-            this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
-            this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
-            this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
-        }
-    }, {
-        key: "update",
-        value: function update(time, delta) {
-            if (this.player) {
-                var xDir = 0;
-                var yDir = 0;
-                if (this.keyW.isDown) {
-                    this.player.body.velocity.y -= 4;
-                } else if (this.keyS.isDown) {
-                    this.player.body.velocity.y += 4;
-                }
-                if (this.keyD.isDown) {
-                    this.player.body.velocity.x += 4;
-                } else if (this.keyA.isDown) {
-                    this.player.body.velocity.x -= 4;
-                }
-                try {
-                    this.sendMove(this.player.x, this.player.y);
-                } catch (e) {
-                    console.log(e);
-                };
+    create() {
+        this.joinRoom();
+        this.playerListener();
+        this.onMessage();
+
+        this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
+        this.keyS = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.keyD = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.keyA = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+    }
+
+    update(time, delta) {
+        if (this.player) {
+            let xDir = 0;
+            let yDir = 0;
+            if (this.keyW.isDown) {
+                this.player.body.velocity.y -= 4;
+            } else if (this.keyS.isDown) {
+                this.player.body.velocity.y += 4;
             }
-        }
-    }, {
-        key: "sendMove",
-        value: function sendMove(xDir, yDir) {
-            var move = { action: "Move", xDir: xDir, yDir: yDir, ts: Date.now() };
-            this.room.send(move);
-            this.player.savedMoves.push(move);
-        }
-    }, {
-        key: "joinRoom",
-        value: function joinRoom() {
-            this.client = new _colyseus.Client("ws:localhost:2657");
-            this.room = this.client.join("GameRoom");
-        }
-    }, {
-        key: "playerListener",
-        value: function playerListener() {
-            var _this2 = this;
+            if (this.keyD.isDown) {
+                this.player.body.velocity.x += 4;
+            } else if (this.keyA.isDown) {
+                this.player.body.velocity.x -= 4;
+            }
 
-            this.room.listen("players/:id", function (change) {
-                if (change.path.id === _this2.room.sessionId) {
-                    _this2.player = new _player2.default({ scene: _this2, x: change.value.x, y: change.value.y, key: "Player" });
-                    _this2.player.id = change.path.id;
-                } else {
-                    var newPlayer = new _player2.default({ scene: _this2, x: change.value.x, y: change.value.y, key: "Player" });
-                    console.log(newPlayer);
-                    newPlayer.id = change.path.id;
-                    _this2.playerGroup.add(newPlayer);
+            let posX = this.input.activePointer.x;
+            let posY = this.input.activePointer.y;
+            let angle = Math.atan2(this.cameras.main.getWorldPoint(posX, posY).y - this.player.y, this.cameras.main.getWorldPoint(posX, posY).x - this.player.x) * 180 / Math.PI;
+            this.player.angle = angle;
+            try {
+                this.sendMove(this.player.x, this.player.y, this.player.angle);
+            } catch (e) {
+                console.log(e);
+            };
+        }
+    }
+
+    sendMove(xDir, yDir, angle) {
+        let move = { action: "Move", xDir: xDir, yDir: yDir, angle: angle, ts: Date.now() };
+        this.room.send(move);
+        this.player.savedMoves.push(move);
+    }
+
+    joinRoom() {
+        this.client = new __WEBPACK_IMPORTED_MODULE_1_colyseus_js__["Client"]("ws:localhost:2657");
+        this.room = this.client.join("GameRoom");
+    }
+
+    playerListener() {
+        this.room.listen("players/:id", change => {
+            if (change.path.id === this.room.sessionId) {
+                this.player = new __WEBPACK_IMPORTED_MODULE_2__objects_player__["a" /* default */]({ scene: this, x: change.value.x, y: change.value.y, key: "Player" });
+                this.player.id = change.path.id;
+            } else {
+                let newPlayer = new __WEBPACK_IMPORTED_MODULE_2__objects_player__["a" /* default */]({ scene: this, x: change.value.x, y: change.value.y, key: "Player" });
+                console.log(newPlayer);
+                newPlayer.id = change.path.id;
+                this.playerGroup.add(newPlayer);
+            }
+        });
+        this.room.listen("players/:id/:axis", change => {
+            if (change.path.id != this.room.sessionId) {
+
+                if (change.path.axis === "x") {
+                    let newPlayer = this.getPlayerById(change.path.id);
+                    console.log("Id: " + change.path.id + " x: " + newPlayer.x);
+                    console.log("New x: " + change.value);
+                    let tween = this.tweens.add({ targets: newPlayer, x: change.value, duration: 5, ease: 'Power2' });
+                } else if (change.path.axis === "y") {
+                    let newPlayer = this.getPlayerById(change.path.id);
+                    let tween = this.tweens.add({ targets: newPlayer, y: change.value, duration: 5, ease: 'Power2' });
+                } else if (change.path.axis === "angle") {
+                    let newPlayer = this.getPlayerById(change.path.id);
+                    newPlayer.angle = change.value;
                 }
-            });
-            this.room.listen("players/:id/:axis", function (change) {
-                if (change.path.id != _this2.room.sessionId) {
+            }
+        });
+    }
 
-                    if (change.path.axis === "x") {
-                        var newPlayer = _this2.getPlayerById(change.path.id);
-                        console.log("Id: " + change.path.id + " x: " + newPlayer.x);
-                        console.log("New x: " + change.value);
-                        var tween = _this2.tweens.add({ targets: newPlayer, x: change.value, duration: 5, ease: 'Power2' });
-                    } else if (change.path.axis === "y") {
-                        var _newPlayer = _this2.getPlayerById(change.path.id);
-                        var _tween = _this2.tweens.add({ targets: _newPlayer, y: change.value, duration: 5, ease: 'Power2' });
-                    }
+    onMessage() {
+        this.room.onMessage.add(function (message) {
+            if (this.room) {
+
+                if (message.action === "Move") {
+                    let x = message.x;
+                    let y = message.y;
+                    let angle = message.angle;
+                    let ts = message.ts;
+                    let savedMoves = this.player.savedMoves.filter(savedMove => {
+                        savedMove.ts > ts;
+                    });
+                    this.savedMove.forEach(savedMove => {
+                        x = savedMove.x;
+                        y = savedMove.y;
+                        angle = savedMove.angle;
+                    });
+                    this.player.x = x;
+                    this.player.y = y;
+                    this.player.angle = angle;
+                } else if (message.action === "Ready") {
+                    this.clientConnected = true;
+                    console.log("Ready for data");
                 }
-            });
-        }
-    }, {
-        key: "onMessage",
-        value: function onMessage() {
-            this.room.onMessage.add(function (message) {
-                console.log(message);
-                if (this.room) {
+            }
+        });
+    }
 
-                    if (message.action === "Move") {
-                        var x = message.x;
-                        var y = message.y;
-                        var ts = message.ts;
-                        var savedMoves = this.player.savedMoves.filter(function (savedMove) {
-                            savedMove.ts > ts;
-                        });
-                        this.savedMove.forEach(function (savedMove) {
-                            x = savedMove.x;
-                            y = savedMove.y;
-                        });
-                        this.player.x = x;
-                        this.player.y = y;
-                    } else if (message.action === "Ready") {
-                        this.clientConnected = true;
-                        console.log("Ready for data");
-                    }
-                }
-            });
-        }
-    }, {
-        key: "getPlayerById",
-        value: function getPlayerById(id) {
-            var player = void 0;
-            this.playerGroup.getChildren().forEach(function (value) {
-                if (value.id === id) {
-                    player = value;
-                }
-            });
-            return player;
-        }
-    }]);
+    getPlayerById(id) {
+        let player;
+        this.playerGroup.getChildren().forEach(value => {
+            if (value.id === id) {
+                player = value;
+            }
+        });
+        return player;
+    }
 
-    return GameScene;
-}(Phaser.Scene);
+}
 
-exports.default = GameScene;
+/* harmony default export */ __webpack_exports__["a"] = (GameScene);
 
 /***/ }),
 /* 1403 */
@@ -12713,7 +12659,7 @@ exports.default = GameScene;
   !*** ./node_modules/colyseus.js/lib/index.js ***!
   \***********************************************/
 /*! dynamic exports provided */
-/*! all exports used */
+/*! exports used: Client */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16647,45 +16593,27 @@ exports.varListener = varListener;
 /*!**************************************!*\
   !*** ./src/scenes/objects/player.js ***!
   \**************************************/
-/*! dynamic exports provided */
-/*! all exports used */
-/***/ (function(module, exports, __webpack_require__) {
+/*! exports provided: default */
+/*! exports used: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_phaser__);
+/// <reference path="../../phaser.d.ts"/>
 
 
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-__webpack_require__(/*! phaser */ 128);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; } /// <reference path="../../phaser.d.ts"/>
-
-
-var Player = function (_Phaser$Physics$Arcad) {
-    _inherits(Player, _Phaser$Physics$Arcad);
-
-    function Player(config) {
-        _classCallCheck(this, Player);
-
-        var _this = _possibleConstructorReturn(this, (Player.__proto__ || Object.getPrototypeOf(Player)).call(this, config.scene, config.x, config.y, config.key));
-
-        _this.id;
-        _this.savedMoves = [];
-        _this.scene.add.existing(_this);
-        _this.scene.physics.add.existing(_this);
-        return _this;
+class Player extends Phaser.Physics.Arcade.Sprite {
+    constructor(config) {
+        super(config.scene, config.x, config.y, config.key);
+        this.id;
+        this.savedMoves = [];
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
     }
+}
 
-    return Player;
-}(Phaser.Physics.Arcade.Sprite);
-
-exports.default = Player;
+/* harmony default export */ __webpack_exports__["a"] = (Player);
 
 /***/ })
 ],[561]);

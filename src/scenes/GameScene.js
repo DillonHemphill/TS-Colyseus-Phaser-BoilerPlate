@@ -54,9 +54,14 @@ class GameScene extends Phaser.Scene
             {
                 this.player.body.velocity.x -= 4;
             }
+            
+            let posX = this.input.activePointer.x;
+            let posY = this.input.activePointer.y;
+            let angle = Math.atan2(this.cameras.main.getWorldPoint(posX,posY).y - this.player.y, this.cameras.main.getWorldPoint(posX,posY).x - this.player.x) * 180 / Math.PI;
+            this.player.angle = angle;
             try
             {
-                this.sendMove(this.player.x,this.player.y);
+                this.sendMove(this.player.x,this.player.y,this.player.angle);
             }
             catch(e)
             {
@@ -69,9 +74,9 @@ class GameScene extends Phaser.Scene
         
     }
 
-    sendMove(xDir,yDir)
+    sendMove(xDir,yDir,angle)
     {
-        let move = {action: "Move",xDir: xDir, yDir: yDir, ts: Date.now()};
+        let move = {action: "Move",xDir: xDir, yDir: yDir, angle: angle,ts: Date.now()};
         this.room.send(move);
         this.player.savedMoves.push(move);
         
@@ -118,6 +123,11 @@ class GameScene extends Phaser.Scene
                     let newPlayer = this.getPlayerById(change.path.id);
                     let tween = this.tweens.add({targets: newPlayer, y: change.value, duration: 5, ease: 'Power2'});
                 }
+                else if(change.path.axis === "angle")
+                {
+                    let newPlayer = this.getPlayerById(change.path.id);
+                    newPlayer.angle = change.value;
+                }
             }
         });
         
@@ -127,7 +137,6 @@ class GameScene extends Phaser.Scene
     {
         this.room.onMessage.add(function(message)
         {
-            console.log(message);
             if(this.room)
             {
                 
@@ -135,15 +144,19 @@ class GameScene extends Phaser.Scene
                 {
                     let x = message.x;
                     let y = message.y;
+                    let angle = message.angle;
                     let ts = message.ts;
                     let savedMoves = this.player.savedMoves.filter(savedMove => {savedMove.ts > ts});
                     this.savedMove.forEach(savedMove => 
                         {
                             x = savedMove.x;
                             y =savedMove.y;
+                            angle = savedMove.angle;
+
                         })
                     this.player.x = x;
                     this.player.y = y; 
+                    this.player.angle = angle;
                     
                 }
                 else if(message.action === "Ready")

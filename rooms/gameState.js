@@ -18,9 +18,9 @@ class GameState {
         this.players[client.sessionId] = new player_1.Player(client.sessionId, Math.floor(Math.random() * 500), Math.floor(Math.random() * 500), 0);
         this.room.send(client, { action: "Ready" });
     }
-    movePlayer(client, x, y, ts) {
+    movePlayer(client, x, y, angle, ts) {
         let player = this.players[client.sessionId];
-        player.pendingChanges.push({ x, y, ts });
+        player.pendingChanges.push({ x, y, angle, ts });
         let delta = Date.now() - this.prevTs;
         this.prevTs = Date.now();
         let ack;
@@ -28,9 +28,10 @@ class GameState {
             let move = player.pendingChanges.shift();
             player.x = move.x;
             player.y = move.y;
+            player.angle = move.angle;
             ack = move.ts;
         }
-        let message = { action: "Move", x: player.x, y: player.y, ts: ack };
+        let message = { action: "Move", x: player.x, y: player.y, angle: player.angle, ts: ack };
         this.room.send(client, message);
     }
 }

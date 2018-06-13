@@ -5,14 +5,15 @@ export class Player
     id: String;
     x: Number;
     y: Number;
-    rotation: Number;
+    angle: Number;
+
     @nosync
     pendingChanges: any = [];
-    constructor(id, x, y, rotation) 
+    constructor(id, x, y, angle) 
     {
         this.id = id;
         this.x = x;
         this.y = y;
-        this.rotation = rotation;
+        this.angle = angle;
     }
 }

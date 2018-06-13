@@ -8,12 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const colyseus_1 = require("colyseus");
 class Player {
-    constructor(id, x, y, rotation) {
+    constructor(id, x, y, angle) {
         this.pendingChanges = [];
         this.id = id;
         this.x = x;
         this.y = y;
-        this.rotation = rotation;
+        this.angle = angle;
     }
 }
 __decorate([
