@@ -123,12 +123,18 @@ class GameScene extends Phaser.Scene
                     let newPlayer = this.getPlayerById(change.path.id);
                     let tween = this.tweens.add({targets: newPlayer, y: change.value, duration: 5, ease: 'Power2'});
                 }
-                else if(change.path.axis === "angle")
-                {
-                    let newPlayer = this.getPlayerById(change.path.id);
-                    newPlayer.angle = change.value;
-                }
             }
+        });
+        this.room.listen("players/:id/angle",(change)=>
+        {
+            if(change.path.id != this.room.sessionId)
+            {
+                let newPlayer = this.getPlayerById(change.path.id);
+                console.log(newPlayer);
+                console.log(change.value);
+                newPlayer.angle = change.value;
+            }
+            
         });
         
     }
