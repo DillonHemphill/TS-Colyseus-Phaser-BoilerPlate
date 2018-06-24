@@ -10,6 +10,7 @@ class Player extends Phaser.Physics.Arcade.Sprite
         this.savedMoves = [];
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.setBounce(1).setCollideWorldBounds(true);
     }
 }
 

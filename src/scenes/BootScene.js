@@ -9,6 +9,7 @@ class BootScene extends Phaser.Scene
     preload() 
     {
         this.load.image('Player', "assets/images/player.png");
+        this.load.image("Ball","assets/images/ball.png");
         this.scene.start('GameScene');
     }
 }

@@ -2,6 +2,7 @@
 import "phaser";
 import {Client, Room, DataChange} from 'colyseus.js'
 import Player from "./objects/player";
+import Ball from "./objects/ball";
 class GameScene extends Phaser.Scene 
 {
     constructor(test) 
@@ -11,6 +12,7 @@ class GameScene extends Phaser.Scene
         this.room;
         this.player;
         this.playerGroup = new Phaser.GameObjects.Group(this,{});
+        this.balls = new Phaser.GameObjects.Group(this,{});
         this.clientConnected = false;
 
     }
@@ -24,6 +26,7 @@ class GameScene extends Phaser.Scene
     {
        this.joinRoom();
        this.playerListener();
+       this.ballListener();
        this.onMessage();
        
        this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -139,6 +142,13 @@ class GameScene extends Phaser.Scene
         
     }
 
+    ballListener()
+    {
+        this.room.listen("balls/:id",(change)=>
+        {
+            let newBall = new Ball({scene: this, x: change.value.x, y: change.value.y, key: "Ball"});
+        });
+    }
     onMessage()
     {
         this.room.onMessage.add(function(message)

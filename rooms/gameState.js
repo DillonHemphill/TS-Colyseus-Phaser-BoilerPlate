@@ -8,15 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 const colyseus_1 = require("colyseus");
 const player_1 = require("./objects/player");
+const ball_1 = require("./objects/ball");
+const uuid = require("uuid");
 class GameState {
     constructor(room) {
         this.prevTs = Date.now;
         this.players = {};
+        this.balls = {};
         this.room = room;
     }
     addPlayer(client) {
         this.players[client.sessionId] = new player_1.Player(client.sessionId, Math.floor(Math.random() * 500), Math.floor(Math.random() * 500), 0);
         this.room.send(client, { action: "Ready" });
+        this.createBall();
     }
     movePlayer(client, x, y, angle, ts) {
         let player = this.players[client.sessionId];
@@ -33,6 +37,10 @@ class GameState {
         }
         let message = { action: "Move", x: player.x, y: player.y, angle: player.angle, ts: ack };
         this.room.send(client, message);
+    }
+    createBall() {
+        let uuidString = uuid();
+        this.balls[uuidString] = new ball_1.Ball(uuidString, 200, 200, 0);
     }
 }
 __decorate([

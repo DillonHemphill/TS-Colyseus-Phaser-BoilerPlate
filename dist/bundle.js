@@ -371,7 +371,7 @@ module.exports = function (NAME, exec) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // to indexed object, toObject with fallback for non-array-like ES3 strings
-var IObject = __webpack_require__(/*! ./_iobject */ 125);
+var IObject = __webpack_require__(/*! ./_iobject */ 126);
 var defined = __webpack_require__(/*! ./_defined */ 52);
 module.exports = function (it) {
   return IObject(defined(it));
@@ -387,7 +387,7 @@ module.exports = function (it) {
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
-var pIE = __webpack_require__(/*! ./_object-pie */ 126);
+var pIE = __webpack_require__(/*! ./_object-pie */ 127);
 var createDesc = __webpack_require__(/*! ./_property-desc */ 83);
 var toIObject = __webpack_require__(/*! ./_to-iobject */ 41);
 var toPrimitive = __webpack_require__(/*! ./_to-primitive */ 51);
@@ -607,7 +607,7 @@ module.exports = function (KEY, exec) {
 // 5 -> Array#find
 // 6 -> Array#findIndex
 var ctx = __webpack_require__(/*! ./_ctx */ 47);
-var IObject = __webpack_require__(/*! ./_iobject */ 125);
+var IObject = __webpack_require__(/*! ./_iobject */ 126);
 var toObject = __webpack_require__(/*! ./_to-object */ 25);
 var toLength = __webpack_require__(/*! ./_to-length */ 18);
 var asc = __webpack_require__(/*! ./_array-species-create */ 209);
@@ -676,7 +676,7 @@ if (__webpack_require__(/*! ./_descriptors */ 16)) {
   var toAbsoluteIndex = __webpack_require__(/*! ./_to-absolute-index */ 87);
   var toPrimitive = __webpack_require__(/*! ./_to-primitive */ 51);
   var has = __webpack_require__(/*! ./_has */ 33);
-  var classof = __webpack_require__(/*! ./_classof */ 127);
+  var classof = __webpack_require__(/*! ./_classof */ 128);
   var isObject = __webpack_require__(/*! ./_is-object */ 11);
   var toObject = __webpack_require__(/*! ./_to-object */ 25);
   var isArrayIter = __webpack_require__(/*! ./_is-array-iter */ 206);
@@ -1665,7 +1665,8 @@ module.exports = function (it, TYPE) {
 /* 122 */,
 /* 123 */,
 /* 124 */,
-/* 125 */
+/* 125 */,
+/* 126 */
 /*!**************************************************!*\
   !*** ./node_modules/core-js/modules/_iobject.js ***!
   \**************************************************/
@@ -1682,7 +1683,7 @@ module.exports = Object('z').propertyIsEnumerable(0) ? Object : function (it) {
 
 
 /***/ }),
-/* 126 */
+/* 127 */
 /*!*****************************************************!*\
   !*** ./node_modules/core-js/modules/_object-pie.js ***!
   \*****************************************************/
@@ -1694,7 +1695,7 @@ exports.f = {}.propertyIsEnumerable;
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /*!**************************************************!*\
   !*** ./node_modules/core-js/modules/_classof.js ***!
   \**************************************************/
@@ -1728,7 +1729,6 @@ module.exports = function (it) {
 
 
 /***/ }),
-/* 128 */,
 /* 129 */,
 /* 130 */,
 /* 131 */,
@@ -2649,7 +2649,7 @@ module.exports = function (object, index, value) {
 /*! all exports used */
 /***/ (function(module, exports, __webpack_require__) {
 
-var classof = __webpack_require__(/*! ./_classof */ 127);
+var classof = __webpack_require__(/*! ./_classof */ 128);
 var ITERATOR = __webpack_require__(/*! ./_wks */ 13)('iterator');
 var Iterators = __webpack_require__(/*! ./_iterators */ 106);
 module.exports = __webpack_require__(/*! ./_core */ 50).getIteratorMethod = function (it) {
@@ -3489,9 +3489,9 @@ module.exports.f = function getOwnPropertyNames(it) {
 // 19.1.2.1 Object.assign(target, source, ...)
 var getKeys = __webpack_require__(/*! ./_object-keys */ 86);
 var gOPS = __webpack_require__(/*! ./_object-gops */ 150);
-var pIE = __webpack_require__(/*! ./_object-pie */ 126);
+var pIE = __webpack_require__(/*! ./_object-pie */ 127);
 var toObject = __webpack_require__(/*! ./_to-object */ 25);
-var IObject = __webpack_require__(/*! ./_iobject */ 125);
+var IObject = __webpack_require__(/*! ./_iobject */ 126);
 var $assign = Object.assign;
 
 // should work with symbols and should have deterministic property order (V8 bug)
@@ -3740,7 +3740,7 @@ module.exports = function (iterator, fn, value, entries) {
 
 var aFunction = __webpack_require__(/*! ./_a-function */ 31);
 var toObject = __webpack_require__(/*! ./_to-object */ 25);
-var IObject = __webpack_require__(/*! ./_iobject */ 125);
+var IObject = __webpack_require__(/*! ./_iobject */ 126);
 var toLength = __webpack_require__(/*! ./_to-length */ 18);
 
 module.exports = function (that, callbackfn, aLen, memo, isRight) {
@@ -4389,7 +4389,7 @@ module.exports = function (that, maxLength, fillString, left) {
 
 var getKeys = __webpack_require__(/*! ./_object-keys */ 86);
 var toIObject = __webpack_require__(/*! ./_to-iobject */ 41);
-var isEnum = __webpack_require__(/*! ./_object-pie */ 126).f;
+var isEnum = __webpack_require__(/*! ./_object-pie */ 127).f;
 module.exports = function (isEntries) {
   return function (it) {
     var O = toIObject(it);
@@ -4415,7 +4415,7 @@ module.exports = function (isEntries) {
 /***/ (function(module, exports, __webpack_require__) {
 
 // https://github.com/DavidBruant/Map-Set.prototype.toJSON
-var classof = __webpack_require__(/*! ./_classof */ 127);
+var classof = __webpack_require__(/*! ./_classof */ 128);
 var from = __webpack_require__(/*! ./_array-from-iterable */ 329);
 module.exports = function (NAME) {
   return function toJSON() {
@@ -5519,7 +5519,7 @@ define(String.prototype, "padRight", "".padEnd);
 "pop,reverse,shift,keys,values,entries,indexOf,every,some,forEach,map,filter,find,findIndex,includes,join,slice,concat,push,splice,unshift,sort,lastIndexOf,reduce,reduceRight,copyWithin,fill".split(",").forEach(function (key) {
   [][key] && define(Array, key, Function.call.bind([][key]));
 });
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../webpack/buildin/global.js */ 124)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../webpack/buildin/global.js */ 125)))
 
 /***/ }),
 /* 563 */
@@ -5888,7 +5888,7 @@ if (!USE_NATIVE) {
   $GOPD.f = $getOwnPropertyDescriptor;
   $DP.f = $defineProperty;
   __webpack_require__(/*! ./_object-gopn */ 89).f = gOPNExt.f = $getOwnPropertyNames;
-  __webpack_require__(/*! ./_object-pie */ 126).f = $propertyIsEnumerable;
+  __webpack_require__(/*! ./_object-pie */ 127).f = $propertyIsEnumerable;
   __webpack_require__(/*! ./_object-gops */ 150).f = $getOwnPropertySymbols;
 
   if (DESCRIPTORS && !__webpack_require__(/*! ./_library */ 85)) {
@@ -5987,7 +5987,7 @@ setToStringTag(global.JSON, 'JSON', true);
 // all enumerable object keys, includes symbols
 var getKeys = __webpack_require__(/*! ./_object-keys */ 86);
 var gOPS = __webpack_require__(/*! ./_object-gops */ 150);
-var pIE = __webpack_require__(/*! ./_object-pie */ 126);
+var pIE = __webpack_require__(/*! ./_object-pie */ 127);
 module.exports = function (it) {
   var result = getKeys(it);
   var getSymbols = gOPS.f;
@@ -6306,7 +6306,7 @@ $export($export.S, 'Object', { setPrototypeOf: __webpack_require__(/*! ./_set-pr
 "use strict";
 
 // 19.1.3.6 Object.prototype.toString()
-var classof = __webpack_require__(/*! ./_classof */ 127);
+var classof = __webpack_require__(/*! ./_classof */ 128);
 var test = {};
 test[__webpack_require__(/*! ./_wks */ 13)('toStringTag')] = 'z';
 if (test + '' != '[object z]') {
@@ -7915,7 +7915,7 @@ var toIObject = __webpack_require__(/*! ./_to-iobject */ 41);
 var arrayJoin = [].join;
 
 // fallback for not array-like strings
-$export($export.P + $export.F * (__webpack_require__(/*! ./_iobject */ 125) != Object || !__webpack_require__(/*! ./_strict-method */ 49)(arrayJoin)), 'Array', {
+$export($export.P + $export.F * (__webpack_require__(/*! ./_iobject */ 126) != Object || !__webpack_require__(/*! ./_strict-method */ 49)(arrayJoin)), 'Array', {
   join: function join(separator) {
     return arrayJoin.call(toIObject(this), separator === undefined ? ',' : separator);
   }
@@ -8590,7 +8590,7 @@ __webpack_require__(/*! ./_fix-re-wks */ 155)('split', 2, function (defined, SPL
 var LIBRARY = __webpack_require__(/*! ./_library */ 85);
 var global = __webpack_require__(/*! ./_global */ 6);
 var ctx = __webpack_require__(/*! ./_ctx */ 47);
-var classof = __webpack_require__(/*! ./_classof */ 127);
+var classof = __webpack_require__(/*! ./_classof */ 128);
 var $export = __webpack_require__(/*! ./_export */ 1);
 var isObject = __webpack_require__(/*! ./_is-object */ 11);
 var aFunction = __webpack_require__(/*! ./_a-function */ 31);
@@ -11750,7 +11750,7 @@ for (var collections = getKeys(DOMIterables), i = 0; i < collections.length; i++
   typeof self === "object" ? self : this
 );
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 124)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../webpack/buildin/global.js */ 125)))
 
 /***/ }),
 /* 761 */
@@ -11811,7 +11811,7 @@ module.exports = function (regExp, replace) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_phaser__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__scenes_BootScene__ = __webpack_require__(/*! ./scenes/BootScene */ 1401);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__scenes_GameScene__ = __webpack_require__(/*! ./scenes/GameScene */ 1402);
@@ -12484,7 +12484,7 @@ const game = new Phaser.Game(config);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_phaser__);
 /// <reference path="../phaser.d.ts"/>
 
@@ -12494,6 +12494,7 @@ class BootScene extends Phaser.Scene {
     }
     preload() {
         this.load.image('Player', "assets/images/player.png");
+        this.load.image("Ball", "assets/images/ball.png");
         this.scene.start('GameScene');
     }
 }
@@ -12510,12 +12511,14 @@ class BootScene extends Phaser.Scene {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_phaser__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_colyseus_js__ = __webpack_require__(/*! colyseus.js */ 1403);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_colyseus_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_colyseus_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__objects_player__ = __webpack_require__(/*! ./objects/player */ 1422);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__objects_ball__ = __webpack_require__(/*! ./objects/ball */ 1423);
 /// <reference path="../phaser.d.ts"/>
+
 
 
 
@@ -12526,6 +12529,7 @@ class GameScene extends Phaser.Scene {
         this.room;
         this.player;
         this.playerGroup = new Phaser.GameObjects.Group(this, {});
+        this.balls = new Phaser.GameObjects.Group(this, {});
         this.clientConnected = false;
     }
 
@@ -12534,6 +12538,7 @@ class GameScene extends Phaser.Scene {
     create() {
         this.joinRoom();
         this.playerListener();
+        this.ballListener();
         this.onMessage();
 
         this.keyW = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -12616,6 +12621,11 @@ class GameScene extends Phaser.Scene {
         });
     }
 
+    ballListener() {
+        this.room.listen("balls/:id", change => {
+            let newBall = new __WEBPACK_IMPORTED_MODULE_3__objects_ball__["a" /* default */]({ scene: this, x: change.value.x, y: change.value.y, key: "Ball" });
+        });
+    }
     onMessage() {
         this.room.onMessage.add(function (message) {
             if (this.room) {
@@ -15461,7 +15471,7 @@ function isnan (val) {
   return val !== val // eslint-disable-line no-self-compare
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../webpack/buildin/global.js */ 124)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../webpack/buildin/global.js */ 125)))
 
 /***/ }),
 /* 1413 */
@@ -16603,7 +16613,7 @@ exports.varListener = varListener;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 128);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_phaser__);
 /// <reference path="../../phaser.d.ts"/>
 
@@ -16615,10 +16625,39 @@ class Player extends Phaser.Physics.Arcade.Sprite {
         this.savedMoves = [];
         this.scene.add.existing(this);
         this.scene.physics.add.existing(this);
+        this.setBounce(1).setCollideWorldBounds(true);
     }
 }
 
 /* harmony default export */ __webpack_exports__["a"] = (Player);
+
+/***/ }),
+/* 1423 */
+/*!************************************!*\
+  !*** ./src/scenes/objects/ball.js ***!
+  \************************************/
+/*! exports provided: default */
+/*! exports used: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser__ = __webpack_require__(/*! phaser */ 108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_phaser___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_phaser__);
+/// <reference path="../../phaser.d.ts"/>
+
+
+class Ball extends Phaser.Physics.Arcade.Sprite {
+    constructor(config) {
+        super(config.scene, config.x, config.y, config.key);
+        this.id;
+        this.savedMoves = [];
+        this.scene.add.existing(this);
+        this.scene.physics.add.existing(this);
+        this.setBounce(1).setCollideWorldBounds(true);
+    }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = (Ball);
 
 /***/ })
 ],[561]);

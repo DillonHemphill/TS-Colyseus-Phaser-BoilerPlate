@@ -1,5 +1,7 @@
 import {EntityMap, Client, nosync, Clock, Room} from "colyseus"
 import {Player} from "./objects/player";
+import { Ball } from "./objects/ball";
+import * as uuid from 'uuid';
 
 export class GameState
 {
@@ -10,6 +12,7 @@ export class GameState
     prevTs: any = Date.now;
 
     players: EntityMap<Player> = {};
+    balls: EntityMap<Ball> = {};
 
     constructor(room: Room)
     {
@@ -20,6 +23,7 @@ export class GameState
     {
         this.players[client.sessionId] = new Player(client.sessionId, Math.floor(Math.random() * 500), Math.floor(Math.random() * 500), 0);
         this.room.send(client,{action: "Ready"});
+        this.createBall();
     }
 
     movePlayer(client, x,y, angle,ts)
@@ -40,5 +44,11 @@ export class GameState
         }
         let message = {action: "Move", x: player.x, y: player.y, angle: player.angle, ts: ack };
         this.room.send(client,message);
+    }
+
+    createBall()
+    {
+        let uuidString = uuid();
+        this.balls[uuidString] = new Ball(uuidString,200,200,0);
     }
 }
